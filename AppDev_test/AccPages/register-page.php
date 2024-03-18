@@ -74,10 +74,10 @@ if(isset($_POST['submit'])){
                     header('Location: ./login-page.php');
                     exit(); // Exit to prevent further execution
                 } else {
-                    $errors['query_error'] = mysqli_stmt_error($stmt);
+                    $errors['confirmPass'] = mysqli_stmt_error($stmt);
                 }
             } else {
-                $errors['query_error'] = mysqli_error($conn);
+                $errors['confirmPass'] = mysqli_error($conn);
             }
         }
     }

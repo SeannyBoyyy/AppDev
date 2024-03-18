@@ -14,7 +14,7 @@ if(isset($_POST['submit']) && isset($_POST['name_buss']) && isset($_POST['bio'])
     // Move uploaded image to target directory
     if(move_uploaded_file($_FILES['image']['tmp_name'], $target)){
         // Prepare SQL statement to update the database
-        $sql = "INSERT INTO business_profile SET owner = ?, name = ?, text = ?, image = ?";
+        $sql = "UPDATE business_profile SET owner = ?, name = ?, text = ?, image = ?";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Check if the statement is prepared successfully
@@ -35,9 +35,25 @@ if(isset($_POST['submit']) && isset($_POST['name_buss']) && isset($_POST['bio'])
     } else {
         echo 'Error uploading image.';
     }
+
+    $getSql = 'SELECT name, text, image FROM business_profile WHERE owner = ?';
+    $stmt = mysqli_prepare($conn, $getSql);
+    mysqli_stmt_bind_param($stmt, "i", $ownerID);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($fromBusinessProfile = mysqli_fetch_assoc($result)) {
+        $business_name = $fromBusinessProfile['name'];
+        $business_bio = $fromBusinessProfile['text'];
+        $business_pfp = $fromBusinessProfile['image'];
+    } else {
+        echo 'Failed to retrieve updated information or no data found';
+        
+    }
+
 }
 
-// Close the connection after all database operations are done
 mysqli_close($conn);
 ?>
 
@@ -47,9 +63,7 @@ mysqli_close($conn);
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-3 text-center">
-            <?php
-                echo "<img src='".$business_pfp."' class='img-fluid'>";
-            ?>
+            <img src='./img/"<?php echo $UpdatedImg?>"' class='img-fluid' alt="PFP">
             <h3 class="mt-3"><?php echo $business_name?></h3>
             <div class="card text-center">
                 <div class="card-body">

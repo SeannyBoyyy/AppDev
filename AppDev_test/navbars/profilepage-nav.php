@@ -25,6 +25,7 @@ if(isset($_SESSION['ownerID'])){
         $business_pfp = $_SESSION['pfp'];
     } else {
         $business_pfp = 'no pfp yet';
+        echo 'pfp error';
     }
 } else {
     echo 'error';
