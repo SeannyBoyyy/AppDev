@@ -1,14 +1,14 @@
 <?php
 include('./config/connectDb.php');
 session_start();
-if(isset($_SESSION['business_name'])){
-    $business_name = $_SESSION['business_name'];
-    
+if(isset($_SESSION['business_name_setup'])){
+
+  $business_name = $_SESSION['business_name_setup'];
 } else {
     $business_name = 'no business name yet';
 }
-if(isset($_SESSION['bio'])){
-  $business_bio = $_SESSION['bio'];
+if(isset($_SESSION['buisness_bio_setup'])){
+  $business_bio = $_SESSION['buisness_bio_setup'];
 }else {
   $business_bio = "no bio yet";
 }

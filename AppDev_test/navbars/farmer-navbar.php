@@ -12,6 +12,10 @@ if(isset($_SESSION['bio'])){
 }else {
   $business_bio = "no bio yet";
 }
+
+if(isset($_SESSION['ownerID'])){
+    $ownerID = $_SESSION['ownerID'];
+}
 ?>
 
 <!doctype html>
@@ -60,9 +64,9 @@ if(isset($_SESSION['bio'])){
               <div class="text-center">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a href="../ProfileModule/profile-page.php">Profile</a></li>
-                  <li class="list-group-item"><a href="../ProfileModule/uploadPost.php">Upload a new post</a></li>
+                  <li class="list-group-item"><a href="../ProfileModule/profile-page.php">Upload a new post</a></li>
                   <li class="list-group-item"><a href="">Manage Posts</a></li>
-                  <li class="list-group-item"><a href="../ProfileModule/profile-setup.php">Update Profile</a></li>
+                  <li class="list-group-item"><a href="../ProfileModule/profile-page.php">Update Profile</a></li>
                   <li class="list-group-item">
                     <a href="">Messages</a>
                     <span class="badge text-bg-primary">4</span>
