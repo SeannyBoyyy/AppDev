@@ -1,7 +1,7 @@
 <?php
     include('../config/connectDb.php');
     include('../navbars/farmer-navbar.php');
-
+    var_dump($ownerID);
     $NameSetUp = $bioSetup = $imageSetup = '';
     $errors = array('business_name'=>'', 'business_bio'=>'');
     if(isset($_POST['submit'])){
@@ -25,6 +25,11 @@
             if($stmt){
                 mysqli_stmt_bind_param($stmt, "isss", $ownerID, $NameSetUp, $bioSetup, $image);
                 if(mysqli_stmt_execute($stmt)){
+                    $result = mysqli_stmt_get_result($stmt);
+                    $profileSetUp = mysqli_fetch_assoc($result);
+                    $_SESSION['business_name_setup'] = $profileSetUp['name'];
+                    $_SESSION['business_bio_setup'] = $profileSetUp['text'];
+                    $_SESSION['business_pfp_setup'] = $profileSetUp['image'];
                     header('location: ./profile-page.php');
                 }else{
                     echo "<script>alert('Erorr')</script>";

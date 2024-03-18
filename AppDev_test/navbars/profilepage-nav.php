@@ -5,7 +5,7 @@ session_start();
 // Check if ownerID is set in the session
 if(isset($_SESSION['ownerID'])){
     $ownerID = $_SESSION['ownerID'];
-
+    
     // Check if business_name is set in the session
     if(isset($_SESSION['business_name'])){
         $business_name = $_SESSION['business_name'];
