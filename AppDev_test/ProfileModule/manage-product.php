@@ -57,7 +57,7 @@ if(isset($_SESSION['ownerID'])){
                         <!-- ... -->
                         <td>
                             <!-- CRUD Operations Form -->
-                            <form action="crud.php" method="post">
+                            <form action="profile-page.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                 <button type="submit" name="read">Read</button>
                                 <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
