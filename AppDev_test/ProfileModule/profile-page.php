@@ -129,11 +129,11 @@ if(isset($_POST['submit'])) {
                         <form class="row w-100 g-3">
                             <div class="col-12">
                                 <label for="formFile" class="form-label" style="margin-left: 5px;">Upload a picture</label>
-                                <input class="form-control" type="file" id="formFile">
+                                <input class="form-control" type="file" id="formFile" name="postIMG">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Write something about the post.</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <input class="form-control" id="exampleFormControlTextarea1" rows="3"></input>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-lg fs-6 w-100" type="submit" style="background-color: #90EE90;">Upload</button>
