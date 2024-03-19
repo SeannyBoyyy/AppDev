@@ -71,7 +71,7 @@ if(isset($_SESSION['ownerID'])){
 
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="img/<?php echo $row['image'] ?>">
+                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?php echo $row['image'] ?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>

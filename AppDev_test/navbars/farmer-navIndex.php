@@ -34,7 +34,7 @@ if(isset($_SESSION['ownerID'])){
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-  <nav class="navbar navbar-expand-lg sticky-top  shadow box-area p-3">
+  <nav class="navbar navbar-expand-lg shadow box-area p-3">
     <div class="container-fluid">
       <div class="container-fluid">
         <a class="navbar-brand fs-4" href="#">FarmDeals</a>
@@ -47,7 +47,7 @@ if(isset($_SESSION['ownerID'])){
     </div>
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav d-flex justify-contents-between align-items-center">
+        <ul class="navbar-nav">
           <li class="nav-item">
             <a class="btn" href="./ProfileModule/uploadPost.php">Upload</a>
           </li>
@@ -75,7 +75,7 @@ if(isset($_SESSION['ownerID'])){
 
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="ProfileModule/img/<?php echo $row['image'] ?>">
+                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="ProfileModule/img/<?php echo $row['image'] ?>">
                 <?php } ?>
             <h3 class="mt-3"><?php echo $business_name?></h3>
               <div class="text-center">

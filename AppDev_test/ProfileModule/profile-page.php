@@ -128,7 +128,7 @@ if (isset($_POST["upload_product"])) {
                   
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="img/<?echo $row['image']?>">
+                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?echo $row['image']?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
