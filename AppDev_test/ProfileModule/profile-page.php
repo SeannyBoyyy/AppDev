@@ -148,7 +148,7 @@ if (isset($_POST["upload_product"])) {
                 <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
                     <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false">Upload a new Product</button>
-                    <button class="nav-link" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
+                    <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
@@ -221,9 +221,9 @@ if (isset($_POST["upload_product"])) {
                                                 <!-- CRUD Operations Form -->
                                                 <form action="crud.php" method="post">
                                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                                    <button type="submit" class="btn btn-success" name="read">Read</button>
-                                                    <button type="submit" class="btn btn-success" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
-                                                    <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                                                    <button type="submit" class="btn btn-success mb-2" name="read">Read</button>
+                                                    <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                    <button class="btn btn-danger mb-2" type="submit" name="delete">Delete</button>
                                                 </form>
                                             </td>
                                             <!-- ... -->
