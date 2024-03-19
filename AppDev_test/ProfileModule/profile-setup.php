@@ -16,9 +16,6 @@
         $NameSetUp = htmlspecialchars($_POST['business_name']);
         $bioSetup = htmlspecialchars($_POST['business_bio']);
 
-        
-
-
         if(empty($NameSetUp)){
             $errors['business_name'] = 'Business Name is required!';
         }
