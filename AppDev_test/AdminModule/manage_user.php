@@ -1,22 +1,3 @@
-<?php 
-include('../config/connectDb.php');
-include('../navbars/profilepage-nav.php'); 
-
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process form data
-    $userId = $_POST['user_id'];
-
-    // Delete user from user_accounts table
-    $sql = "DELETE FROM user_accounts WHERE id = $userId";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "User deleted successfully";
-    } else {
-        echo "Error deleting user: " . $conn->error;
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
             <h5>Delete User</h5>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    User ID: <input type="text" name="user_id"><br><br>
-                    <input type="submit" value="Delete">
+                    User ID: <input class="form-control w-50" type="text" name="user_id"><br><br>
+                    <input type="submit" value="Delete" class="btn btn-danger">
                 </form>
             <br>
 
             <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10">
+            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
                 <tr>
                     <td>#</td>
                     <td>email</td>
@@ -63,8 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endforeach; ?>
             </table>
             <br>
+            <a class="btn btn-warning" href="index.php">Go Back</a>
         </div>
     </div>
-    <a href="index.php">Go Back</a>
+    
 </body>
 </html>

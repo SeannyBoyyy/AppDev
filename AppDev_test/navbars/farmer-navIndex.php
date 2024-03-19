@@ -49,7 +49,7 @@ if(isset($_SESSION['ownerID'])){
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="btn" href="./ProfileModule/uploadPost.php">Upload</a>
+            <a class="btn" href="./ProfileModule/profile-page.php">Upload</a>
           </li>
           <li class="nav-item"><a class="btn" href="./ProfileModule/profile-page.php">Profile</a></li>
           <li class="nav-item">
@@ -80,12 +80,12 @@ if(isset($_SESSION['ownerID'])){
             <h3 class="mt-3"><?php echo $business_name?></h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a href="./ProfileModule/uploadPost.php">Upload</a></li>
-                  <li class="list-group-item"><a href="./ProfileModule/profile-page.php">Profile</a></li>
-                  <li class="list-group-item"><a href="">Manage Posts</a></li>
-                  <li class="list-group-item"><a href="./ProfileModule/profile-setup.php">Update Profile</a></li>
+                  <li class="list-group-item"><a class="aLot" href="./ProfileModule/profile-page.php">Upload</a></li>
+                  <li class="list-group-item"><a class="aLot" href="./ProfileModule/profile-page.php">Profile</a></li>
+                  <li class="list-group-item"><a class="aLot" href="./ProfileModule/profile-page.php">Manage Posts</a></li>
+                  <li class="list-group-item"><a class="aLot" href="./ProfileModule/profile-page.php">Update Profile</a></li>
                   <li class="list-group-item">
-                    <a href="">Messages</a>
+                    <a class="aLot" href="">Messages</a>
                     <span class="badge text-bg-primary">4</span>
                   </li>
                   <li class="list-group-item"><a href="./AccPages/logout.php">Log Out</a></li>

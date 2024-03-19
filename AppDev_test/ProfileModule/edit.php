@@ -64,22 +64,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="middle">
-        <div class="container">
+    <div class="container w-50">
+        <div class="container mt-5">
             <h2>Edit Record</h2>
 
             <!-- Edit Form -->
             <form action="" method="post" enctype="multipart/form-data">
-                <label for="new_name">New Name:</label>
-                <input type="text" name="new_name" value="<?php echo $record['name']; ?>" required>
-
-                <label for="new_text">New Text:</label>
-                <textarea name="new_text" rows="4" required><?php echo $record['text']; ?></textarea>
-
-                <label for="new_image">New Image:</label>
+                
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">New Name:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="new_name" value="<?php echo $record['name']; ?>">
+            </div>
+            
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">New Text:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="new_text" value="<?php echo $record['text']; ?>">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">New Image:</label>
                 <input type="file" name="new_image" accept=".jpg, .jpeg, .png">
-
-                <button type="submit">Save Changes</button>
+            </div>
+                <button class="btn btn-success" type="submit">Save Changes</button>
             </form>
         </div>
     </div>

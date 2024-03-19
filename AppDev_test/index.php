@@ -33,16 +33,16 @@
         <div class="row">
             <?php foreach($profiles as $profile){ ?>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-                <div class="card w-100" style="width: 350px; margin: auto; height:500px;">
-                    <img style="width: 300px; height: 300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="ProfileModule/img/<?php echo $profile['image'] ?>">
-                    <div class="card-body">
+                <div class="card text-center" style="width: 300px; margin: auto; height: 500px;">
+                    <img class="img-fluid img-thumbnail rounded-circle mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $profile['image'] ?>" style="width: 150px; height: 150px;">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $profile['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $profile['text']?></p>
-                        <a href="#" class="btn" style="background-color: #90EE90; color:white;">Go somewhere</a>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
             <?php } ?>
         </div>
-    </div> 
+    </div>
 </div>

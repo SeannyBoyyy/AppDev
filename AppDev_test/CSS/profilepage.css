@@ -1,8 +1,4 @@
-@media  only screen and (maxmax-width:441px){
-    .card{
-        display: none !important; 
-    }
-}
+
 .logoutBTN{
     color: black;
     text-decoration: none;
