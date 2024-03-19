@@ -143,8 +143,8 @@ if (isset($_POST["upload_product"])) {
             <div class="text-center">
                 <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
-                    <button class="nav-link active"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="true">Upload a new Product</button>
-                    <button class="nav-link" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
+                    <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="true">Upload a new Product</button>
+                    <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
@@ -153,7 +153,7 @@ if (isset($_POST["upload_product"])) {
         </div>
         <div class="col-7 container-sm">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
+                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid text-center">
                             <div class="container-fluid">
@@ -181,11 +181,12 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
-                    <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+
+                <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     Manage Product Post
                     <div class="middle">
-                            <div class="container">
-                                <h2>Post Module</h2>
+                        <div class="container">
+                            <h2>Post Module</h2>
 
                                 <!-- Display Table -->
                                 <table border="1" cellspacing="0" cellpadding="10">
