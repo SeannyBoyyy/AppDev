@@ -1,7 +1,7 @@
 <?php
     include('./navbars/farmer-navIndex.php');
     
-    $PostSql = 'SELECT name, text, image FROM business_profile';
+    $PostSql = 'SELECT name, text, image FROM posting_module';
 
     $postSqlRes = mysqli_query($conn, $PostSql);
 
@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $profile['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $profile['text']?></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="#" class="btn" style="background-color: #90EE90; color:white;">Go somewhere</a>
                     </div>
                 </div>
             </div>

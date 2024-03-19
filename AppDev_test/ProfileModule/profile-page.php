@@ -144,7 +144,7 @@ if (isset($_POST["upload_product"])) {
                 <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
                     <button class="nav-link active"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="true">Upload a new Product</button>
-                    <button class="nav-link" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Product Post</button>
+                    <button class="nav-link" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
@@ -181,9 +181,57 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                    <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     Manage Product Post
-                    <a href ="manage-product.php"> crud </a>
+                    <div class="middle">
+                            <div class="container">
+                                <h2>Post Module</h2>
+
+                                <!-- Display Table -->
+                                <table border="1" cellspacing="0" cellpadding="10">
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Image</td>
+                                        <td>Information</td>
+                                        <td>Created At</td> <!-- Added Created At column -->
+                                        <td>Action</td>
+                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    // Modify the SQL query to select products associated with the current user's business profile
+                                    $query = "SELECT * FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
+                                    $stmt = mysqli_prepare($conn, $query);
+                                    mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                    mysqli_stmt_execute($stmt);
+                                    $result = mysqli_stmt_get_result($stmt);
+                                    foreach ($result as $row) :
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><?php echo $row["name"]; ?></td>
+                                            <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                            <td><?php echo $row["text"]; ?></td>    
+                                            <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                            <!-- ... -->
+                                            <td>
+                                                <!-- CRUD Operations Form -->
+                                                <form action="crud.php" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                    <button type="submit" name="read">Read</button>
+                                                    <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                    <button class="delete-btn" type="submit" name="delete">Delete</button>
+                                                </form>
+                                            </td>
+                                            <!-- ... -->
+
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                                <br>
+                            </div>
+                        </div>
+                        <a href="profile-page.php">Go Back</a>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
