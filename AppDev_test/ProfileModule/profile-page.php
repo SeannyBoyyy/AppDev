@@ -50,9 +50,13 @@ if(isset($_POST['submit'])) {
 
             // Check if the query executed successfully
             if(mysqli_stmt_affected_rows($stmt) > 0) {
-                echo 'Success';
+                echo "<script> 
+                        alert('Updated successfully'); 
+                    </script>";
             } else {
-                echo 'Error updating profile.';
+                echo "<script> 
+                        alert(Error updating profile.)
+                    </script>";
             }
         } else {
             echo 'Error preparing statement: ' . mysqli_error($conn);
@@ -128,7 +132,7 @@ if (isset($_POST["upload_product"])) {
                   
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?echo $row['image']?>">
+                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?php echo $row['image']; ?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
