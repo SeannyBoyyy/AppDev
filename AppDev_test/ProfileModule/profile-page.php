@@ -27,14 +27,15 @@ if(isset($_SESSION['ownerID'])){
 
 
 if(isset($_POST['submit'])) {
-    // Fetch ownerID from session or wherever you're storing it
-    $target = "./img/" . basename($_FILES['image']['name']);
+    $business_owner = $_SESSION['ownerID'];
+    $file_name = $_FILES['image']['name'];
+    $tempName = $_FILES['image']['tmp_name'];
+    $folder = 'img/'.$file_name;
     $newBussName = $_POST['name_buss'];
     $newBio = $_POST['bio'];
-    $image = $_FILES['image']['name'];
 
     // Move uploaded image to target directory
-    if(move_uploaded_file($_FILES['image']['tmp_name'], $target)){
+    if(move_uploaded_file($tempName, $folder)){
         // Prepare SQL statement to update the database
         $sql = "UPDATE business_profile 
         SET name = ?, text = ?, image = ? 
@@ -44,7 +45,7 @@ if(isset($_POST['submit'])) {
         // Check if the statement is prepared successfully
         if($stmt) {
             // Bind parameters and execute the statement
-            mysqli_stmt_bind_param($stmt, "sssi", $newBussName, $newBio, $target, $business_owner);
+            mysqli_stmt_bind_param($stmt, "sssi", $newBussName, $newBio, $file_name, $business_owner);
             mysqli_stmt_execute($stmt);
 
             // Check if the query executed successfully
@@ -59,23 +60,6 @@ if(isset($_POST['submit'])) {
     } else {
         echo 'Error uploading image.';
     }
-
-    $getSql = "SELECT name, text, image FROM business_profile WHERE owner = ?";
-    $stmt = mysqli_prepare($conn, $getSql);
-    mysqli_stmt_bind_param($stmt, "i",$business_owner);
-    mysqli_stmt_execute($stmt);
-
-    $result = mysqli_stmt_get_result($stmt);
-
-    if ($fromBusinessProfile = mysqli_fetch_assoc($result)) {
-        $business_name = $fromBusinessProfile['name'];
-        $business_bio = $fromBusinessProfile['text'];
-        $business_pfp = $fromBusinessProfile['image'];
-    } else {
-        echo 'Failed to retrieve updated information or no data found';
-        
-    }
-
 }
 
 // add post
@@ -95,11 +79,11 @@ if (isset($_POST["upload_product"])) {
 
         if (!in_array($imageExtension, $validImageExtension)) {
             echo "<script> alert('Invalid image extension'); </script>";
-        } elseif ($fileSize > 1000000) {
+        } elseif ($fileSize > 10000000) {
             echo "<script> alert('Image size is too large'); </script>";
         } else {
             $newImageName = uniqid() . '.' . $imageExtension;
-            $uploadPath = './img/' . $newImageName;
+            $uploadPath = 'img/' . $newImageName;
         
             move_uploaded_file($tmpName, $uploadPath);
 
@@ -109,12 +93,14 @@ if (isset($_POST["upload_product"])) {
             mysqli_query($conn, $query);
 
             echo "<script> 
-                    alert('Image uploaded successfully'); 
-                    document.location.href = 'profile-page.php';
-                  </script>";
+                        alert('Image uploaded successfully'); 
+                        window.location.replace('profile-page.php');
+                </script>";
+
         }
     }
 }
+
 
 ?>
 
@@ -126,11 +112,11 @@ if (isset($_POST["upload_product"])) {
         <div class="col-3 text-center">
             <div>
                 <?php
-                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner=$business_owner");
-
+                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
+                  
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="img/<?php echo $row['image'] ?>">
+                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="img/<?echo $row['image']?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
@@ -153,7 +139,7 @@ if (isset($_POST["upload_product"])) {
                 </div>
             </div>
         </div>
-        <div class="col-7 text-center container-sm">
+        <div class="col-7 container-sm">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
@@ -175,7 +161,7 @@ if (isset($_POST["upload_product"])) {
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Write something about the Product.</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1 text_product" rows="3" name="text_product"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text_product"></textarea>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-lg fs-6 w-100" type="upload_product" name="upload_product" style="background-color: #90EE90;">Upload</button>
