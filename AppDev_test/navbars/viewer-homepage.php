@@ -17,8 +17,8 @@
           <div class="navbar-nav">
             <a class="nav-link" aria-current="page" href="#">Farm</a>
             <a class="nav-link" aria-current="page" href="#">Products</a>
-            <a class="nav-link"  aria-current="page" href="./AccPages/login-page.php">Log In</a>
-            <a class="nav-link" aria-current="page" href="./AccPages/register-page.php">Register</a>
+            <a class="nav-link"  aria-current="page" href="./login-page.php">Log In</a>
+            <a class="nav-link" aria-current="page" href="./register-page.php">Register</a>
           </div>
         </div>
       </div>
