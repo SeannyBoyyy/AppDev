@@ -185,23 +185,24 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
-<!------------------------------------------------ MANAGE PRODUCT POST ------------------------------------------------------->
-                <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
-                    <div class="text-center">
-                        <div class="container">
-                            <h2>Manage Product Post</h2>
 
-                            <!-- Display Table -->
-                            <table border="1" cellspacing="0" cellpadding="10">
-                                <tr>
-                                    <td>#</td>
-                                    <td>Name</td>
-                                    <td>Image</td>
-                                    <td>Information</td>
-                                    <td>Created At</td> <!-- Added Created At column -->
-                                    <td>Action</td>
-                                </tr>
-                                <?php
+                <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                    Manage Product Post
+                    <div class="middle">
+                        <div class="container">
+                            <h2>Post Module</h2>
+
+                                <!-- Display Table -->
+                                <table border="1" cellspacing="0" cellpadding="10">
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Image</td>
+                                        <td>Information</td>
+                                        <td>Created At</td> <!-- Added Created At column -->
+                                        <td>Action</td>
+                                    </tr>
+                                    <?php
                                     $i = 1;
                                     // Modify the SQL query to select products associated with the current user's business profile
                                     $query = "SELECT * FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
@@ -210,31 +211,32 @@ if (isset($_POST["upload_product"])) {
                                     mysqli_stmt_execute($stmt);
                                     $result = mysqli_stmt_get_result($stmt);
                                     foreach ($result as $row) :
-                                ?>
-                                <tr>
-                                    <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row["name"]; ?></td>
-                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
-                                    <td><?php echo $row["text"]; ?></td>    
-                                    <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
-                                    <!-- ... -->
-                                    <td>
-                                    <!-- CRUD Operations Form -->
-                                    <form action="crud.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                        <button type="submit" name="read">Read</button>
-                                        <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
-                                        <button class="delete-btn" type="submit" name="delete">Delete</button>
-                                    </form>
-                                    </td>
-                                    <!-- ... -->
-                                </tr>
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><?php echo $row["name"]; ?></td>
+                                            <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                            <td><?php echo $row["text"]; ?></td>    
+                                            <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                            <!-- ... -->
+                                            <td>
+                                                <!-- CRUD Operations Form -->
+                                                <form action="crud.php" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                    <button type="submit" name="read">Read</button>
+                                                    <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                    <button class="delete-btn" type="submit" name="delete">Delete</button>
+                                                </form>
+                                            </td>
+                                            <!-- ... -->
 
-                                <?php endforeach; ?>
-                            </table>
-                            <br>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                                <br>
+                            </div>
                         </div>
-                    </div>  
+                        <a href="profile-page.php">Go Back</a>
                 </div>
 
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
