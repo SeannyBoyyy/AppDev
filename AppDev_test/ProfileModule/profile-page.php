@@ -78,7 +78,7 @@ if(isset($_POST['submit'])) {
 
 }
 
-// add post
+// ---------------------------------- add post ----------------------------------------
 if (isset($_POST["upload_product"])) {
   $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
   $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
@@ -105,8 +105,18 @@ if (isset($_POST["upload_product"])) {
 
             $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
 
-            $query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$newImageName', '$text_product', $business_owner)";
-            mysqli_query($conn, $query);
+            // Fetch the business profile ID associated with the current owner
+$getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+$stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+mysqli_stmt_bind_param($stmt, "i", $business_owner);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$businessProfile = mysqli_fetch_assoc($result);
+$businessProfileId = $businessProfile['id'];
+
+// Insert into posting_module with the retrieved business profile ID
+$query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$newImageName', '$text_product', $businessProfileId)";
+mysqli_query($conn, $query);
 
             echo "<script> 
                     alert('Image uploaded successfully'); 
@@ -115,6 +125,8 @@ if (isset($_POST["upload_product"])) {
         }
     }
 }
+//-----------------------------------------------------------------------------------------
+
 
 ?>
 
