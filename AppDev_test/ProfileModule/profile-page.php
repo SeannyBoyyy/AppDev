@@ -106,17 +106,17 @@ if (isset($_POST["upload_product"])) {
             $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
 
             // Fetch the business profile ID associated with the current owner
-$getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
-$stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
-mysqli_stmt_bind_param($stmt, "i", $business_owner);
-mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
-$businessProfile = mysqli_fetch_assoc($result);
-$businessProfileId = $businessProfile['id'];
+            $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+            $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+            mysqli_stmt_bind_param($stmt, "i", $business_owner);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            $businessProfile = mysqli_fetch_assoc($result);
+            $businessProfileId = $businessProfile['id'];
 
-// Insert into posting_module with the retrieved business profile ID
-$query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$newImageName', '$text_product', $businessProfileId)";
-mysqli_query($conn, $query);
+            // Insert into posting_module with the retrieved business profile ID
+            $query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId)";
+            mysqli_query($conn, $query);
 
             echo "<script> 
                     alert('Image uploaded successfully'); 
@@ -158,7 +158,7 @@ mysqli_query($conn, $query);
                 <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
                     <button class="nav-link active"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="true">Upload a new Product</button>
-                    <button class="nav-link" id="v-pills-managePost-tab" data-bs-toggle="pill" data-bs-target="#v-pills-managePost" type="button" role="tab" aria-controls="v-pills-managePost" aria-selected="false">Manage Posts</button>
+                    <button class="nav-link" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Product Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
@@ -195,7 +195,10 @@ mysqli_query($conn, $query);
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="v-pills-managePost" role="tabpanel" aria-labelledby="v-pills-managePost-tab">Manage Post</div>
+                <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                    Manage Product Post
+                    <a href ="manage-product.php"> crud </a>
+                </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid">
