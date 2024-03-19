@@ -1,17 +1,27 @@
 <?php
 include('./config/connectDb.php');
 session_start();
-if(isset($_SESSION['business_name_setup'])){
+if(isset($_SESSION['ownerID'])){
+  $business_owner = $_SESSION['ownerID']; 
+}else{
+  echo 'no owner ';
+}
 
-  $business_name = $_SESSION['business_name_setup'];
-} else {
-    $business_name = 'no business name yet';
-}
-if(isset($_SESSION['buisness_bio_setup'])){
-  $business_bio = $_SESSION['buisness_bio_setup'];
-}else {
-  $business_bio = "no bio yet";
-}
+  $getSql = "SELECT name, text, image FROM business_profile WHERE owner = ?";
+  $stmt = mysqli_prepare($conn, $getSql);
+  mysqli_stmt_bind_param($stmt, "i",$business_owner);
+  mysqli_stmt_execute($stmt);
+
+  $result = mysqli_stmt_get_result($stmt);
+
+  if ($fromBusinessProfile = mysqli_fetch_assoc($result)) {
+      $business_name = $fromBusinessProfile['name'];
+      $business_bio = $fromBusinessProfile['text'];
+      $business_pfp = $fromBusinessProfile['image'];
+  } else {
+      echo 'Failed to retrieve updated information or no data found';
+      
+  }
 ?>
 
 <!doctype html>
@@ -60,7 +70,13 @@ if(isset($_SESSION['buisness_bio_setup'])){
       </div>
       <div class="offcanvas-body">
         <div class="text-center">
-          <img src="./img/OIP.jfif" class="img-fluid">
+                <?php
+                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner=$business_owner");
+
+                  while($row = mysqli_fetch_assoc($res)){
+                ?>
+                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-cirle" src="ProfileModule/img/<?php echo $row['image'] ?>">
+                <?php } ?>
             <h3 class="mt-3"><?php echo $business_name?></h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">

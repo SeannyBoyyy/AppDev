@@ -1,15 +1,22 @@
 <?php
     include('../config/connectDb.php');
-    include('../navbars/farmer-navbar.php');
-    var_dump($ownerID);
+   session_start();
+   if(isset($_SESSION['ownerID'])){
+    $business_owner = $_SESSION['ownerID']; 
+  }else{
+    echo 'no owner ';
+  }
+
     $NameSetUp = $bioSetup = $imageSetup = '';
     $errors = array('business_name'=>'', 'business_bio'=>'');
     if(isset($_POST['submit'])){
-        $target = "./img/" . basename($_FILES['image']['name']);
-        htmlspecialchars($NameSetUp = $_POST['business_name']);
-        htmlspecialchars($bioSetup = $_POST['business_bio']);
+        $file_name = $_FILES['image']['name'];
+        $tempName = $_FILES['image']['tmp_name'];
+        $folder = 'img/'.$file_name;
+        $NameSetUp = htmlspecialchars($_POST['business_name']);
+        $bioSetup = htmlspecialchars($_POST['business_bio']);
 
-        $image = $_FILES['image']['name'];
+        
 
 
         if(empty($NameSetUp)){
@@ -19,17 +26,12 @@
         if(empty($bioSetup)){
             $errors['business_bio'] = 'Bio is required!';
         }
-        if(move_uploaded_file($_FILES['image']['tmp_name'], $target)){
+        if(move_uploaded_file($tempName, $folder)){
             $sql = 'INSERT INTO business_profile(owner, name, text, image) VALUES (?,?,?,?)';
             $stmt = mysqli_prepare($conn, $sql);
             if($stmt){
-                mysqli_stmt_bind_param($stmt, "isss", $ownerID, $NameSetUp, $bioSetup, $image);
+                mysqli_stmt_bind_param($stmt, "isss", $business_owner, $NameSetUp, $bioSetup, $file_name);
                 if(mysqli_stmt_execute($stmt)){
-                    $result = mysqli_stmt_get_result($stmt);
-                    $profileSetUp = mysqli_fetch_assoc($result);
-                    $_SESSION['business_name_setup'] = $profileSetUp['name'];
-                    $_SESSION['business_bio_setup'] = $profileSetUp['text'];
-                    $_SESSION['business_pfp_setup'] = $profileSetUp['image'];
                     header('location: ./profile-page.php');
                 }else{
                     echo "<script>alert('Erorr')</script>";
@@ -43,7 +45,13 @@
     
 
 ?>
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link rel="stylesheet" href="../CSS/farmer-van.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
 <link rel="stylesheet" href="../CSS/profile-setup.css">
 <div class="container-fluid w-50" style="margin-top: 90px;">
     <div class="col-md-6 container-fluid text-center">
@@ -55,10 +63,12 @@
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" name="business_name">
             <label for="floatingInput" style="margin-left: 5px;">Business Name</label>
+            <small class="text-red mb-2" style=" color:red"><?php echo $errors['business_name'] ?></small>
         </div>
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" placeholder="text" name="business_bio">
             <label for="floatingInput" style="margin-left: 5px;">Bio</label>
+            <small class="text-red mb-2" style=" color:red"><?php echo $errors['business_bio'] ?></small>
         </div>
         <div class="col-12">
             <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>

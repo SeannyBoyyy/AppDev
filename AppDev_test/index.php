@@ -1,5 +1,11 @@
 <?php
-    include('./navbars/farmer-navIndex.php');
+    include('./navbars/viewer-homepage.php');
 ?>
 
-<link rel="stylesheet" href="./CSS/farmer-van.css">
+<div class="container-sm">
+    00% wide until small breakpoint
+</div>
+<div class="container-sm">
+    00% wide until small breakpoint
+</div>
+<div class="container-sm">100% wide until small breakpoint</div>
