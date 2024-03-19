@@ -71,7 +71,7 @@ if(isset($_SESSION['ownerID'])){
       <div class="offcanvas-body">
         <div class="text-center">
                 <?php
-                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner=$business_owner");
+                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
 
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
