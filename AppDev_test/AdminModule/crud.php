@@ -58,7 +58,7 @@ if (isset($_POST['read'])) {
                   <h3>Read Record:</h3>
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
-                  <img src='img/{$record['image']}' width='200' title=''>
+                  <img src='../ProfileModule/img/{$record['image']}' width='200' title=''>
                   <a href='manage_post.php'>Back to List</a>
               </div>
           </body>

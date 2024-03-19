@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (in_array($imageExtension, $validImageExtension) && $fileSize <= 1000000) {
             $newImageName = uniqid() . '.' . $imageExtension;
-            move_uploaded_file($tmpName, 'img/' . $newImageName);
+            move_uploaded_file($tmpName, '../ProfileModule/img/' . $newImageName);
 
             // Update the image filename in the database
             mysqli_query($conn, "UPDATE posting_module SET image = '$newImageName' WHERE id = $id");

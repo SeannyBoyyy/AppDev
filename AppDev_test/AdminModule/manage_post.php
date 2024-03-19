@@ -14,7 +14,7 @@ include('../navbars/profilepage-nav.php');
 <body>
     <div class="middle">
         <div class="container">
-            <h2>Post Module</h2>
+            <h2>Manage Post</h2>
 
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10">

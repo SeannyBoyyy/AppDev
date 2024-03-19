@@ -4,23 +4,19 @@ include('../config/connectDb.php');
 include('../navbars/profilepage-nav.php'); 
 
 // Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_profile'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process form data
-    $profileId = $_POST['profile_id'];
+    $userId = $_POST['user_id'];
 
-    // Delete business profile from business_profile table
-    $sql = "DELETE FROM business_profile WHERE id = $profileId";
+    // Delete user from business_profile table
+    $sql = "DELETE FROM business_profile WHERE id = $userId";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Business profile deleted successfully";
+        echo "User deleted successfully";
     } else {
-        echo "Error deleting business profile: " . $conn->error;
+        echo "Error deleting user: " . $conn->error;
     }
 }
-
-// Fetch business profiles from the database
-$sql = "SELECT id, owner, name, image, text FROM business_profile";
-$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +29,15 @@ $result = $conn->query($sql);
 <body>
     <div class="middle">
         <div class="container">
-            <h2>Post Module</h2>
+            <h1>Manage Business Profile</h1>
+            <br>
+            <h5>Delete Business Profile</h5>
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                    User ID: <input type="text" name="user_id"><br><br>
+                    <input type="submit" value="Delete">
+                </form>
+            <br>
+
 
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10">
@@ -43,31 +47,18 @@ $result = $conn->query($sql);
                 <th>Name</th>
                 <th>Image</th>
                 <th>Description</th>
-                <th>Action</th>
             </tr>
                 <?php
-                $i = 1;
                 $rows = mysqli_query($conn, "SELECT * FROM business_profile ORDER BY id DESC");
                 foreach ($rows as $row) :
                 ?>
                     <tr>
-                        <td><?php echo $i++; ?></td>
+                        <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row["owner"]; ?></td>
                         <td><?php echo $row["name"]; ?></td>   
                         <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                         <td><?php echo $row["text"]; ?></td> 
                         <!-- ... -->
-                        <td>
-                            <!-- CRUD Operations Form -->
-                            <form action="crud.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="read">Read</button>
-                                <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
-                                <button class="delete-btn" type="submit" name="delete">Delete</button>
-                            </form>
-                        </td>
-                        <!-- ... -->
-
                     </tr>
                 <?php endforeach; ?>
             </table>
