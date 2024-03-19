@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Update the name and text in the database
     mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText' WHERE id = $id");
 
-    // Redirect back to the profile-page.php page
-    header("Location: profile-page.php");
+    // Redirect back to the manage-product.php page
+    header("Location: manage-product.php");
     exit();
 }
 ?>
