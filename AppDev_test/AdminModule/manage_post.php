@@ -1,3 +1,8 @@
+<?php 
+include('../config/connectDb.php');
+include('../navbars/profilepage-nav.php'); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +17,7 @@
             <h2>Manage Post</h2>
 
             <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
+            <table border="1" cellspacing="0" cellpadding="10">
                 <tr>
                     <td>#</td>
                     <td>Name</td>
@@ -39,9 +44,9 @@
                             <!-- CRUD Operations Form -->
                             <form action="crud.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" class="btn btn-info" name="read">Read</button>
-                                <button type="submit" class="btn btn-warning" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
-                                <button class="btn btn-danger" type="submit" name="delete">Delete</button>
+                                <button type="submit" name="read">Read</button>
+                                <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                <button class="delete-btn" type="submit" name="delete">Delete</button>
                             </form>
                         </td>
                         <!-- ... -->
@@ -50,9 +55,8 @@
                 <?php endforeach; ?>
             </table>
             <br>
-            <a class="btn btn-warning" href="index.php">Go Back</a>
         </div>
     </div>
-    
+    <a href="index.php">Go Back</a>
 </body>
 </html>

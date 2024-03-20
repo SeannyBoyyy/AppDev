@@ -186,7 +186,7 @@ if (isset($_POST["upload_product"])) {
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     <div class="middle">
                         <div class="container">
                             <h2>Post Module</h2>
