@@ -52,6 +52,7 @@ if(isset($_POST['submit'])) {
             if(mysqli_stmt_affected_rows($stmt) > 0) {
                 echo "<script> 
                         alert('Updated successfully'); 
+                        window.location.replace('profile-page.php');
                     </script>";
             } else {
                 echo "<script> 
