@@ -1,26 +1,57 @@
+<?php
+include('../config/connectDb.php');
+include('../navbars/profilepage-nav.php'); 
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Process form data
+    $userId = $_POST['user_id'];
+
+    // Delete dependent records from posting_module table first
+    $deletePostingModuleSql = "DELETE FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)";
+    if ($conn->query($deletePostingModuleSql) === TRUE) {
+        // Delete user from business_profile table
+        $deleteBusinessProfileSql = "DELETE FROM business_profile WHERE owner = $userId";
+        if ($conn->query($deleteBusinessProfileSql) === TRUE) {
+            // Now delete user from user_accounts table
+            $deleteUserSql = "DELETE FROM user_accounts WHERE id = $userId";
+            if ($conn->query($deleteUserSql) === TRUE) {
+                echo "User deleted successfully";
+            } else {
+                echo "Error deleting user: " . $conn->error;
+            }
+        } else {
+            echo "Error deleting business profile: " . $conn->error;
+        }
+    } else {
+        echo "Error deleting dependent records: " . $conn->error;
+    }
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data</title>
+    <title>Delete User</title>
 </head>
-
 <body>
     <div class="middle">
         <div class="container">
             <h1>Manage User</h1>
             <br>
             <h5>Delete User</h5>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    User ID: <input class="form-control w-50" type="text" name="user_id"><br><br>
-                    <input type="submit" value="Delete" class="btn btn-danger">
-                </form>
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                User ID: <input type="text" name="user_id"><br><br>
+                <input type="submit" value="Delete">
+            </form>
             <br>
 
             <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
+            <table border="1" cellspacing="0" cellpadding="10">
                 <tr>
                     <td>#</td>
                     <td>email</td>
@@ -44,9 +75,8 @@
                 <?php endforeach; ?>
             </table>
             <br>
-            <a class="btn btn-warning" href="index.php">Go Back</a>
+            </div>
         </div>
-    </div>
-    
+    <a href="index.php">Go Back</a>
 </body>
 </html>
