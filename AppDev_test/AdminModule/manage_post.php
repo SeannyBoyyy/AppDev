@@ -39,8 +39,8 @@
                             <!-- CRUD Operations Form -->
                             <form action="crud.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" class="btn btn-info" name="read">Read</button>
-                                <button type="submit" class="btn btn-warning" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                <button type="submit" class="btn btn-success" name="read">Read</button>
+                                <button type="submit" class="btn btn-success" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
                                 <button class="btn btn-danger" type="submit" name="delete">Delete</button>
                             </form>
                         </td>
