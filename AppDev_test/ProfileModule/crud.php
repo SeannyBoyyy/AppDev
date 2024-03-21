@@ -79,7 +79,7 @@ if (isset($_POST['delete'])) {
     // Delete operation
     $id = $_POST['id'];
     mysqli_query($conn, "DELETE FROM posting_module WHERE id = $id");
-    header("Location: page-module.php");
+    header("Location: profile-page.php");
     exit();
 }
 ?>
