@@ -132,7 +132,7 @@ if (isset($_POST["upload_product"])) {
                   
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?php echo $row['image']; ?>">
+                <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="img/<?php echo $row['image']; ?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
@@ -155,7 +155,7 @@ if (isset($_POST["upload_product"])) {
                 </div>
             </div>
         </div>
-        <div class="col-7 container-sm">
+        <div class="col-9 container-sm">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
@@ -185,13 +185,19 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
-
                 <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
-                    <div class="middle">
-                        <div class="container">
-                            <h2>Post Module</h2>
-                                <!-- Display Table -->
-                                <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
+                    <div class="container-fluid w-50" style="margin-top: 90px;">
+                        <div class="col-md-6 container-fluid text-center">
+                            <div class="container-fluid">
+                                <h1>Post Module</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"> <!-- Center the content -->
+                        <div class="col-md-10"> <!-- Adjust the column width as needed -->
+                            <div class="table-responsive">
+                                <!-- Display Table -->  
+                                <table class="table table-striped table-borderless">
                                     <tr>
                                         <td>#</td>
                                         <td>Name</td>
@@ -230,11 +236,10 @@ if (isset($_POST["upload_product"])) {
                                         </tr>
                                     <?php endforeach; ?>
                                 </table>
-                                <br>
                             </div>
                         </div>
-                </div>
-
+                    </div>
+                </div>   
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid">
@@ -266,3 +271,7 @@ if (isset($_POST["upload_product"])) {
         </div>
     </div>
 </div>
+
+<?php
+    include('../navbars/footer.php')
+?>

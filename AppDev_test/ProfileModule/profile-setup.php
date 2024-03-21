@@ -63,7 +63,7 @@
             <small class="text-red mb-2" style=" color:red"><?php echo $errors['business_name'] ?></small>
         </div>
         <div class="form-floating">
-            <input type="text" class="form-control" id="floatingInput" placeholder="text" name="business_bio">
+            <input type="text" class="form-control w-100" id="floatingInput" placeholder="text" name="business_bio">
             <label for="floatingInput" style="margin-left: 5px;">Bio</label>
             <small class="text-red mb-2" style=" color:red"><?php echo $errors['business_bio'] ?></small>
         </div>
