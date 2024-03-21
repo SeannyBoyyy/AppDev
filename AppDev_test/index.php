@@ -1,7 +1,8 @@
 <?php
     include('./navbars/farmer-navIndex.php');
+
     //to get all business profiles
-    $farmsSql = 'SELECT name, text, image FROM business_profile';
+    $farmsSql = 'SELECT id, name, text, image FROM business_profile';
 
     $farmsSqlRes = mysqli_query($conn, $farmsSql);
 
@@ -52,7 +53,7 @@
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $farm['text']?></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
             </div>
