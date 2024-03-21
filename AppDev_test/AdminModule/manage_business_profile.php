@@ -1,7 +1,6 @@
 <?php
 // Connect to your database
 include('../config/connectDb.php');
-include('../navbars/profilepage-nav.php'); 
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Delete user from business_profile table
         $deleteUserSql = "DELETE FROM business_profile WHERE id = $userId";
         if ($conn->query($deleteUserSql) === TRUE) {
-            echo "User deleted successfully";
+            echo "";
         } else {
             echo "Error deleting user: " . $conn->error;
         }
@@ -24,27 +23,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Business Profile</title>
-</head>
-<body>
     <div class="middle">
         <div class="container">
             <h1>Manage Business Profile</h1>
             <br>
             <h5>Delete Business Profile</h5>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    User ID: <input type="text" name="user_id"><br><br>
-                    <input type="submit" value="Delete">
+                    <div class="input-group flex-nowrap mb-2" style="width:200px;">
+                        <span class="input-group-text" id="addon-wrapping">ID</span>
+                        <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                    <input class="btn btn-danger" type="submit" value="Delete">
                 </form>
             <br>
 
             <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10">
+            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
             <tr>
                 <th>ID</th>
                 <th>Owner</th>
@@ -67,12 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php endforeach; ?>
             </table>
             <br>
-            <a class="btn btn-warning" href="index.php">Go Back</a>
+            <a class="btn btn-success" href="index.php">Go Back</a>
         </div>
     </div>    
-
-</body>
-</html>
 
 <?php
 $conn->close();

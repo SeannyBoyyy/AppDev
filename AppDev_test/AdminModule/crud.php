@@ -44,7 +44,7 @@ if (isset($_POST['read'])) {
                   a {
                       display: block;
                       margin-top: 10px;
-                      color: #007bff;
+                      color: #black;
                       text-decoration: none;
                   }
 
@@ -54,12 +54,12 @@ if (isset($_POST['read'])) {
               </style>
           </head>
           <body>
-              <div class='container'>
+              <div class='container border-rounded'>
                   <h3>Read Record:</h3>
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
                   <img src='../ProfileModule/img/{$record['image']}' width='200' title=''>
-                  <a href='manage_post.php'>Back to List</a>
+                  <a clas='btn btn-success' href='index.php'>Back to List</a>
               </div>
           </body>
           </html>";

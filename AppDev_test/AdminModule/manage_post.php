@@ -1,23 +1,15 @@
 <?php 
 include('../config/connectDb.php');
-include('../navbars/profilepage-nav.php'); 
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data</title>
-</head>
 
-<body>
     <div class="middle">
         <div class="container">
             <h2>Manage Post</h2>
 
             <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10">
+            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
                 <tr>
                     <td>#</td>
                     <td>Name</td>
@@ -44,9 +36,9 @@ include('../navbars/profilepage-nav.php');
                             <!-- CRUD Operations Form -->
                             <form action="crud.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                <button type="submit" name="read">Read</button>
-                                <button type="submit" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
-                                <button class="delete-btn" type="submit" name="delete">Delete</button>
+                                <button type="submit mb-2" class="btn btn-success" name="read">Read</button>
+                                <button type="submit mb-2" class="btn btn-success" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                <button class="btn btn-danger" type="submit" name="delete">Delete</button>
                             </form>
                         </td>
                         <!-- ... -->
@@ -55,8 +47,11 @@ include('../navbars/profilepage-nav.php');
                 <?php endforeach; ?>
             </table>
             <br>
+            <a class="btn btn-success" href="index.php">Go Back</a>
         </div>
+
     </div>
-    <a href="index.php">Go Back</a>
-</body>
-</html>
+    
+<?php
+    include('../navbars/footer.php')
+?>

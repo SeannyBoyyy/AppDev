@@ -1,27 +1,35 @@
 <?php
 include('../config/connectDb.php');
 session_start();
-
-if(isset($_SESSION['ownerID'])){
-  $business_owner = $_SESSION['ownerID']; 
-}else{
-  echo 'no owner ';
-}
-
-  $getSql = "SELECT name, text, FROM business_profile WHERE owner = ?";
-  $stmt = mysqli_prepare($conn, $getSql);
-  mysqli_stmt_bind_param($stmt, "i",$business_owner);
-  mysqli_stmt_execute($stmt);
-
-  $result = mysqli_stmt_get_result($stmt);
-  if ($fromBusinessProfile = mysqli_fetch_assoc($result)) {
-    $business_name = $fromBusinessProfile['name'];
-    $business_bio = $fromBusinessProfile['text'];
-    $business_pfp = $fromBusinessProfile['image'];
-} else {
-    echo 'Failed to retrieve updated information or no data found';
+    if(isset($_SESSION['ownerID'])){
+        $business_owner = $_SESSION['ownerID']; 
+    }else{
+        echo 'no owner ';
+    }
     
-}
+        $getSql = "SELECT name, text, image FROM business_profile WHERE owner = ?";
+        $stmt = mysqli_prepare($conn, $getSql);
+        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+        mysqli_stmt_execute($stmt);
+    
+        $result = mysqli_stmt_get_result($stmt);
+    
+        if ($fromBusinessProfile = mysqli_fetch_assoc($result)) {
+            $business_name = $fromBusinessProfile['name'];
+            $business_bio = $fromBusinessProfile['text'];
+            $business_pfp = $fromBusinessProfile['image'];
+        } else {
+            echo 'Failed to retrieve updated information or no data found';
+            
+        }
+
+        $PostSql = 'SELECT name, text, image FROM posting_module';
+
+        $postSqlRes = mysqli_query($conn, $PostSql);
+    
+        $profiles = mysqli_fetch_all($postSqlRes, MYSQLI_ASSOC);
+    
+        mysqli_free_result($postSqlRes);
 ?>
 
 <!doctype html>
@@ -35,15 +43,15 @@ if(isset($_SESSION['ownerID'])){
   </head>
   <body>
   <nav class="navbar navbar-expand-lg sticky-top  shadow box-area p-3">
-    <div class="container-fluid text-center">
-        <div class="container-fluid">
-          <a class="navbar-brand fs-4" href="../index.php">FarmDeals</a>
-        </div>
-    </div>
-    <div class="container-fluid justify-contents-end">
+  <div class="container d-flex">
+      <div class="container col-6">
+        <a class="navbar-brand fs-4" href="#">FarmDeals</a>
+      </div>
+      <div class="container d-flex justify-content-end col-6">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+    </div>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-contents-center align-items-center">
@@ -71,7 +79,7 @@ if(isset($_SESSION['ownerID'])){
 
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img style="width: 300px;" class="img-fluid img-thumbnail rounded-circle object-fit-contain" src="img/<?php echo $row['image'] ?>">
+                <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-cover" src="img/<?php echo $row['image'] ?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
