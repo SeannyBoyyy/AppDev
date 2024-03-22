@@ -69,37 +69,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="col-md-6 container-fluid text-center">
                 <div class="container-fluid">
                 <h2>Edit Record</h2>
-            </div>
+                </div>
             </div>
         </div>
         <div class="container-sm d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
-            
             <!-- Edit Form -->
             <form action="" method="post" enctype="multipart/form-data" class="w-100 g-3">
                 <div class="mb-3 ">
                     <label for="exampleFormControlInput1" class="form-label">New Name: </label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" name="new_name" placeholder="<?php echo $record['name']; ?>"  required>
-                    </div>
-                <div class="mb-3">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput2" class="form-label">New Text:</label>
                     <input type="text" class="form-control" id="exampleFormControlInput2" name="new_text" placeholder="<?php echo $record['text']; ?>"  required>
-                    </div>
-                <div class="mb-3">
-                <div class="mb-3">
-                    <label for="exampleFormControlInput2" class="form-label">New Text:</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2" name="new_text" placeholder="<?php echo $record['text']; ?>"  required>
-                    </div>
-                <div class="mb-3">
+                </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">New Image:</label>
                     <input class="form-control" type="file" id="formFile" name="new_image" accept=".jpg, .jpeg, .png">
                 </div>
-
                 <button type="submit" class="btn w-100 btn-md btn-success">Save Changes</button>
             </form>
         </div>
+        
+        <div class="mb-3">
+            <a href="javascript:history.back()" ><button type="submit" class="btn w-100 btn-md btn-success">Back</button> </a>
+        </div> 
     </div>
 </body>
 </html>

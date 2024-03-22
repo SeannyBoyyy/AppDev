@@ -62,7 +62,7 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1>Producs</H1>
+            <H1>Products</H1>
             <?php foreach($profiles as $profile){ ?>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px;">

@@ -9,7 +9,7 @@ if(isset($_SESSION['ownerID'])){
     echo 'no owner ';
 }
 
-    $getSql = "SELECT name, text, image FROM business_profile WHERE owner = ?";
+    $getSql = "SELECT name, text, image, address, email, contact_number FROM business_profile WHERE owner = ?";
     $stmt = mysqli_prepare($conn, $getSql);
     mysqli_stmt_bind_param($stmt, "i", $business_owner);
     mysqli_stmt_execute($stmt);
@@ -20,6 +20,9 @@ if(isset($_SESSION['ownerID'])){
         $business_name = $fromBusinessProfile['name'];
         $business_bio = $fromBusinessProfile['text'];
         $business_pfp = $fromBusinessProfile['image'];
+        $business_address = $fromBusinessProfile['address'];
+        $business_email = $fromBusinessProfile['email'];
+        $business_contact_number = $fromBusinessProfile['contact_number'];
     } else {
         echo 'Failed to retrieve updated information or no data found';
         
@@ -34,18 +37,22 @@ if(isset($_POST['submit'])) {
     $newBussName = $_POST['name_buss'];
     $newBio = $_POST['bio'];
 
+    $newAddress = $_POST['address'];
+    $newEmail = $_POST['email'];
+    $newContact_number = $_POST['contact_number'];
+
     // Move uploaded image to target directory
     if(move_uploaded_file($tempName, $folder)){
         // Prepare SQL statement to update the database
         $sql = "UPDATE business_profile 
-        SET name = ?, text = ?, image = ? 
+        SET name = ?, text = ?, image = ?, address = ?, email = ?, contact_number = ?
         WHERE owner = ?";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Check if the statement is prepared successfully
         if($stmt) {
             // Bind parameters and execute the statement
-            mysqli_stmt_bind_param($stmt, "sssi", $newBussName, $newBio, $file_name, $business_owner);
+            mysqli_stmt_bind_param($stmt, "ssssssi", $newBussName, $newBio, $file_name, $newAddress, $newEmail, $newContact_number, $business_owner);
             mysqli_stmt_execute($stmt);
 
             // Check if the query executed successfully
@@ -71,6 +78,7 @@ if(isset($_POST['submit'])) {
 if (isset($_POST["upload_product"])) {
   $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
   $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
+  
 
     if ($_FILES["image_product"]["error"] === 4) {
         echo "<script> alert('Image does not exist'); </script>";
@@ -142,6 +150,18 @@ if (isset($_POST["upload_product"])) {
                     <h5 class="card-title">Bio</h5>
                     <p class="card-text"><?php
                         echo $business_bio
+                    ?></p>
+                    <h5 class="card-title">Address</h5>
+                    <p class="card-text"><?php
+                        echo $business_address
+                    ?></p>
+                    <h5 class="card-title">Email</h5>
+                    <p class="card-text"><?php
+                        echo $business_email
+                    ?></p>
+                    <h5 class="card-title">Contact Number</h5>
+                    <p class="card-text"><?php
+                        echo $business_contact_number
                     ?></p>
                 </div>
             </div>
@@ -260,6 +280,18 @@ if (isset($_POST["upload_product"])) {
                             <div class="col-12">
                                 <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>
                                 <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="">
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address">
+                                <label for="floatingInput" style="margin-left: 5px;">Address</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email">
+                                <label for="floatingInput" style="margin-left: 5px;">Email</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="contact_number" name="contact_number">
+                                <label for="floatingInput" style="margin-left: 5px;">Contact Number</label>
                             </div>
                             <div class="col-12">
                                 <button class="btn btn-lg  w-100 fs-6" type="submit" name="submit" style="background-color: #90EE90;">Upload</button>
