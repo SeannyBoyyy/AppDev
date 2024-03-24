@@ -123,8 +123,57 @@ if (isset($_POST["upload_product"])) {
         }
     }
 }
-//-----------------------------------------------------------------------------------------
 
+
+// ---------------------------------- advertisement module ----------------------------------------
+if (isset($_POST["upload_advertisement"])) {
+    $name_advertisement = mysqli_real_escape_string($conn, $_POST["name_advertisement"]);
+    $text_advertisement = mysqli_real_escape_string($conn, $_POST["text_advertisement"]);
+    
+  
+      if ($_FILES["image_advertisement"]["error"] === 4) {
+          echo "<script> alert('Image does not exist'); </script>";
+      } else {
+          $fileName = $_FILES["image_advertisement"]["name"];
+          $fileSize = $_FILES["image_advertisement"]["size"];
+          $tmpName = $_FILES["image_advertisement"]["tmp_name"];
+  
+          $validImageExtension = ['jpg', 'jpeg', 'png'];
+          $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+  
+          if (!in_array($imageExtension, $validImageExtension)) {
+              echo "<script> alert('Invalid image extension'); </script>";
+          } elseif ($fileSize > 10000000) {
+              echo "<script> alert('Image size is too large'); </script>";
+          } else {
+              $newImageName = uniqid() . '.' . $imageExtension;
+              $uploadPath = 'img/' . $newImageName;
+          
+              move_uploaded_file($tmpName, $uploadPath);
+  
+              $text_advertisement = mysqli_real_escape_string($conn, $_POST["text_advertisement"]);
+  
+              // Fetch the business profile ID associated with the current owner
+              $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+              $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+              mysqli_stmt_bind_param($stmt, "i", $business_owner);
+              mysqli_stmt_execute($stmt);
+              $result = mysqli_stmt_get_result($stmt);
+              $businessProfile = mysqli_fetch_assoc($result);
+              $businessProfileId = $businessProfile['id'];
+  
+              // Insert into posting_module with the retrieved business profile ID
+              $query = "INSERT INTO business_advertisement (name, text, image, posted_by) VALUES ('$name_advertisement', '$text_advertisement', '$newImageName', $businessProfileId)";
+              mysqli_query($conn, $query);
+  
+              echo "<script> 
+                          alert('Image uploaded successfully'); 
+                          window.location.replace('profile-page.php');
+                  </script>";
+  
+          }
+      }
+  }
 
 
 ?>
@@ -171,13 +220,16 @@ if (isset($_POST["upload_product"])) {
                     <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false">Upload a new Product</button>
                     <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
-                    <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
+                    <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false">Upload Advertisement</button>
+                    <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false">Message</button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
                 </div>
             </div>
         </div>
         <div class="col-9 container-sm">
             <div class="tab-content" id="v-pills-tabContent">
+
+                <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid text-center">
@@ -206,7 +258,11 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
+
+                <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                    
+                    <!------------------------------------- Product-Management Module  ---------------------------------->
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid text-center">
                             <div class="container-fluid">
@@ -260,7 +316,65 @@ if (isset($_POST["upload_product"])) {
                             </div>
                         </div>
                     </div>
+
+                    <!------------------------------------- Advertisement-Management Module  ---------------------------------->                        
+                    <div class="container-fluid w-50" style="margin-top: 90px;">
+                        <div class="col-md-6 container-fluid text-center">
+                            <div class="container-fluid">
+                                <h1>Advertisement Module</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"> <!-- Center the content -->
+                        <div class="col-md-10"> <!-- Adjust the column width as needed -->
+                            <div class="table-responsive">
+                                <!-- Display Table -->  
+                                <table class="table table-striped table-borderless">
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Image</td>
+                                        <td>Information</td>
+                                        <td>Created At</td> <!-- Added Created At column -->
+                                        <td>Action</td>
+                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    // Modify the SQL query to select products associated with the current user's business profile
+                                    $query = "SELECT * FROM business_advertisement WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
+                                    $stmt = mysqli_prepare($conn, $query);
+                                    mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                    mysqli_stmt_execute($stmt);
+                                    $result = mysqli_stmt_get_result($stmt);
+                                    foreach ($result as $row) :
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><?php echo $row["name"]; ?></td>
+                                            <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                            <td><?php echo $row["text"]; ?></td>    
+                                            <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                            <!-- ... -->
+                                            <td>
+                                                <!-- CRUD Operations Form -->
+                                                <form action="advertisement-crud.php" method="post">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                    <button type="submit" class="btn btn-success mb-2" name="read">Read</button>
+                                                    <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                    <button class="btn btn-danger mb-2" type="submit" name="delete">Delete</button>
+                                                </form>
+                                            </td>
+                                            <!-- ... -->
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>   
+
+
+                <!------------------------------------- Update-profile Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid w-50" style="margin-top: 90px;">
                         <div class="col-md-6 container-fluid">
@@ -299,7 +413,39 @@ if (isset($_POST["upload_product"])) {
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages</div>
+
+                <!------------------------------------- Advertisement Module  ---------------------------------->
+                <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
+                    <div class="container-fluid w-50" style="margin-top: 90px;">
+                        <div class="col-md-6 container-fluid">
+                            <h1>Post Advertisement</h1>
+                        </div>
+                    </div>
+                    <div class="container-sm d-flex align-items-center w-50 mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                        <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name_advertisement" placeholder="Advertisement Name" name="name_advertisement" value="">
+                                <label for="name_advertisement" style="margin-left: 5px;">Advertisement Name</label>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" id="text_advertisement" placeholder="Advertisement Text" name="text_advertisement"></textarea>
+                                <label for="text_advertisement" style="margin-left: 5px;">Advertisement Info</label>
+                            </div>
+                            <div class="col-12">
+                                <label for="image_advertisement" class="form-label" style="margin-left: 5px;">Advertisement Image</label>
+                                <input class="form-control" type="file" id="image_advertisement" name="image_advertisement" accept=".jpg, .jpeg, .png" value="">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-lg  w-100 fs-6" type="submit" name="upload_advertisement" style="background-color: #90EE90;">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!------------------------------------- Message Module  ---------------------------------->
+                <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
+                    Messages
+                </div>
             </div>
         </div>
     </div>
