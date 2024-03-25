@@ -28,6 +28,13 @@
         mysqli_stmt_execute($stmt);
         $postResult = mysqli_stmt_get_result($stmt);
 
+        // Fetch the Advertisement modules associated with the business
+        $getAdvertisementSql = "SELECT name, text, image FROM business_advertisement WHERE posted_by = ?";
+        $stmt = mysqli_prepare($conn, $getAdvertisementSql);
+        mysqli_stmt_bind_param($stmt, "i", $business_id);
+        mysqli_stmt_execute($stmt);
+        $AdvertisementResult = mysqli_stmt_get_result($stmt);
+
         // Check if business profile are found
         if (mysqli_num_rows($businessResult) > 0) {
             // Fetch business profile details
@@ -52,10 +59,23 @@
             exit(); // Stop further execution if no data found
         }
 
+        // Check if Advertisement modules are found
+        if (mysqli_num_rows($postResult) > 0){
+            // Fetch Advertisement modules
+            $advertisements = mysqli_fetch_all($AdvertisementResult, MYSQLI_ASSOC);
+            } else {
+                echo 'No Advetisement Post';
+                exit(); // Stop further execution if no data found
+            }
+
     } else {
         echo 'No business ID provided';
         exit(); // Stop further execution if no business ID provided
     }
+
+
+
+
 ?>
 
 <!-- Your HTML code to display business profile and posting modules -->
@@ -87,7 +107,32 @@
                 </div>
             </div>
         </div>    
+
         <div class="col-lg-8 col-12 d-flex justify-contents-start align-items-start">
+        <h1>Advertisment Post</h1>
+            <?php foreach($advertisements as $advertise) { ?>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mt-3" style="margin-right:15px;">
+                    <div class="card text-center p-3" style="width: 300px; margin: auto;">
+                        <div class="card-body ">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-contain mx-auto" src="ProfileModule/img/<?php echo $advertise['image']; ?>">
+                                </li>
+                                <li class="list-group-item">
+                                    <h5 class="card-title"><?php echo $advertise['name']; ?></h5>
+                                </li>
+                                <li class="list-group-item">
+                                    <p class="card-text" style="height: 60px;"><?php echo $advertise['text']; ?></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+        <div class="col-lg-8 col-12 d-flex justify-contents-start align-items-start">
+        <h1>Advertisment Post</h1>
             <?php foreach($profiles as $profile) { ?>
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mt-3" style="margin-right:15px;">
                     <div class="card text-center p-3" style="width: 300px; margin: auto;">

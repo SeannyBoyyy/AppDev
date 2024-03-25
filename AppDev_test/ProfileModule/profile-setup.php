@@ -16,6 +16,10 @@
         $NameSetUp = htmlspecialchars($_POST['business_name']);
         $bioSetup = htmlspecialchars($_POST['business_bio']);
 
+        $newAddress = $_POST['address'];
+        $newEmail = $_POST['email'];
+        $newContact_number = $_POST['contact_number'];
+
         if(empty($NameSetUp)){
             $errors['business_name'] = 'Business Name is required!';
         }
@@ -24,10 +28,10 @@
             $errors['business_bio'] = 'Bio is required!';
         }
         if(move_uploaded_file($tempName, $folder)){
-            $sql = 'INSERT INTO business_profile(owner, name, text, image) VALUES (?,?,?,?)';
+            $sql = 'INSERT INTO business_profile(owner, name, text, image, address, email, contact_number) VALUES (?,?,?,?,?,?,?)';
             $stmt = mysqli_prepare($conn, $sql);
             if($stmt){
-                mysqli_stmt_bind_param($stmt, "isss", $business_owner, $NameSetUp, $bioSetup, $file_name);
+                mysqli_stmt_bind_param($stmt, "issssss", $business_owner, $NameSetUp, $bioSetup, $file_name, $newAddress, $newEmail, $newContact_number);
                 if(mysqli_stmt_execute($stmt)){
                     header('location: ./profile-page.php');
                 }else{
@@ -70,6 +74,18 @@
         <div class="col-12">
             <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>
             <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png">
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address">
+            <label for="floatingInput" style="margin-left: 5px;">Address</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email">
+            <label for="floatingInput" style="margin-left: 5px;">Email</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="contact_number" name="contact_number">
+            <label for="floatingInput" style="margin-left: 5px;">Contact Number</label>
         </div>
         <div class="col-12">
             <button class="btn btn-lg  w-100 fs-6" type="submit" style="background-color: #90EE90;" name="submit">Upload</button>

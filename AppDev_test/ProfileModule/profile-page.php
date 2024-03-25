@@ -384,27 +384,27 @@ if (isset($_POST["upload_advertisement"])) {
                     <div class="container-sm d-flex align-items-center w-50 mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
                         <form class="row g-3" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="<?php echo $business_name; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Business Name</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="bio" name="bio">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="bio" name="bio" value="<?php echo $business_bio; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Bio</label>
                             </div>
                             <div class="col-12">
                                 <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>
-                                <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="">
+                                <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="<?php echo $fromBusinessProfile; ?>">
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address" value="<?php echo $business_address; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Address</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email" value="<?php echo $business_email; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Email</label>
                             </div>
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="contact_number" name="contact_number">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="contact_number" name="contact_number" value="<?php echo $business_contact_number; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Contact Number</label>
                             </div>
                             <div class="col-12">
