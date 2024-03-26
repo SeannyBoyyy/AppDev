@@ -79,9 +79,9 @@
 ?>
 
 <!-- Your HTML code to display business profile and posting modules -->
-<div class="container-fluid mt-5">
-    <div class="row justify-contents-center align-items-center">
-        <div class="col-lg-4 col-sm-12 text-center mb-3">
+<div class="container-fluid">
+    <div class="row justify-contents-center align-items-center container-fluid">
+        <div class="col-lg-4 col-12 text-center mb-3">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
@@ -106,52 +106,72 @@
                     ?></p>
                 </div>
             </div>
+            <div class="col-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.4922742192075!2d120.25691227598732!3d14.853726885663168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339670cefbe062b7%3A0x27605e64933d8249!2s34%20Nueva%20Ecija%20St%2C%20Olongapo%2C%20Zambales!5e0!3m2!1sen!2sph!4v1711425038865!5m2!1sen!2sph"
+                 width="auto" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>    
 
-        <div class="col-lg-8 col-12 d-flex justify-contents-start align-items-start">
-        <h1>Advertisment Post</h1>
-            <?php foreach($advertisements as $advertise) { ?>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mt-3" style="margin-right:15px;">
-                    <div class="card text-center p-3" style="width: 300px; margin: auto;">
-                        <div class="card-body ">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-contain mx-auto" src="ProfileModule/img/<?php echo $advertise['image']; ?>">
-                                </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><?php echo $advertise['name']; ?></h5>
-                                </li>
-                                <li class="list-group-item">
-                                    <p class="card-text" style="height: 60px;"><?php echo $advertise['text']; ?></p>
-                                </li>
-                            </ul>
+        <div class="col-lg-8 col-12 mt-5">
+            <div class="container-fluid">
+                <h1>Advertisement</h1>
+                <div class="row">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <img src="ProfileModule/img/65f9bb18db98b.png" class="img-fluid object-fit-contain">
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+                                        <div class="col-12 col-md-6 text-center">
+                                            <h1>Mango</h1>
+                                            <p class="text-center">
+                                            Step right up and discover the marvel of nature's candy - the magnificent mango!
+                                            Bursting with vibrant colors and dripping with sweet, juicy goodness, this tropical treasure is more than just a fruit;
+                                            it's a one-way ticket to paradise in every bite.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-
-        <div class="col-lg-8 col-12 d-flex justify-contents-start align-items-start">
-        <h1>Advertisment Post</h1>
-            <?php foreach($profiles as $profile) { ?>
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mt-3" style="margin-right:15px;">
-                    <div class="card text-center p-3" style="width: 300px; margin: auto;">
-                        <div class="card-body ">
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-contain mx-auto" src="ProfileModule/img/<?php echo $profile['image']; ?>">
-                                </li>
-                                <li class="list-group-item">
-                                    <h5 class="card-title"><?php echo $profile['name']; ?></h5>
-                                </li>
-                                <li class="list-group-item">
-                                    <p class="card-text" style="height: 60px;"><?php echo $profile['text']; ?></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <h1>Products</h1>
+                    <?php foreach($profiles as $profile) { ?>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                            <div class="card text-center p-3 mb-3" style="margin-right: 30px;">
+                                <div class="card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-cover mx-auto" src="ProfileModule/img/<?php echo $profile['image']; ?>">
+                                        </li>
+                                        <li class="list-group-item">
+                                            <h5 class="card-title"><?php echo $profile['name']; ?></h5>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <p class="card-text" style="height: 60px;"><?php echo $profile['text']; ?></p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>        
+                    <?php } ?>
                 </div>
-            <?php } ?>
+            </div>   
         </div>
     </div>
 </div>

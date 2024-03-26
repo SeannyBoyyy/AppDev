@@ -27,7 +27,7 @@
 
 <div class="container-fluid justify-content-center align-items-center">
     <div class="container text-center mt-5">
-        <div class="row">
+    <div class="row">
             <div class="col-md-6 col-12">
                 <img src="ProfileModule/img/65f9bb18db98b.png" class="img-fluid object-fit-contain">
             </div>

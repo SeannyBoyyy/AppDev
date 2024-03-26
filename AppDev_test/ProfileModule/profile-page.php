@@ -183,7 +183,7 @@ if (isset($_POST["upload_advertisement"])) {
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-3 text-center">
+        <div class="col-lg-3 col-12 text-center">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
@@ -226,19 +226,19 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-9 container-sm">
+        <div class="col-lg-9 col-12">
             <div class="tab-content" id="v-pills-tabContent">
 
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
-                    <div class="container-fluid w-50" style="margin-top: 90px;">
-                        <div class="col-md-6 container-fluid text-center">
-                            <div class="container-fluid">
+                    <div class="container-fluid" style="margin-top: 150px;">
+                        <div class="container-fluid">
+                            <div class="">
                                 <h1>Upload a new Product</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="container-sm d-flex align-items-center mt-5 w-50 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-5border rounded-5 p-3 bg-white shadow box-area p-5">
                         <form class="row w-100 g-3" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput name_product" placeholder="" name="name_product" value="">
@@ -263,8 +263,8 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     
                     <!------------------------------------- Product-Management Module  ---------------------------------->
-                    <div class="container-fluid w-50" style="margin-top: 90px;">
-                        <div class="col-md-6 container-fluid text-center">
+                    <div class="container-fluid" style="margin-top: 150px;">
+                        <div class="container-fluid">
                             <div class="container-fluid">
                                 <h1>Post Module</h1>
                             </div>
@@ -318,8 +318,8 @@ if (isset($_POST["upload_advertisement"])) {
                     </div>
 
                     <!------------------------------------- Advertisement-Management Module  ---------------------------------->                        
-                    <div class="container-fluid w-50" style="margin-top: 90px;">
-                        <div class="col-md-6 container-fluid text-center">
+                    <div class="container-fluid" style="margin-top: 90px;">
+                        <div class="container-fluid">
                             <div class="container-fluid">
                                 <h1>Advertisement Module</h1>
                             </div>
@@ -375,13 +375,13 @@ if (isset($_POST["upload_advertisement"])) {
 
 
                 <!------------------------------------- Update-profile Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="container-fluid w-50" style="margin-top: 90px;">
-                        <div class="col-md-6 container-fluid">
-                            <h1>Set Up you profile</h1>
+                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="container-fluid" style="margin-top: 150px;">
+                        <div class="">
+                            <h1>Update your profile</h1>
                         </div>
                     </div>
-                    <div class="container-sm d-flex align-items-center w-50 mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
                         <form class="row g-3" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="<?php echo $business_name; ?>">
@@ -416,13 +416,13 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Advertisement Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
-                    <div class="container-fluid w-50" style="margin-top: 90px;">
-                        <div class="col-md-6 container-fluid">
+                    <div class="container-fluid" style="margin-top: 300px;">
+                        <div class="container-fluid">
                             <h1>Post Advertisement</h1>
                         </div>
                     </div>
-                    <div class="container-sm d-flex align-items-center w-50 mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
-                        <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+                    <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                        <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="name_advertisement" placeholder="Advertisement Name" name="name_advertisement" value="">
                                 <label for="name_advertisement" style="margin-left: 5px;">Advertisement Name</label>
