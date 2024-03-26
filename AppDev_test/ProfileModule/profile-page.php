@@ -214,8 +214,8 @@ if (isset($_POST["upload_advertisement"])) {
                     ?></p>
                 </div>
             </div>
-            <div class="text-center">
-                <div class="nav flex-column nav-pills me-3 mt-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="container-fluid">
+                <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
                     <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false">Upload a new Product</button>
                     <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
@@ -231,7 +231,7 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
-                    <div class="container-fluid" style="margin-top: 150px;">
+                    <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="">
                                 <h1>Upload a new Product</h1>
@@ -263,7 +263,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     
                     <!------------------------------------- Product-Management Module  ---------------------------------->
-                    <div class="container-fluid" style="margin-top: 150px;">
+                    <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="container-fluid">
                                 <h1>Post Module</h1>
@@ -318,7 +318,7 @@ if (isset($_POST["upload_advertisement"])) {
                     </div>
 
                     <!------------------------------------- Advertisement-Management Module  ---------------------------------->                        
-                    <div class="container-fluid" style="margin-top: 90px;">
+                    <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="container-fluid">
                                 <h1>Advertisement Module</h1>
@@ -376,7 +376,7 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Update-profile Module  ---------------------------------->
                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="container-fluid" style="margin-top: 150px;">
+                    <div class="container-fluid" style="margin:auto;">
                         <div class="">
                             <h1>Update your profile</h1>
                         </div>
@@ -416,7 +416,7 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Advertisement Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
-                    <div class="container-fluid" style="margin-top: 300px;">
+                    <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <h1>Post Advertisement</h1>
                         </div>

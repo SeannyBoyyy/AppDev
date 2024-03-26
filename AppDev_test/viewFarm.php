@@ -80,13 +80,13 @@
 
 <!-- Your HTML code to display business profile and posting modules -->
 <div class="container-fluid">
-    <div class="row justify-contents-center align-items-center container-fluid">
-        <div class="col-lg-4 col-12 text-center mb-3">
+    <div class="row justify-contents-center align-items-center text-cnter">
+        <div class="col-lg-4 col-12 text-center mb-3 mt-3">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
             <h3 class="mt-3"><?php echo $business_name; ?></h3>
-            <div class="card text-center border-0">
+            <div class="card text-center mb-3 border-0">
                 <div class="card-body">
                     <h5 class="card-title">Bio</h5>
                     <p class="card-text"><?php 
@@ -108,53 +108,52 @@
             </div>
             <div class="col-12">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.4922742192075!2d120.25691227598732!3d14.853726885663168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339670cefbe062b7%3A0x27605e64933d8249!2s34%20Nueva%20Ecija%20St%2C%20Olongapo%2C%20Zambales!5e0!3m2!1sen!2sph!4v1711425038865!5m2!1sen!2sph"
-                 width="auto" height="auto" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                 width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>    
 
         <div class="col-lg-8 col-12 mt-5">
-            <div class="container-fluid">
+            <div class="container-fluid text-center">
                 <h1>Advertisement</h1>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 400px;" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <img src="ProfileModule/img/65f9bb18db98b.png" class="img-fluid object-fit-contain">
-                                    </div>
-                                    <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                        <div class="col-12 col-md-6 text-center">
-                                            <h1>Mango</h1>
-                                            <p class="text-center">
-                                            Step right up and discover the marvel of nature's candy - the magnificent mango!
-                                            Bursting with vibrant colors and dripping with sweet, juicy goodness, this tropical treasure is more than just a fruit;
-                                            it's a one-way ticket to paradise in every bite.
-                                            </p>
+                            <?php foreach($advertisements as $key => $advertisement) { ?>
+                                <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12">
+                                            <img src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
+                                        </div>
+                                        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+                                            <div class="col-12 col-md-6 text-center">
+                                                <h1><?php echo $advertisement['name']; ?></h1>
+                                                <p class="text-center"><?php echo $advertisement['text']; ?></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
-                        </button>
+                        </button>    
                     </div>
-                </div>
+                    
+                </div>    
             </div>
-            <div class="container-fluid">
+            <div class="container-fluid text-center">
                 <div class="row">
-                    <h1>Products</h1>
+                    <h1 class="mb-3">Products</h1>
                     <?php foreach($profiles as $profile) { ?>
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
-                            <div class="card text-center p-3 mb-3" style="margin-right: 30px;">
-                                <div class="card-body">
+                        <div class="col-12 col-md-6 col-lg-3 text-center">
+                            <div class="card p-3 mb-3 border-0 border-rounded shadow-lg p-3 mb-5 bg-body rounded" style="margin: auto;">
+                                <div class="card-body overflow-auto">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">
                                             <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-cover mx-auto" src="ProfileModule/img/<?php echo $profile['image']; ?>">
@@ -171,9 +170,49 @@
                         </div>        
                     <?php } ?>
                 </div>
-            </div>   
+            </div> 
         </div>
     </div>
+    <div class="sticky-bottom">
+        <button type="button"  class="btn btn-lg position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <small>Message us!</small>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
+            </svg>
+        </button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                    <div class="mb-3">
+                        <label for="staticEmail" class="col-form-label">Recipient:</label>
+                        <input type="text" type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $business_name ?>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Your email or contact number:</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                </div>
+                </div>
+            </div>
+        </div>
 </div>
 
 <?php

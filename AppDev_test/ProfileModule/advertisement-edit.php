@@ -81,8 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="new_text" value="<?php echo $record['text']; ?>">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">New Image:</label>
-                <input type="file" name="new_image" accept=".jpg, .jpeg, .png">
+                <label for="formFile" class="form-label">New Image:</label>
+                <input type="file" id="formFile" class="form-control" name="new_image" accept=".jpg, .jpeg, .png" value="<?php echo $record['image']; ?>">
             </div>
                 <button class="btn btn-success" type="submit">Save Changes</button>
             </form>
