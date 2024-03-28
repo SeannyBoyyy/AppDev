@@ -37,13 +37,13 @@
     <div class="container-fluid text-center mt-5">
             <h1>Featured</h1>
             <div class="row">
-                <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 500px;" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                <div id="carouselExampleAutoplaying" class="carousel slide"  data-bs-ride="carousel">
+                    <div class="carousel-inner ">
                         <?php foreach($ads as $key => $ad) { ?>
                             <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
-                                        <img src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
+                                        <img style="height: 400px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
                                     </div>
                                     <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                                         <div class="col-12 col-md-6 text-center">
@@ -67,7 +67,7 @@
                 
             </div> 
     </div>
-    <div class="container text-center mt-5">
+    <div class="container text-center mt-3">
         <div class="row">
             <H1>Farms</H1>
             <?php foreach($farms as $farm){ ?>

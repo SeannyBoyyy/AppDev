@@ -36,11 +36,11 @@
 ?>
 
 <div class="container-fluid justify-content-center align-items-center">
-    <div class="container-fluid text-center mt-5 mb-3">
+    <div class="container-fluid text-center mt-3 mb-3">
         <h1>Featured</h1>
         <div class="row">
-            <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 600px;"  data-bs-ride="carousel">
-                <div class="carousel-inner" >
+            <div id="carouselExampleAutoplaying" class="carousel slide"   data-bs-ride="carousel">
+                <div class="carousel-inner" style="height: 650px;">
                     <?php foreach($ads as $key => $ad) { ?>
                         <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                             <div class="row">

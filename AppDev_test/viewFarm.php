@@ -152,7 +152,7 @@
             <div class="container-fluid text-center">
                 <h1>Advertisement</h1>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 600px;" data-bs-ride="carousel">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
@@ -186,7 +186,7 @@
                 <div class="row">
                     <h1 class="mb-3">Products</h1>
                     <?php foreach($profiles as $profile) { ?>
-                        <div class="col-12 col-md-6 col-lg-3 text-center">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-3 text-center">
                             <div class="card p-3 mb-3 border-0 border-rounded shadow-lg p-3 mb-5 bg-body rounded" style="margin: auto;">
                                 <div class="card-body overflow-auto">
                                     <ul class="list-group list-group-flush">

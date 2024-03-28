@@ -22,6 +22,32 @@ if(isset($_SESSION['ownerID'])){
       echo 'Failed to retrieve updated information or no data found';
       
   }
+
+  $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+        $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $businessProfile = mysqli_fetch_assoc($result);
+        $businessProfileId = $businessProfile['id'];
+
+        $countSql = "SELECT sent_to, COUNT(*) AS occurrences
+        FROM message_module
+        WHERE sent_to = ' $businessProfileId'
+        GROUP BY sent_to";
+
+        $result = $conn->query($countSql);
+
+        // Check if there are results
+        if ($result->num_rows > 0) {
+            // Fetch and output each row of data
+            while($row = $result->fetch_assoc()) {
+                $msgCount =  $row["occurrences"];
+            }
+        }else{
+            $msgCount = 0;
+        }
+
 ?>
 
 <!doctype html>
@@ -87,8 +113,11 @@ if(isset($_SESSION['ownerID'])){
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Manage Posts</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Update Profile</a></li>
                   <li class="list-group-item">
-                    <a style="color: black; text-decoration:none;"  href="">Messages</a>
-                    <span class="badge text-bg-primary">4</span>
+                    <a style="color: black;" href="./ProfileModule/profile-page.php/#v-pills-message">
+                      Messages
+                      <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
+                    </a>
+                    
                   </li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php">Log Out</a></li>
                 </ul>

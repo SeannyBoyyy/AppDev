@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
     
         <div class="container">
-            <h1>Manage User</h1>
+            <h1>Manage Users</h1>
             <br>
             <h5>Delete User</h5>
             <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -46,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
-                <tr>
-                    <td>#</td>
-                    <td>email</td>
-                    <td>firstName</td>
-                    <td>lastName</td>
+                <tr class="text-center">
+                    <td>User ID</td>
+                    <td>E-mail</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
                     <td>Created At</td> <!-- Added Created At column -->
                 </tr>
                 <?php
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $rows = mysqli_query($conn, "SELECT * FROM user_accounts ORDER BY id DESC");
                 foreach ($rows as $row) :
                 ?>
-                    <tr>
+                    <tr class="text-center">
                         <td><?php echo $row['id']; ?></td>
                         <td><?php echo $row["email"]; ?></td>
                         <td><?php echo $row["firstName"]; ?></td>

@@ -6,25 +6,25 @@ include('../config/connectDb.php');
 
     <div class="middle">
         <div class="container">
-            <h2>Manage Post</h2>
+            <h1>Manage Posts</h1>
 
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
-                <tr>
-                    <td>#</td>
-                    <td>Name</td>
-                    <td>Image</td>
-                    <td>Information</td>
-                    <td>Created At</td> <!-- Added Created At column -->
-                    <td>Posted By</td> <!-- Added Posted By column -->
-                    <td>Action</td>
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Information</th>
+                    <th>Created At</th> <!-- Added Created At column -->
+                    <th>Posted By</th> <!-- Added Posted By column -->
+                    <th>Action</th>
                 </tr>
                 <?php
                 $i = 1;
                 $rows = mysqli_query($conn, "SELECT * FROM posting_module ORDER BY id DESC");
                 foreach ($rows as $row) :
                 ?>
-                    <tr>
+                    <tr class="text-center">
                         <td><?php echo $i++; ?></td>
                         <td><?php echo $row["name"]; ?></td>
                         <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>

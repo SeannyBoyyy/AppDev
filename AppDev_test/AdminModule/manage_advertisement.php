@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="middle">
         <div class="container">
-            <h1>Manage Business Profile</h1>
+            <h1>Manage Advertisements</h1>
             <br>
-            <h5>Delete Business Profile</h5>
+            <h5>Delete Advertisements</h5>
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                     <div class="input-group flex-nowrap mb-2" style="width:200px;">
                         <span class="input-group-text" id="addon-wrapping">ID</span>
@@ -39,9 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
-            <tr>
-                <th>ID</th>
-                <th>Owner</th>
+            <tr class="text-center">
+                <th>#</th>
+                <th>Owner ID</th>
                 <th>Name</th>
                 <th>Image</th>
                 <th>Description</th>
@@ -50,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $rows = mysqli_query($conn, "SELECT * FROM business_advertisement ORDER BY id DESC");
                 foreach ($rows as $row) :
                 ?>
-                    <tr>
+                    <tr class="text-center">
                         <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row["owner"]; ?></td>
+                        <td><?php echo $row["posted_by"]; ?></td>
                         <td><?php echo $row["name"]; ?></td>   
                         <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                         <td><?php echo $row["text"]; ?></td> 

@@ -174,7 +174,48 @@ if (isset($_POST["tty"])) {
           }
       }
   }
+    // ---------------------------------- messages module ----------------------------------------
+        $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+        $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $businessProfile = mysqli_fetch_assoc($result);
+        $businessProfileId = $businessProfile['id'];
 
+        $countSql = "SELECT sent_to, COUNT(*) AS occurrences
+        FROM message_module
+        WHERE sent_to = ' $businessProfileId'
+        GROUP BY sent_to";
+
+        $result = $conn->query($countSql);
+
+        // Check if there are results
+        if ($result->num_rows > 0) {
+            // Fetch and output each row of data
+            while($row = $result->fetch_assoc()) {
+                $msgCount =  $row["occurrences"];
+            }
+        }else{
+            $msgCount = 0;
+        }
+
+
+        $getMsgQuery = "SELECT sent_by, message, created_at FROM message_module WHERE sent_to = ?";
+        $stmt = mysqli_prepare($conn, $getMsgQuery);
+        mysqli_stmt_bind_param($stmt, "i", $businessProfileId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        
+
+        if (mysqli_num_rows($result) > 0){
+            // Fetch posting modules
+            $msgRows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            } else {
+                echo 'No messages';
+               
+                exit(); // Stop further execution if no data found
+            }
 
 ?>
 
@@ -221,13 +262,19 @@ if (isset($_POST["tty"])) {
                     <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false">Upload Advertisement</button>
-                    <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false">Message</button>
+                    <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false">
+                        Message
+                        <span class="badge rounded-pill bg-primary">
+                            <?php echo $msgCount ?>
+                            
+                        </span>
+                    </button>
                     <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12">
-            <div class="tab-content" id="v-pills-tabContent">
+        <div class="col-lg-9 col-12 d-flex justify-content-center align-items-center">
+            <div class="tab-content container-fluid" id="v-pills-tabContent">
 
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
@@ -444,7 +491,25 @@ if (isset($_POST["tty"])) {
                 
                 <!------------------------------------- Message Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
-                    Messages
+                    <div class="row d-flex align-items-start justify-content-center">
+                        <h1>Messages</h1>
+                        <?php foreach ($msgRows as $msgRow ){ ?>
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                                <div class="card text-center ">
+                                    <div class="card-header">
+                                        <?php echo $msgRow['sent_by']?>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text"><?php echo $msgRow['message']?>.</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                    <div class="card-footer text-body-secondary">
+                                        <?php echo $msgRow['created_at']?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php }?>
+                    </div>
                 </div>
             </div>
         </div>
