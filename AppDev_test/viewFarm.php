@@ -73,31 +73,42 @@
         exit(); // Stop further execution if no business ID provided
     }
 
-    //messaging
+    //------------------------- messaging module -----------------------------
     $contactDeets = $message = '';
     $errors = array('deets'=>'', 'msg'=>'');
-    if(isset($_POST['sendMSG'])){
+    if(isset($_POST["sendMSG"])) {
+        // Retrieve the business ID from the form data
+        $business_id = isset($_POST['business_id']) ? $_POST['business_id'] : null;
 
-        $contactDeets = htmlspecialchars($_POST['contactDeets']);
-        $message = htmlspecialchars($_POST['MSG']);
+        if (!$business_id) {
+            echo "<script> alert('Business ID not provided!'); </script>";
+            exit(); // Stop further execution if no business ID provided
+        }
+
+        //--------------- send message -------------
+        $contactDeets = mysqli_real_escape_string($conn, $_POST["contactDeets"]);
+        $message = mysqli_real_escape_string($conn, $_POST["MSG"]);
 
         if(empty($_POST['contactDeets'])){
             $errors['deets'] = 'Contact details is required!';
-        }elseif(empty($_POST['MSG'])){
-            $errors['msg'] = 'a message is required!';
-        }else{
-            $msgQ = "INSERT INTO messages_module(sent_by, sent_to, message) VALUES('$contactDeets','$business_id','$message')";
-            mysqli_query($conn, $msgQ);
-            
-            echo "<script> 
-                          alert('Image uploaded successfully'); 
-                          window.location.replace('viewFarm.php');
-                  </script>";
         }
+        if(empty($_POST['MSG'])){
+            $errors['msg'] = 'a message is required!';
+        }
+
+        if (empty($_POST['contactDeets']) || empty($_POST['MSG'])) {
+            echo "<script> alert('Contact details and message are required!'); </script>";
+        } else {
+            // Insert into message with the retrieved business ID
+            $query = "INSERT INTO message_module (sent_by, sent_to, message) VALUES ('$contactDeets', '$business_id', '$message')";
+            mysqli_query($conn, $query);
         
-    }
-
-
+            echo "<script> 
+                    alert('Message sent successfully'); 
+                    window.location.replace('viewFarm.php?business_id=$business_id');
+                </script>";
+        }
+    } 
 
 
 ?>
@@ -213,8 +224,10 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form method="post" action="viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                <!-- Include business_id field -->
+                <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
                 <div class="modal-body">
-                    <form method="post" action="viewFarm.php">
                     <div class="mb-3">
                         <label for="staticEmail" class="col-form-label">Recipient:</label>
                         <input type="text" type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $business_name ?>">
@@ -234,12 +247,12 @@
                     <div class="row">
                         <small class="text-red mb-2 " style=" color:red"><?php echo $errors['msg'] ?></small>
                     </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
                 </div>
+                </form>
                 </div>
             </div>
         </div>

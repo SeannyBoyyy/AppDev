@@ -126,7 +126,7 @@ if (isset($_POST["upload_product"])) {
 
 
 // ---------------------------------- advertisement module ----------------------------------------
-if (isset($_POST["upload_advertisement"])) {
+if (isset($_POST["tty"])) {
     $name_advertisement = mysqli_real_escape_string($conn, $_POST["name_advertisement"]);
     $text_advertisement = mysqli_real_escape_string($conn, $_POST["text_advertisement"]);
     
