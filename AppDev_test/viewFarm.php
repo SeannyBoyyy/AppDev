@@ -73,6 +73,30 @@
         exit(); // Stop further execution if no business ID provided
     }
 
+    //messaging
+    $contactDeets = $message = '';
+    $errors = array('deets'=>'', 'msg'=>'');
+    if(isset($_POST['sendMSG'])){
+
+        $contactDeets = htmlspecialchars($_POST['contactDeets']);
+        $message = htmlspecialchars($_POST['MSG']);
+
+        if(empty($_POST['contactDeets'])){
+            $errors['deets'] = 'Contact details is required!';
+        }elseif(empty($_POST['MSG'])){
+            $errors['msg'] = 'a message is required!';
+        }else{
+            $msgQ = "INSERT INTO messages_module(sent_by, sent_to, message) VALUES('$contactDeets','$business_id','$message')";
+            mysqli_query($conn, $msgQ);
+            
+            echo "<script> 
+                          alert('Image uploaded successfully'); 
+                          window.location.replace('viewFarm.php');
+                  </script>";
+        }
+        
+    }
+
 
 
 
@@ -113,17 +137,17 @@
             </div>
         </div>    
 
-        <div class="col-lg-8 col-12 mt-5">
+        <div class="col-lg-8 col-12 mt-3">
             <div class="container-fluid text-center">
                 <h1>Advertisement</h1>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 400px;" data-bs-ride="carousel">
+                    <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 600px;" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                     <div class="row">
                                         <div class="col-md-6 col-12">
-                                            <img src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
+                                            <img style="height: 400px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
                                         </div>
                                         <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                                             <div class="col-12 col-md-6 text-center">
@@ -173,6 +197,7 @@
             </div> 
         </div>
     </div>
+
     <div class="sticky-bottom">
         <button type="button"  class="btn btn-lg position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <small>Message us!</small>
@@ -189,7 +214,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" action="viewFarm.php">
                     <div class="mb-3">
                         <label for="staticEmail" class="col-form-label">Recipient:</label>
                         <input type="text" type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $business_name ?>">
@@ -197,24 +222,34 @@
 
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Your email or contact number:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="contactDeets" class="form-control" value="<?php echo $contactDeets ?>">
                     </div>
-
+                    <div class="row">
+                        <small class="text-red mb-2 " style=" color:red"><?php echo $errors['deets'] ?></small>
+                    </div>
                     <div class="mb-3">
                         <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea name="MSG" class="form-control" id="message-text"></textarea>
+                    </div>
+                    <div class="row">
+                        <small class="text-red mb-2 " style=" color:red"><?php echo $errors['msg'] ?></small>
                     </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
                 </div>
                 </div>
             </div>
         </div>
 </div>
 
+
+
+
 <?php
     include('./navbars/footer.php');
 ?>
+
+

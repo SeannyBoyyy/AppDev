@@ -20,34 +20,58 @@
 
     mysqli_free_result($postSqlRes);
 
+    $adsSQL = "SELECT * from business_advertisement";
+
+    $adsRes = mysqli_query($conn, $adsSQL);
+
+    $ads = mysqli_fetch_all($adsRes, MYSQLI_ASSOC);
+
+    mysqli_free_result($adsRes);
+
     mysqli_close($conn);
 
 
 ?>
 
-<div class="container-fluid justify-content-center align-items-center">
-    <div class="container text-center mt-5">
-        <div class="row">
-            <div class="col-md-6 col-12">
-                <img src="ProfileModule/img/65f9bb18db98b.png" class="img-fluid object-fit-contain">
-            </div>
-            <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                <div class="col-12 col-md-6 text-center">
-                    <h1>Mango</h1>
-                    <p class="text-center">
-                    Step right up and discover the marvel of nature's candy - the magnificent mango!
-                    Bursting with vibrant colors and dripping with sweet, juicy goodness, this tropical treasure is more than just a fruit;
-                    it's a one-way ticket to paradise in every bite.
-                    </p>
+<div class="container-fluid">
+    <div class="container-fluid text-center mt-5">
+            <h1>Featured</h1>
+            <div class="row">
+                <div id="carouselExampleAutoplaying" class="carousel slide" style="height: 500px;" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php foreach($ads as $key => $ad) { ?>
+                            <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <img src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
+                                    </div>
+                                    <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
+                                        <div class="col-12 col-md-6 text-center">
+                                            <h1><?php echo $ad['name']; ?></h1>
+                                            <p class="text-center"><?php echo $ad['text']; ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>    
                 </div>
-            </div>
-        </div>
+                
+            </div> 
     </div>
     <div class="container text-center mt-5">
         <div class="row">
             <H1>Farms</H1>
             <?php foreach($farms as $farm){ ?>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $farm['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -64,7 +88,7 @@
         <div class="row">
             <H1>Products</H1>
             <?php foreach($profiles as $profile){ ?>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $profile['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
