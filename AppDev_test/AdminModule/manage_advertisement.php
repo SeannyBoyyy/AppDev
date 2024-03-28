@@ -7,11 +7,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Process form data
     $userId = $_POST['user_id'];
 
-    // Delete dependent records from posting_module table first
-    $deletePostingModuleSql = "DELETE FROM posting_module WHERE posted_by = $userId";
+    // Delete records from business_advertisement table
     $deleteBusinessAdvertisementSql = "DELETE FROM business_advertisement WHERE posted_by = $userId";
-
-    if ($conn->query($deletePostingModuleSql) === TRUE && $conn->query($deleteBusinessAdvertisementSql) === TRUE) {
+    if ($conn->query($deleteBusinessAdvertisementSql) === TRUE) {
         // Delete user from business_profile table
         $deleteUserSql = "DELETE FROM business_profile WHERE id = $userId";
         if ($conn->query($deleteUserSql) === TRUE) {
@@ -23,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error deleting dependent records: " . $conn->error;
     }
 }
-
 ?>
 
     <div class="middle">
@@ -50,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>Description</th>
             </tr>
                 <?php
-                $rows = mysqli_query($conn, "SELECT * FROM business_profile ORDER BY id DESC");
+                $rows = mysqli_query($conn, "SELECT * FROM business_advertisement ORDER BY id DESC");
                 foreach ($rows as $row) :
                 ?>
                     <tr>
