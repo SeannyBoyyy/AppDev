@@ -174,6 +174,63 @@ if (isset($_POST["upload_advertisement"])) {
           }
       }
   }
+
+  // ---------------------------------- Farm Photos module ----------------------------------------
+    if (isset($_POST["upload_photos"])) {
+        
+      if ($_FILES["image_farm"]["error"] === 4) {
+          echo "<script> alert('Image does not exist'); </script>";
+      } else {
+          $fileName = $_FILES["image_farm"]["name"];
+          $fileSize = $_FILES["image_farm"]["size"];
+          $tmpName = $_FILES["image_farm"]["tmp_name"];
+  
+          $validImageExtension = ['jpg', 'jpeg', 'png'];
+          $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+  
+          if (!in_array($imageExtension, $validImageExtension)) {
+              echo "<script> alert('Invalid image extension'); </script>";
+          } elseif ($fileSize > 10000000) {
+              echo "<script> alert('Image size is too large'); </script>";
+          } else {
+              $newImageName = uniqid() . '.' . $imageExtension;
+              $uploadPath = 'img/' . $newImageName;
+          
+              move_uploaded_file($tmpName, $uploadPath);
+  
+              // Fetch the business profile ID associated with the current owner
+              $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+              $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+              mysqli_stmt_bind_param($stmt, "i", $business_owner);
+              mysqli_stmt_execute($stmt);
+              $result = mysqli_stmt_get_result($stmt);
+              $businessProfile = mysqli_fetch_assoc($result);
+              $businessProfileId = $businessProfile['id'];
+  
+              // Insert into posting_module with the retrieved business profile ID
+              $query = "INSERT INTO business_photos (image, posted_by) VALUES ('$newImageName', $businessProfileId)";
+              mysqli_query($conn, $query);
+  
+              echo "<script> 
+                          alert('Image uploaded successfully'); 
+                          window.location.replace('profile-page.php');
+                  </script>";
+  
+          }
+      }
+  }
+
+  if (isset($_POST['photos_delete'])) {
+    // Delete operation
+    $id = $_POST['id'];
+    $query = "DELETE FROM business_photos WHERE id = $id";
+    mysqli_query($conn, $query);
+    echo "<script> 
+            alert('Image delete successfully'); 
+            window.location.replace('profile-page.php');
+          </script>";
+  }
+
     // ---------------------------------- messages module ----------------------------------------
         $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
         $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
@@ -231,26 +288,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <?php } ?>
             </div>
             <h3 class="mt-3"><?php echo $business_name?></h3>
-            <div class="card text-center">
-                <div class="card-body">
-                    <h5 class="card-title">Bio</h5>
-                    <p class="card-text"><?php
-                        echo $business_bio
-                    ?></p>
-                    <h5 class="card-title">Address</h5>
-                    <p class="card-text"><?php
-                        echo $business_address
-                    ?></p>
-                    <h5 class="card-title">Email</h5>
-                    <p class="card-text"><?php
-                        echo $business_email
-                    ?></p>
-                    <h5 class="card-title">Contact Number</h5>
-                    <p class="card-text"><?php
-                        echo $business_contact_number
-                    ?></p>
-                </div>
-            </div>
+            
             <div class="container-fluid">
                 <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
@@ -258,6 +296,7 @@ if (isset($_POST["upload_advertisement"])) {
                     <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
                     <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
                     <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false">Upload Advertisement</button>
+                    <button class="nav-link" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false">Upload Farm Photos</button>
                     <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false">
                         Message
                         <span class="badge rounded-pill bg-primary">
@@ -305,6 +344,56 @@ if (isset($_POST["upload_advertisement"])) {
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade show active" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
                     
+                    <!------------------------------------- Farm Photos Management Module  ---------------------------------->
+                    <div class="container-fluid" style="margin:auto;">
+                        <div class="container-fluid">
+                            <div class="container-fluid">
+                                <h1>Farm Photos Module</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center"> <!-- Center the content -->
+                        <div class="col-md-10"> <!-- Adjust the column width as needed -->
+                            <div class="table-responsive">
+                                <!-- Display Table -->  
+                                <table class="table table-striped table-borderless">
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Image</td>
+                                        <td>Created At</td> <!-- Added Created At column -->
+
+                                        <td>Action</td>
+                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    // Modify the SQL query to select products associated with the current user's business profile
+                                    $query = "SELECT * FROM business_photos WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
+                                    $stmt = mysqli_prepare($conn, $query);
+                                    mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                    mysqli_stmt_execute($stmt);
+                                    $result = mysqli_stmt_get_result($stmt);
+                                    foreach ($result as $row) :
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                            <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                            <!-- ... -->
+                                            <td>
+                                                <!-- CRUD Operations Form -->
+                                                <form action="" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                    <button class="btn btn-danger mb-2" type="submit" name="photos_delete">Delete</button>
+                                                </form>
+                                            </td>
+                                            <!-- ... -->
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <!------------------------------------- Product-Management Module  ---------------------------------->
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
@@ -324,6 +413,7 @@ if (isset($_POST["upload_advertisement"])) {
                                         <td>Image</td>
                                         <td>Information</td>
                                         <td>Created At</td> <!-- Added Created At column -->
+
                                         <td>Action</td>
                                     </tr>
                                     <?php
@@ -485,10 +575,30 @@ if (isset($_POST["upload_advertisement"])) {
                     </div>
                 </div>
                 
+                <!------------------------------------- Upload Farm Photos Module  ---------------------------------->
+                <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
+                    <div class="container-fluid" style="margin:auto;">
+                        <div class="container-fluid">
+                            <h1>Farm Photos</h1>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                        <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
+                            <div class="col-12">
+                                <label for="image_farm" class="form-label" style="margin-left: 5px;">Farm Photos</label>
+                                <input class="form-control" type="file" id="image_farm" name="image_farm" accept=".jpg, .jpeg, .png" value="">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-lg  w-100 fs-6" type="submit" name="upload_photos" style="background-color: #90EE90;">Upload</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
                 <!------------------------------------- Message Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
                     <?php if (!empty($msgRows)): ?>
-                        <div class="row d-flex align-items-start justify-content-center">
+                        <div class="row d-flex align-items-start justify-content-start ">
                             <h1>Messages</h1>
                             <?php foreach ($msgRows as $msgRow): ?>
                                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
