@@ -126,7 +126,7 @@ if (isset($_POST["upload_product"])) {
 
 
 // ---------------------------------- advertisement module ----------------------------------------
-if (isset($_POST["tty"])) {
+if (isset($_POST["upload_advertisement"])) {
     $name_advertisement = mysqli_real_escape_string($conn, $_POST["name_advertisement"]);
     $text_advertisement = mysqli_real_escape_string($conn, $_POST["text_advertisement"]);
     
@@ -211,10 +211,6 @@ if (isset($_POST["tty"])) {
         if (mysqli_num_rows($result) > 0){
             // Fetch posting modules
             $msgRows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-            } else {
-                echo 'No messages';
-               
-                exit(); // Stop further execution if no data found
             }
 
 ?>
@@ -421,7 +417,7 @@ if (isset($_POST["tty"])) {
                 </div>   
 
 
-                <!------------------------------------- Update-profile Module  ---------------------------------->
+                <!------------------------------------- Update profile Module  ---------------------------------->
                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
@@ -440,7 +436,7 @@ if (isset($_POST["tty"])) {
                             </div>
                             <div class="col-12">
                                 <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>
-                                <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="<?php echo $fromBusinessProfile; ?>">
+                                <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="<?php echo $business_pfp; ?>">
                             </div>
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address" value="<?php echo $business_address; ?>">
@@ -491,25 +487,29 @@ if (isset($_POST["tty"])) {
                 
                 <!------------------------------------- Message Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
-                    <div class="row d-flex align-items-start justify-content-center">
-                        <h1>Messages</h1>
-                        <?php foreach ($msgRows as $msgRow ){ ?>
-                            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
-                                <div class="card text-center ">
-                                    <div class="card-header">
-                                        <?php echo $msgRow['sent_by']?>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text"><?php echo $msgRow['message']?>.</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                    <div class="card-footer text-body-secondary">
-                                        <?php echo $msgRow['created_at']?>
+                    <?php if (!empty($msgRows)): ?>
+                        <div class="row d-flex align-items-start justify-content-center">
+                            <h1>Messages</h1>
+                            <?php foreach ($msgRows as $msgRow): ?>
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
+                                    <div class="card text-center">
+                                        <div class="card-header">
+                                            <?php echo $msgRow['sent_by'] ?>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text"><?php echo $msgRow['message'] ?>.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+                                        <div class="card-footer text-body-secondary">
+                                            <?php echo $msgRow['created_at'] ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php }?>
-                    </div>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else: ?>
+                        <p>No messages found.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

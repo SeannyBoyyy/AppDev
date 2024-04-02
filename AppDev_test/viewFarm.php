@@ -142,7 +142,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3856.4922742192075!2d120.25691227598732!3d14.853726885663168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x339670cefbe062b7%3A0x27605e64933d8249!2s34%20Nueva%20Ecija%20St%2C%20Olongapo%2C%20Zambales!5e0!3m2!1sen!2sph!4v1711425038865!5m2!1sen!2sph"
+                <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                  width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
