@@ -12,7 +12,7 @@
 
 
     //to get all posts from all farms
-    $PostSql = 'SELECT name, text, image FROM posting_module';
+    $PostSql = 'SELECT name, text, image, posted_by FROM posting_module';
 
     $postSqlRes = mysqli_query($conn, $PostSql);
 
@@ -94,7 +94,7 @@
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $profile['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $profile['text']?></p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
             </div>

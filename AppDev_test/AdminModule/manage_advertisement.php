@@ -2,39 +2,11 @@
 // Connect to your database
 include('../config/connectDb.php');
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Process form data
-    $userId = $_POST['user_id'];
-
-    // Delete records from business_advertisement table
-    $deleteBusinessAdvertisementSql = "DELETE FROM business_advertisement WHERE posted_by = $userId";
-    if ($conn->query($deleteBusinessAdvertisementSql) === TRUE) {
-        // Delete user from business_profile table
-        $deleteUserSql = "DELETE FROM business_profile WHERE id = $userId";
-        if ($conn->query($deleteUserSql) === TRUE) {
-            echo "";
-        } else {
-            echo "Error deleting user: " . $conn->error;
-        }
-    } else {
-        echo "Error deleting dependent records: " . $conn->error;
-    }
-}
 ?>
 
     <div class="middle">
         <div class="container">
             <h1>Manage Advertisements</h1>
-            <br>
-            <h5>Delete Advertisements</h5>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                    <div class="input-group flex-nowrap mb-2" style="width:200px;">
-                        <span class="input-group-text" id="addon-wrapping">ID</span>
-                        <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
-                    </div>
-                    <input class="btn btn-danger" type="submit" value="Delete">
-                </form>
             <br>
 
             <!-- Display Table -->
@@ -45,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <th>Name</th>
                 <th>Image</th>
                 <th>Description</th>
+                <th>Action</th>
             </tr>
                 <?php
                 $rows = mysqli_query($conn, "SELECT * FROM business_advertisement ORDER BY id DESC");
@@ -56,6 +29,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <td><?php echo $row["name"]; ?></td>   
                         <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                         <td><?php echo $row["text"]; ?></td> 
+                        <!-- ... -->
+                        <td>
+                            <!-- CRUD Operations Form -->
+                            <form action="crud.php" method="post">
+                                <input type="hidden" name="advertisement_id" value="<?php echo $row['id']; ?>">
+                                <button type="submit mb-2" class="btn btn-success" name="advertisement_read">Read</button>
+                                <button type="submit mb-2" class="btn btn-success" name="advertisement_edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                <button class="btn btn-danger" type="submit" name="advertisement_delete">Delete</button>
+                            </form>
+                        </td>
                         <!-- ... -->
                     </tr>
                 <?php endforeach; ?>

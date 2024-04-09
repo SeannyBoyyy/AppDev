@@ -2,6 +2,7 @@
 include('../config/connectDb.php');
 include('../navbars/profilepage-nav.php'); 
 
+// product post
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
@@ -13,10 +14,22 @@ if (isset($_GET['id'])) {
         echo "Record not found.";
         exit();
     }
-} else {
-    echo "Invalid request.";
-    exit();
 }
+
+// advertisement post 
+if (isset($_GET['advertisement_id'])) {
+    $advertisement_id = $_GET['advertisement_id'];
+
+    // Fetch the record based on the provided id
+    $result = mysqli_query($conn, "SELECT * FROM business_advertisement WHERE id = $advertisement_id");
+    $record = mysqli_fetch_assoc($result);
+
+    if (!$record) {
+        echo "Record not found.";
+        exit();
+    }
+}
+
 
 // Process the form submission for editing
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,34 +37,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newName = mysqli_real_escape_string($conn, $_POST['new_name']);
     $newText = mysqli_real_escape_string($conn, $_POST['new_text']);
 
-    // Process image upload if a new image is provided
-    if ($_FILES['new_image']['error'] !== 4) {
-        $fileName = $_FILES["new_image"]["name"];
-        $fileSize = $_FILES["new_image"]["size"];
-        $tmpName = $_FILES["new_image"]["tmp_name"];
+    // Check if it's a product post
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = explode('.', $fileName);
-        $imageExtension = strtolower(end($imageExtension));
+        // Update the name and text in the posting_module table
+        mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText' WHERE id = $id");
 
-        if (in_array($imageExtension, $validImageExtension) && $fileSize <= 1000000) {
-            $newImageName = uniqid() . '.' . $imageExtension;
-            move_uploaded_file($tmpName, '../ProfileModule/img/' . $newImageName);
+        // Process image upload if a new image is provided
+        if ($_FILES['new_image']['error'] !== 4) {
+            $fileName = $_FILES["new_image"]["name"];
+            $fileSize = $_FILES["new_image"]["size"];
+            $tmpName = $_FILES["new_image"]["tmp_name"];
 
-            // Update the image filename in the database
-            mysqli_query($conn, "UPDATE posting_module SET image = '$newImageName' WHERE id = $id");
-        } else {
-            echo "Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.";
-            exit();
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
+            $imageExtension = explode('.', $fileName);
+            $imageExtension = strtolower(end($imageExtension));
+
+            if (in_array($imageExtension, $validImageExtension) && $fileSize <= 1000000) {
+                $newImageName = uniqid() . '.' . $imageExtension;
+                move_uploaded_file($tmpName, '../ProfileModule/img/' . $newImageName);
+
+                // Update the image filename in the database
+                mysqli_query($conn, "UPDATE posting_module SET image = '$newImageName' WHERE id = $id");
+            } else {
+                echo "Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.";
+                exit();
+            }
         }
     }
 
-    // Update the name and text in the database
-    mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText' WHERE id = $id");
+    // Check if it's an advertisement post
+    if (isset($_GET['advertisement_id'])) {
+        $advertisement_id = $_GET['advertisement_id'];
 
-    // Redirect back to the manage_post.php page
-    header("Location: manage_post.php");
+        // Update the name and text in the business_advertisement table
+        mysqli_query($conn, "UPDATE business_advertisement SET name = '$newName', text = '$newText' WHERE id = $advertisement_id");
+
+        // Process image upload if a new image is provided
+        if ($_FILES['new_image']['error'] !== 4) {
+            $fileName = $_FILES["new_image"]["name"];
+            $fileSize = $_FILES["new_image"]["size"];
+            $tmpName = $_FILES["new_image"]["tmp_name"];
+
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
+            $imageExtension = explode('.', $fileName);
+            $imageExtension = strtolower(end($imageExtension));
+
+            if (in_array($imageExtension, $validImageExtension) && $fileSize <= 1000000) {
+                $newImageName = uniqid() . '.' . $imageExtension;
+                move_uploaded_file($tmpName, '../ProfileModule/img/' . $newImageName);
+
+                // Update the image filename in the database
+                mysqli_query($conn, "UPDATE business_advertisement SET image = '$newImageName' WHERE id = $advertisement_id");
+            } else {
+                echo "Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.";
+                exit();
+            }
+        }
+    }
+
+    // Redirect back to the appropriate page based on the type of post edited
+    if (isset($_GET['id'])) {
+        header("Location: manage_post.php");
+    } elseif (isset($_GET['advertisement_id'])) {
+        header("Location: manage_advertisement.php");
+    }
     exit();
+
 }
 ?>
 
@@ -83,10 +136,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="exampleFormControlInput2" class="form-label">New Text:</label>
                     <input type="text" class="form-control" id="exampleFormControlInput2" name="new_text" placeholder="<?php echo $record['text']; ?>"  required>
                 </div>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">New Image:</label>
-                    <input class="form-control" type="file" id="formFile" name="new_image" accept=".jpg, .jpeg, .png">
-                </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">New Image:</label>
+                        <input class="form-control" type="file" id="formFile" name="new_image" accept=".jpg, .jpeg, .png">
+                    </div>
                 <button type="submit" class="btn w-100 btn-md btn-success">Save Changes</button>
             </form>
         </div>

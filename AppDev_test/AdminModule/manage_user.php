@@ -3,14 +3,23 @@ include('../config/connectDb.php');
 
 
 // Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST['user_id'])) {
     // Process form data
     $userId = $_POST['user_id'];
 
     // Delete dependent records from posting_module table first
     $deletePostingModuleSql = "DELETE FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)";
-    if ($conn->query($deletePostingModuleSql) === TRUE) {
-        // Delete user from business_profile table
+    $deleteBusinessAdvertisementSql = "DELETE FROM business_advertisement WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)"; 
+    $deleteBusinessPhotos = "DELETE FROM business_photos WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)"; 
+    $deleteMessageModuleSql = "DELETE FROM message_module WHERE sent_to IN (SELECT id FROM business_profile WHERE owner = $userId)"; 
+
+    if ($conn->query($deleteBusinessAdvertisementSql) === TRUE) {
+        // Delete records from other related tables
+        $conn->query($deletePostingModuleSql);
+        $conn->query($deleteBusinessPhotos);
+        $conn->query($deleteMessageModuleSql);
+
+        // Now delete user from business_profile table
         $deleteBusinessProfileSql = "DELETE FROM business_profile WHERE owner = $userId";
         if ($conn->query($deleteBusinessProfileSql) === TRUE) {
             // Now delete user from user_accounts table
@@ -29,13 +38,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
+
 ?>
     
         <div class="container">
             <h1>Manage Users</h1>
             <br>
             <h5>Delete User</h5>
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form method="post" action="">
                 <div class="input-group flex-nowrap mb-2" style="width:200px;">
                     <span class="input-group-text" id="addon-wrapping">ID</span>
                     <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
