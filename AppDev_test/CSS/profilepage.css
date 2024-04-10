@@ -14,3 +14,6 @@
 .nav-link :hover{
     color: black;
 }
+button{
+    width: 100%;
+}

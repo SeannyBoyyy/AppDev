@@ -1,5 +1,7 @@
 <?php
-    include('./navbars/farmer-navIndex.php');
+    include('./navbars/viewer-homepage.php');
+   
+    include('./config/connectDb.php');
 
     //to get all business profiles
     $farmsSql = 'SELECT id, name, text, image FROM business_profile';
