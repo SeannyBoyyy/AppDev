@@ -33,6 +33,13 @@ if(isset($_POST['submit'])){
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
 
+        // Check if user is admin
+        if ($email === 'admin@gmail.com' && $password === 'Admin1234') {
+          header('Location: ../AdminModule/index.php');
+          exit();
+        }
+
+        // Regular user login
         $sql = "SELECT email, passWord, id FROM user_accounts WHERE email = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $email);

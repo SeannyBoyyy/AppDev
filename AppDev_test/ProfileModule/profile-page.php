@@ -363,7 +363,9 @@ if (isset($_POST["upload_advertisement"])) {
                                         <div class="container-fluid" style="margin:auto;">
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
+                                                        <br>
                                                         <h1>Farm Photos Module</h1>
+                                                        <br>
                                                     </div>
                                                 </div>
                                         </div>
@@ -414,7 +416,9 @@ if (isset($_POST["upload_advertisement"])) {
                                         <div class="container-fluid" style="margin:auto;">
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
+                                                        <br>
                                                         <h1>Post Module</h1>
+                                                        <br>
                                                     </div>
                                                 </div>
                                             </div>
@@ -471,7 +475,9 @@ if (isset($_POST["upload_advertisement"])) {
                                         <div class="container-fluid" style="margin:auto;">
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
+                                                        <br>
                                                         <h1>Advertisement Module</h1>
+                                                        <br>
                                                     </div>
                                                 </div>
                                             </div>
