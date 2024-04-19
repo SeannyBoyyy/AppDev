@@ -59,7 +59,7 @@
         <h1>Set Up you profile</h1>
     </div>
 </div>
-<div class="container-fluid d-flex align-items-center w-50 mt-5 border rounded-5 p-3 bg-white shadow box-area">
+<div class="container-fluid d-flex align-items-center w-50 mt-5 border rounded-5 p-5 bg-white shadow box-area">
     <form class="row g-3" method="post" enctype="multipart/form-data">
         <div class="form-floating">
             <input type="text" class="form-control" id="floatingInput" name="business_name">

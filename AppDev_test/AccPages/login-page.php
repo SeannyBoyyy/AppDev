@@ -1,4 +1,5 @@
 <?php
+require_once('../config/paypal-rest.php');
 include('../navbars/viewer-homepage.php');
 include('../config/connectDb.php');
 $email = $password = '';
