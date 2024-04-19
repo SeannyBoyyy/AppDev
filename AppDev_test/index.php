@@ -101,4 +101,69 @@
             <?php } ?>
         </div>
     </div>
+    
+
+    <div class=" mt-5">
+		<div class="row">
+			<div class="col">
+				<div class="card" style="background-color: #ECEFF1">
+				    <div class="card-body">
+                        <div class="row m-5">
+                            <div class="col-12 p-6">
+                                <h2 class="text-black">About Us:</h2>
+                                <br>
+                                <p class="text-black">At Zambales Local Market, we believe in the power of community 
+                                    and the richness of our province's agricultural bounty. Our platform was born from 
+                                    a shared vision to revolutionize the way local businesses connect with consumers, 
+                                    breaking down barriers and creating opportunities for growth.
+                                </p>
+                                <p class="text-black">We understand the challenges faced by farmers and entrepreneurs in reaching wider markets 
+                                    and promoting their products effectively. That's why we've built a user-friendly website 
+                                    that serves as a virtual marketplace, where businesses can shine and consumers can discover 
+                                    the diverse offerings of Zambales.
+                                </p>
+                                <p class="text-black">We understand the challenges faced by farmers and entrepreneurs in reaching wider markets 
+                                    and promoting their products effectively. That's why we've built a user-friendly website 
+                                    that serves as a virtual marketplace, where businesses can shine and consumers can discover 
+                                    the diverse offerings of Zambales.
+                                </p>
+                                <p class="text-black">Our commitment goes beyond just facilitating transactions; we're dedicated 
+                                    to fostering meaningful connections between producers and consumers, promoting transparency, 
+                                    and sustainability every step of the way. With Zambales Local Market, you're not just buying products; 
+                                    you're supporting a community, embracing quality, and championing the spirit of local entrepreneurship.
+                                </p>
+                                <p class="text-black">Join us on this journey as we celebrate the flavors, traditions, and stories of Zambales, 
+                                    one click at a time.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row m-5">
+                            <div class="col-6 p-6">
+                                <h2 class="text-black">Vision Statement:</h2>
+                                <br>
+                                <p class="text-black">Empowering Zambales' local businesses to thrive in the digital age,
+                                    fostering a sustainable economic ecosystem where every product tells a story of community, 
+                                    quality, and connection.
+                                </p>
+                            </div>
+                            <div class="col-6 p-6">
+                                <h2 class="text-black">Mission Statement:</h2>
+                                <br>
+                                <p class="text-black">Our mission is to bridge the gap between Zambales' rich agricultural 
+                                    heritage and the modern digital marketplace by providing a centralized platform for 
+                                    local businesses to showcase their products. We strive to empower farmers and 
+                                    entrepreneurs, enhance consumer access to fresh, locally sourced goods, and foster a 
+                                    vibrant community of collaboration and sustainability.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="" class="btn text-white ms-5 mb-3" style="background-color: #21D192">READ MORE</a>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
 </div>
+
+<?php include('./navbars/viewer-footer.php') ; ?>

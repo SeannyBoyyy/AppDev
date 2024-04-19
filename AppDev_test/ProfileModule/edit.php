@@ -64,12 +64,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container w-50">
-        <div class="container mt-5">
-            <h2>Edit Record</h2>
-
+    
+    <div class="middle mt-5">
+        <div class="container-fluid w-50" style="margin-top: 90px;">
+            <div class="col-md-6 container-fluid text-center">
+                <div class="container-fluid">
+                <h2>Edit Record</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-sm d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
             <!-- Edit Form -->
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data" class="w-100 g-3">
                 
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">New Name:</label>
@@ -87,6 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button class="btn btn-success" type="submit">Save Changes</button>
             </form>
         </div>
+        
     </div>
+    
 </body>
 </html>

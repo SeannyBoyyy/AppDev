@@ -1,5 +1,5 @@
 <?php
-    include('../navbars/profilepage-nav.php'); 
+    include('../navbars/admin-navbar.php'); 
 ?>
     <div class="container-fluid mt-3">
         <div class="row">

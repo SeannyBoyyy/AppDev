@@ -113,7 +113,7 @@ if(isset($_SESSION['ownerID'])){
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Manage Posts</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Update Profile</a></li>
                   <li class="list-group-item">
-                    <a style="color: black;" href="./ProfileModule/profile-page.php/#v-pills-message">
+                    <a style="color: black;" href="./ProfileModule/profile-page.php">
                       Messages
                       <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
                     </a>

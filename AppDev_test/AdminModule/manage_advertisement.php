@@ -34,8 +34,8 @@ include('../config/connectDb.php');
                             <!-- CRUD Operations Form -->
                             <form action="crud.php" method="post">
                                 <input type="hidden" name="advertisement_id" value="<?php echo $row['id']; ?>">
-                                <button type="submit mb-2" class="btn btn-success" name="advertisement_read">Read</button>
-                                <button type="submit mb-2" class="btn btn-success" name="advertisement_edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                <button type="submit" class="btn btn-success mb-2" name="advertisement_read">Read</button>
+                                <button type="submit" class="btn btn-success mb-2" name="advertisement_edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
                                 <button class="btn btn-danger" type="submit" name="advertisement_delete">Delete</button>
                             </form>
                         </td>

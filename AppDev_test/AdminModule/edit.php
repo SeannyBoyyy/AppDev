@@ -99,9 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect back to the appropriate page based on the type of post edited
     if (isset($_GET['id'])) {
-        header("Location: manage_post.php");
+        header("Location: index.php");
     } elseif (isset($_GET['advertisement_id'])) {
-        header("Location: manage_advertisement.php");
+        header("Location: index.php");
     }
     exit();
 
@@ -130,11 +130,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form action="" method="post" enctype="multipart/form-data" class="w-100 g-3">
                 <div class="mb-3 ">
                     <label for="exampleFormControlInput1" class="form-label">New Name: </label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" name="new_name" placeholder="<?php echo $record['name']; ?>"  required>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" name="new_name" value="<?php echo $record['name']; ?>">
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput2" class="form-label">New Text:</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2" name="new_text" placeholder="<?php echo $record['text']; ?>"  required>
+                    <input type="text" class="form-control" id="exampleFormControlInput2" name="new_text" value="<?php echo $record['text']; ?>">
                 </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">New Image:</label>
@@ -144,9 +144,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
         
-        <div class="mb-3">
-            <a href="javascript:history.back()" ><button type="submit" class="btn w-100 btn-md btn-success">Back</button> </a>
-        </div> 
     </div>
 </body>
 </html>
