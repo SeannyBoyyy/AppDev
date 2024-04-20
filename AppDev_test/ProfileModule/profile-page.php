@@ -271,10 +271,34 @@ if (isset($_POST["upload_advertisement"])) {
             }
 
 ?>
-
-
+<head>
+<style>
+    .nav-link {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333; 
+        transition: color 0.3s ease;
+        border: none !important;
+    }
+    .nav-link:hover {
+        border: none !important;
+        color: white;
+    }
+    .nav-link.active {
+        border: none !important;
+        background-color: #ffffff;
+        color: white;
+    }
+    .nav-link:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+</style>
+</head>
 <link rel="stylesheet" href="../CSS/profile-setup.css">
 <link rel="stylesheet" href="../CSS/profilepage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<body style="background-color:gray">
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
@@ -287,24 +311,24 @@ if (isset($_POST["upload_advertisement"])) {
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="img/<?php echo $row['image']; ?>">
                 <?php } ?>
             </div>
-            <h3 class="mt-3"><?php echo $business_name?></h3>
+            <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
             
             <div class="container-fluid">
                 <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link" type="button"><a href="../index.php" class="logoutBTN btn">Home</a></button>
-                    <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false">Upload a new Product</button>
-                    <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false">Manage Post</button>
-                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Update Profile</button>
-                    <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false">Upload Advertisement</button>
-                    <button class="nav-link" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false">Upload Farm Photos</button>
-                    <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false">
+                    <button class="nav-link" type="button" onclick="window.location.href='../index.php'"><i class="fas fa-home" style="margin-right: 8px;"></i>Home</button>   
+                    <button class="nav-link"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false"><i class="fas fa-upload"style="margin-right: 8px;"></i>Upload a new Product</button>
+                    <button class="nav-link active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false"><i class="fas fa-tasks"style="margin-right: 8px;"></i>Manage Post</button>
+                    <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user"style="margin-right: 8px;"></i>Update Profile</button>
+                    <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad"style="margin-right: 8px;"></i>Upload Advertisement</button>
+                    <button class="nav-link" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false"><i class="fas fa-images"style="margin-right: 8px;"></i>Upload Farm Photos</button>
+                    <button class="nav-link" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope"style="margin-right: 8px;"></i>
                         Message
                         <span class="badge rounded-pill bg-primary">
                             <?php echo $msgCount ?>
                             
                         </span>
                     </button>
-                    <button class="nav-link" type="button"><a href="../AccPages/logout.php" class="logoutBTN btn">Log Out</a></button>
+                    <button class="nav-link" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
                 </div>
             </div>
         </div>
@@ -315,7 +339,7 @@ if (isset($_POST["upload_advertisement"])) {
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="">
-                                <h1>Upload a new Product</h1>
+                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Upload a new Product</h1>
                             </div>
                         </div>
                     </div>
@@ -364,7 +388,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
                                                         <br>
-                                                        <h1>Farm Photos Module</h1>
+                                                        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Farm Photos Module</h1>
                                                         <br>
                                                     </div>
                                                 </div>
@@ -417,7 +441,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
                                                         <br>
-                                                        <h1>Post Module</h1>
+                                                        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Post Module</h1>
                                                         <br>
                                                     </div>
                                                 </div>
@@ -476,7 +500,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                 <div class="container-fluid">
                                                     <div class="container-fluid">
                                                         <br>
-                                                        <h1>Advertisement Module</h1>
+                                                        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Advertisement Module</h1>
                                                         <br>
                                                     </div>
                                                 </div>
@@ -540,7 +564,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
-                            <h1>Update your profile</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Update your profile</h1>
                         </div>
                     </div>
                     <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -580,7 +604,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1>Post Advertisement</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Post Advertisement</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -608,7 +632,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1>Farm Photos</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -654,7 +678,7 @@ if (isset($_POST["upload_advertisement"])) {
         </div>
     </div>
 </div>
-
+                    </body>
 <?php
     include('../navbars/footer.php')
 ?>
