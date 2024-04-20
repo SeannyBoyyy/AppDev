@@ -277,7 +277,7 @@ if (isset($_POST["upload_advertisement"])) {
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-lg-3 col-12 text-center">
+        <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
@@ -308,7 +308,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex  align-items-center">
+        <div class="col-lg-9 col-12 d-flex  align-items-top">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
@@ -393,7 +393,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                             ?>
                                                                 <tr>
                                                                     <td><?php echo $i++; ?></td>
-                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="250" height="150" title=""></td>
                                                                     <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
                                                                     <!-- ... -->
                                                                     <td>
@@ -449,7 +449,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                                 <tr>
                                                                     <td><?php echo $i++; ?></td>
                                                                     <td><?php echo $row["name"]; ?></td>
-                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>
                                                                     <td><?php echo $row["text"]; ?></td>    
                                                                     <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
                                                                     <!-- ... -->
@@ -507,7 +507,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                                 <tr>
                                                                     <td><?php echo $i++; ?></td>
                                                                     <td><?php echo $row["name"]; ?></td>
-                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                                                                    <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>
                                                                     <td class="overflow-x-auto" width="365"><?php echo $row["text"]; ?></td>    
                                                                     <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
                                                                     <!-- ... -->
