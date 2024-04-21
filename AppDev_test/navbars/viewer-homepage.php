@@ -12,7 +12,7 @@
   <body>
   <nav class="navbar navbar sticky-top p-3" style="background-color: white;">
     <div class="container-fluid">
-        <a class="navbar-brand fs-4" href="./viewer-landingPage.php">FarmDeals</a>
+        <a class="navbar-brand fs-4" href="./viewer-landingPage.php">FarmDeals<img src="http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
