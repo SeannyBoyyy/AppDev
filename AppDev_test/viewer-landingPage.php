@@ -37,22 +37,23 @@
 
 ?>
 
-<div class="container-fluid justify-content-center align-items-center">
-    <div class="container-fluid text-center mt-3 mb-3">
-        <h1>Featured</h1>
+<div class="container-fluid" style="background-color:gray">
+    <div class="container-fluid text-center">
+    <div style="height: 50px; background-color:gray;"></div>
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Featured</h1>
         <div class="row">
-            <div id="carouselExampleAutoplaying" class="carousel slide"   data-bs-ride="carousel">
-                <div class="carousel-inner" style="height: 650px;">
+            <div id="carouselExampleAutoplaying" class="carousel carousel-info slide"   data-bs-ride="carousel" style="width: 1500px; height: 500px;margin-left: auto;margin-right: auto;">
+                <div class="carousel-inner">
                     <?php foreach($ads as $key => $ad) { ?>
                         <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                             <div class="row">
                                 <div class="col-md-6 col-12">
-                                    <img style="height: 500px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
+                                    <img style="height: 450px; width: 450px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
                                 </div>
                                 <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                                     <div class="col-12 col-md-6 text-center">
-                                        <h1><?php echo $ad['name']; ?></h1>
-                                        <p class="text-center"><?php echo $ad['text']; ?></p>
+                                        <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
+                                        <p class="text-center" style="color: black;"><?php echo $ad['text']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -71,9 +72,9 @@
             
         </div> 
     </div>       
-    <div class="container text-center">
+    <div class="container text-center mt-5">
         <div class="row">
-            <H1>Farms</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Farms</H1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center overflow-auto" style="width: 300px; margin: auto; height: 500px;">
@@ -90,10 +91,10 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1>Products</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Products</H1>
             <?php foreach($profiles as $profile){ ?>
-            <div class="col-12 col-md-6  col-lg-4 col-xl-3 mb-3">
-                <div class="card text-center overflow-auto" style="width: 300px; margin: auto; height: 500px;">
+            <div class="col-12 col-sm-6 col-md-6  col-lg-4 col-xl-3 mb-3">
+                <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $profile['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $profile['name']?></h5>
@@ -109,7 +110,7 @@
     <div class=" mt-5">
 		<div class="row">
 			<div class="col">
-				<div class="card" style="background-color: #ECEFF1">
+				<div class="card" style="background-color: #ECEFF1; width:1300px;margin-left:auto;margin-right:auto;">
 				  <div class="card-body">
                     <div class="row m-5">
                         <div class="col-12 p-6">
@@ -168,7 +169,7 @@
 	</div>
 
 </div>
-
+<div style="height: 50px; background-color:gray;"></div>
 <?php 
     include('./navbars/footer.php');
     include('./navbars/viewer-footer.php') ; 

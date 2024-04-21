@@ -12,6 +12,36 @@ session_start();
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="./CSS/farmer-navIndex.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      .list-group-item {
+        border: none !important;
+        margin-top: -5px;
+        margin-bottom: -5px;
+    }
+    .list-group-item a {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        padding: 10px 15px;
+        transition: color 0.3s ease;
+        border: none !important;
+    }
+    .list-group-item a i {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .list-group-item a:hover {
+        color: white;
+        background-color: #007bff;
+    }
+
+    .list-group-item a:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+</style>
   </head>
   <body>
   <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color:white;">
@@ -50,14 +80,14 @@ session_start();
       <div class="offcanvas-body">
         <div class="text-center">
             <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-cover" src="ProfileModule/img/AdminIcon.png">
-            <h3 class="mt-3">Admin</h3>
+            <h3 class="mt-3" style="color:black; font-size:40px">Admin</h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php">Manage Users</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php">Manage Profiles</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php">Manage Posts</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php">Manage Advertisement</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php">Log Out</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-users"></i>Manage Users</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-pen"></i>Manage Posts</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-ad"></i>Manage Advertisement</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
                 </ul>
               </div>
         </div>

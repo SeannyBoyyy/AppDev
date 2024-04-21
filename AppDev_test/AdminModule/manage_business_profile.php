@@ -68,7 +68,7 @@ if (isset($_POST['owner_id'])) {
             <?php endforeach; ?>
         </table>
         <br>
-        <a class="btn btn-success" href="index.php">Go Back</a>
+        <a class="btn btn-success" href="index.php" style="margin-bottom: 20px;">Go Back</a>
     </div>
 </div>    
 

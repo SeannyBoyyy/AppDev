@@ -58,6 +58,38 @@ if(isset($_SESSION['ownerID'])){
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="./CSS/farmer-navIndex.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    .list-group-item {
+        border: none !important;
+        margin-top: -5px;
+        margin-bottom: -5px;
+    }
+    .list-group {
+      text-align: left;
+    }
+    .list-group-item a {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        padding: 10px 15px;
+        transition: color 0.3s ease;
+        border: none !important;
+        text-align: left;
+    }
+
+    .list-group-item a:hover {
+        color: white;
+        background-color: rgb(144, 255, 144);
+        transform: translateY(-5px);
+    }
+
+    .list-group-item a:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+  </style>
   </head>
   <body>
   <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color:white;">
@@ -105,21 +137,21 @@ if(isset($_SESSION['ownerID'])){
                 ?>
                 <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-cover" src="ProfileModule/img/<?php echo $row['image'] ?>">
                 <?php } ?>
-            <h3 class="mt-3"><?php echo $business_name?></h3>
+            <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Upload</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Profile</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Manage Posts</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php">Update Profile</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-upload" style="margin-right: 8px;"></i>Upload</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Profile</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-tasks" style="margin-right: 8px;"></i>Manage Posts</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</a></li>
                   <li class="list-group-item">
                     <a style="color: black;" href="./ProfileModule/profile-page.php">
-                      Messages
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                       <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
                     </a>
                     
                   </li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php">Log Out</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</a></li>
                 </ul>
               </div>
         </div>

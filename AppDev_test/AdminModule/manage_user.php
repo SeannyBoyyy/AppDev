@@ -57,11 +57,11 @@ if (isset($_POST['user_id'])) {
             <!-- Display Table -->
             <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
                 <tr class="text-center">
-                    <td>User ID</td>
-                    <td>E-mail</td>
-                    <td>First Name</td>
-                    <td>Last Name</td>
-                    <td>Created At</td> <!-- Added Created At column -->
+                    <td style="font-weight: bold;">User ID</td>
+                    <td style="font-weight: bold;">E-mail</td>
+                    <td style="font-weight: bold;">First Name</td>
+                    <td style="font-weight: bold;">Last Name</td>
+                    <td style="font-weight: bold;">Created At</td> <!-- Added Created At column -->
                 </tr>
                 <?php
                 $i = 1;

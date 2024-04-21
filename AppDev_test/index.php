@@ -48,8 +48,8 @@
                                     </div>
                                     <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                                         <div class="col-12 col-md-6 text-center">
-                                            <h1><?php echo $ad['name']; ?></h1>
-                                            <p class="text-center"><?php echo $ad['text']; ?></p>
+                                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
+                                            <p class="text-center" style="color: black;"><?php echo $ad['text']; ?></p>
                                         </div>
                                     </div>
                                 </div>

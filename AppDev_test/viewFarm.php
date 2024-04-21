@@ -119,30 +119,43 @@
 
 
 ?>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        .card-body h5 {
+        font-weight: bold;
+        font-size: 20px;
+        }
+        .card-body h5 i {
+        margin-right: 10px;
+        }
+    </style>
+</head>
 
 <!-- Your HTML code to display business profile and posting modules -->
-<div class="container-fluid">
+<div class="container-fluid" style="background-color:gray;">
     <div class="row justify-contents-center align-items-center text-cnter">
         <div class="col-lg-4 col-12 text-center mb-3 mt-3">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
-            <h3 class="mt-3"><?php echo $business_name; ?></h3>
-            <div class="card text-center mb-3 border-0">
+            <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
+            <div class="card text-center mb-3 border-0" style="width:350px; margin-left:130px;">
                 <div class="card-body">
-                    <h5 class="card-title">Bio</h5>
+                    <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
                     <p class="card-text"><?php 
                         echo $business_bio; 
                     ?></p>
-                    <h5 class="card-title">Address</h5>
+                    <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>Address</h5>
                     <p class="card-text"><?php
                         echo $business_address
                     ?></p>
-                    <h5 class="card-title">Email</h5>
+                    <h5 class="card-title"><i class="fas fa-envelope"></i>Email</h5>
                     <p class="card-text"><?php
                         echo $business_email
                     ?></p>
-                    <h5 class="card-title">Contact Number</h5>
+                    <h5 class="card-title"><i class="fas fa-phone"></i>Contact Number</h5>
                     <p class="card-text"><?php
                         echo $business_contact_number
                     ?></p>
@@ -158,7 +171,8 @@
         <div class="col-lg-8 col-12 mt-3">
             <?php if (!empty($photos)): ?>
             <div class="container-fluid text-center">
-                <h1>Farm Photos</h1>
+            <div style="height: 50px; background-color:gray;"></div>
+                <h1 style="font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1><div style="height: 30px; background-color:gray;"></div>
                 <div class="row">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -166,17 +180,17 @@
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                     <div class="">
                                         <div class="">
-                                            <img style="height: 400px;" src="ProfileModule/img/<?php echo $photo['image']; ?>" class="img-fluid object-fit-contain">
+                                            <img style="height: 400px; max-width: 850px" src="ProfileModule/img/<?php echo $photo['image']; ?>" class="img-fluid object-fit-contain">
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:70px;">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:70px;margin-right:80px;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>    
@@ -191,7 +205,8 @@
             <?php if (!empty($profiles)): ?>
             <div class="container-fluid text-center">
                 <div class="row">
-                    <h1 class="mb-3">Products</h1>
+                <div style="height: 50px; background-color:gray;"></div>
+                    <h1 class="mb-3" style="font-size: 50px;color:white;font-weight: bold;">Products</h1><div style="height: 30px; background-color:gray;"></div>
                     <?php foreach($profiles as $profile) { ?>
                         <div class="col-12 col-md-6 col-lg-6 col-xl-3 text-center">
                             <div class="card p-3 mb-3 border-0 border-rounded shadow-lg p-3 mb-5 bg-body rounded" style="margin: auto;">
@@ -219,37 +234,38 @@
 
             <?php if (!empty($advertisements)): ?>
             <div class="container-fluid text-center">
-                <h1>Advertisement</h1>
+            <div style="height: 50px; background-color:gray;"></div>
+                <h1 style="font-size: 50px;color:white;font-weight: bold;">Advertisement</h1><div style="height: 30px; background-color:gray;"></div>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleAutoplaying" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                     <div class="row">
                                         <div class="col-md-6 col-12">
-                                            <img style="height: 400px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
+                                            <img style="height: 300px; width: 300px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
                                         </div>
                                         <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
                                             <div class="col-12 col-md-6 text-center">
-                                                <h1><?php echo $advertisement['name']; ?></h1>
-                                                <p class="text-center"><?php echo $advertisement['text']; ?></p>
+                                                <h1 style="color: black;"><?php echo $advertisement['name']; ?></h1>
+                                                <p class="text-center" style="color: black;"><?php echo $advertisement['text']; ?></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:70px;">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:70px;margin-right:80px;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>    
                     </div>        
                 </div>    
-            </div>
+            </div><div style="height: 100px; background-color:gray;"></div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
             <?php endif; ?> 
