@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="CSS/mdb.min.css" />
     
 
-<div class="mt-5">
+<div class="">
     <!-- Footer -->
     <footer
             class="text-center text-lg-start text-dark"
