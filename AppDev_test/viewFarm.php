@@ -141,7 +141,7 @@
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-            <div class="card text-center mb-3 border-0" style="width:350px; margin-left:130px;">
+            <div class="card text-center mb-3 border-0">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
                     <p class="card-text"><?php 
@@ -237,7 +237,7 @@
             <div style="height: 50px; background-color:gray;"></div>
                 <h1 style="font-size: 50px;color:white;font-weight: bold;">Advertisement</h1><div style="height: 30px; background-color:gray;"></div>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
+                    <div id="carouselExampleAutoplaying2" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
@@ -255,11 +255,11 @@
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:70px;">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev" style="width:70px;">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:70px;margin-right:80px;">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="next" style="width:70px;margin-right:80px;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>    
@@ -274,7 +274,7 @@
     </div>
 
     <div class="sticky-bottom">
-        <button type="button"  class="btn btn-lg position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button"  class="btn btn-lg bg-white position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <small>Message us!</small>
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
@@ -298,7 +298,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Your email or contact number:</label>
+                        <label for="message-text" class="col-form-label">Your email:</label>
                         <input type="text" name="contactDeets" class="form-control" value="<?php echo $contactDeets ?>">
                     </div>
                     <div class="row">
