@@ -83,51 +83,87 @@ if(isset($_POST['submit'])){
     }
 }
 ?>
+<head>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-        <div class="container d-flex justify-content-center align-items-center min-vh-100 w75">
-          <div class="row border rounded-5 p-3 bg-white shadow box-area w-50"> 
-            <div class="col-md-6 right-box w-100">
+  <style>
+    .ui {
+      background: transparent;
+      border-radius: 15px;
+      width:500px;
+      height:680px;
+    }
+    .container {
+      width: 500px !important;
+    }
+    .input-group {
+      width:350px;
+      height:55px;
+      border:none;
+      outline:none;
+      margin-left:50px;
+    }
+    .input-group i{
+      position: absolute;
+      right:20px;
+      top:50%;
+      transform:translateY(-50%);
+    } 
+    .signup{
+        border: 2px solid black;
+        border-radius: 15px;
+        width:320px;
+        margin-left:70px;
+    }
+  </style>
+</head>
+<body style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
+        <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:100px;">
+          <div class="row border rounded-5 p-3  shadow box-area" style="background-color: rgba(255, 255, 255, 0.6);"> 
+            <div class="ui col-md-6 right-box w-100">
                 <form class="row align-items-center" method="post" action="register-page.php" autocomplete="off">
                     <div class="header-text mb-2">
-                            <h2>Hello!</h2>
-                            <p>Sign Up to start promoting your products.</p>
+                            <h2 style="margin-left:30px;margin-top:15px;font-family:monospace">Hello!</h2>
+                            <p style="margin-left:30px;font-family:monospace">Sign Up to start promoting your products.</p>
+                            <h1 style="margin-left:10px;margin-left:50px;margin-top:50px;font-family:monospace">Sign Up</h1>
                     </div>
                     <div class="input-group mb-1">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($firstname)?>" placeholder="First Name" name="firstname">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($firstname)?>" placeholder="First Name" name="firstname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
                     <small class="text-red mb-2 " style=" color:red"><?php echo $errors['firstname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($lastname)?>" placeholder="Last Name" name="lastname">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($lastname)?>" placeholder="Last Name" name="lastname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
                     <small class="text-red mb-2 " style=" color:red"><?php echo $errors['lastname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
-                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($email)?>" placeholder="Email" name="email">
+                        <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($email)?>" placeholder="Email" name="email"><i class='bx bxs-envelope'></i>
                     </div>
                     <div class="row">
                     <small class="text-red mb-2 " style=" color:red"><?php echo $errors['email'] ?></small>
                     </div>
                     <div class="input-group mb-1">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($password)?>" placeholder="Password" name="password">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($password)?>" placeholder="Password" name="password"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
                     <small class="text-red mb-2 " style=" color:red"><?php echo $errors['password'] ?></small>
                     </div>
                     <div class="input-group mb-1">
-                        <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" placeholder="Confirm Password" value="<?php echo htmlspecialchars($confirmPassword)?>" name="confirmPassword">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" placeholder="Confirm Password" value="<?php echo htmlspecialchars($confirmPassword)?>" name="confirmPassword"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
                     <small class="text-red mb-2 " style=" color:red"><?php echo $errors['confirmPass'] ?></small>
                     </div>
                     
-                    <div class="input-group mb-3">
-                        <button class="btn btn-lg w-100 fs-6" style="background-color: #90EE90;" name="submit" >Sign Up</button>
+                    <div class="signup mb-3">
+                        <button class="btn btn-lg w-100 fs-6" style="background-color: transparent;" name="submit" >Sign Up</button>
                     </div>
                     <div class="row">
-                        <small><a href="./login-page.php" style="color: blue;">Already have an account?</a></small>
+                        <small><a href="./login-page.php" style="color: blue;margin-left:50px;">Already have an account?</a></small>
                     </div>
                     
                 </form>

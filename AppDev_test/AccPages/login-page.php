@@ -77,34 +77,64 @@ if(isset($_POST['submit'])){
   }
 } 
 ?>
-
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-  <div class="row border rounded-5 p-3 bg-white shadow box-area w-100">
-    <div class="col-md-6 right-box w-100 ">
+<head>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .ui {
+      background: transparent;
+      border-radius: 15px;
+      width:500px;
+      height:600px;
+    }
+    .container {
+      width: 500px !important;
+    }
+    .input-group {
+      width:350px;
+      height:55px;
+      border:none;
+      outline:none;
+      margin-left:50px;
+    }
+    .input-group i{
+      position: absolute;
+      right:20px;
+      top:50%;
+      transform:translateY(-50%);
+    } 
+  </style>
+</head>
+<body style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
+<div class="container d-flex justify-content-center align-items-center min-vh-80" style="margin-top:100px;">
+<div class="row border rounded-5 p-3 shadow box-area w-100" style="width: 600px; margin-left: auto; margin-right: auto;background-color: rgba(255, 255, 255, 0.6);">
+  <div class="ui">
+    <div class="col-md-6 right-box w-100 " style="margin-top:30px;">
       <form class="row align-items-center" method="post" action="login-page.php" autocomplete="off">
         <div class="header-text mb-4">
-          <h2>Hello,Again</h2>
-          <p>We are happy to have you back.</p>
+          <h2 style="margin-left:30px;font-family:monospace">Hello,Again</h2>
+          <p style="margin-left:30px;font-family:monospace">We are happy to have you back.</p>
+          <h1 style="margin-left:50px;margin-top:50px;font-family:monospace">Login</h1>
         </div>
         <div class="input-group mb-1">
-          <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email address">
+          <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email address"><i class='bx bxs-envelope'></i>
         </div>
         <div class="row">
           <small class="text-red mb-2 " style=" color:red"><?php echo $errors['email'] ?></small>
         </div>
         <div class="input-group mb-1">
-          <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" name="password" placeholder="Password" value="<?php echo htmlspecialchars($password)?>">  
+          <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" name="password" placeholder="Password" value="<?php echo htmlspecialchars($password)?>"><i class='bx bxs-lock-alt'></i> 
         </div>
         <div class="row">
           <small class="text-red mb-2" style=" color:red"><?php echo $errors['password'] ?></small>
         </div>
         <div class="input-group mb-3">
-          <button class="btn btn-lg  w-100 fs-6" name="submit" style="background-color: #90EE90;" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+          <button class="btn btn-lg  w-100 fs-6" name="submit" style="background-color: transparent; border:2px solid black; border-radius: 15px;margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
         <div class="row">
-          <small style="color: blue;">Don't have account? <a href="./register-page.php">Sign Up</a></small>
+          <small style="color: blue;margin-top:10px;">Don't have account? <a href="./register-page.php">Sign Up</a></small>
         </div>
       </form>
     </div> 
+  </div>
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
