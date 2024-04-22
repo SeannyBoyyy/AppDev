@@ -17,7 +17,7 @@ include('../config/connectDb.php');
   <nav class="navbar sticky-top border-bottom p-3 w-100" style="background-color: white;">
     <div class="container-fluid">
       <div class="container-fluid text-center">
-        <a class="navbar-brand fs-4 justify-content-center" href="../admin-landingPage.php">FarmDeals<img src="http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4 justify-content-center" href="../admin-landingPage.php">FarmDeals<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
     </div>
   </nav>

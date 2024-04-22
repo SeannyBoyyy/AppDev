@@ -118,45 +118,45 @@ if(isset($_POST['submit'])){
     }
   </style>
 </head>
-<body style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
-        <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:100px;">
+<body style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
+        <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:50px;">
           <div class="row border rounded-5 p-3  shadow box-area" style="background-color: rgba(255, 255, 255, 0.6);"> 
             <div class="ui col-md-6 right-box w-100">
                 <form class="row align-items-center" method="post" action="register-page.php" autocomplete="off">
                     <div class="header-text mb-2">
                             <h2 style="margin-left:30px;margin-top:15px;font-family:monospace">Hello!</h2>
                             <p style="margin-left:30px;font-family:monospace">Sign Up to start promoting your products.</p>
-                            <h1 style="margin-left:10px;margin-left:50px;margin-top:50px;font-family:monospace">Sign Up</h1>
+                            <h1 style="margin-left:10px;margin-left:50px;margin-top:20px;font-family:monospace">Sign Up</h1>
                     </div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($firstname)?>" placeholder="First Name" name="firstname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['firstname'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['firstname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($lastname)?>" placeholder="Last Name" name="lastname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['lastname'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['lastname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($email)?>" placeholder="Email" name="email"><i class='bx bxs-envelope'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['email'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['email'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($password)?>" placeholder="Password" name="password"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['password'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['password'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" placeholder="Confirm Password" value="<?php echo htmlspecialchars($confirmPassword)?>" name="confirmPassword"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['confirmPass'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['confirmPass'] ?></small>
                     </div>
                     
                     <div class="signup mb-3">
@@ -167,9 +167,11 @@ if(isset($_POST['submit'])){
                     </div>
                     
                 </form>
+                
             </div> 
          </div>
        </div>
+       <div style="height:50px;"></div>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
