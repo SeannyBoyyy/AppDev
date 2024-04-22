@@ -1,3 +1,32 @@
+<?php
+
+// Database connection
+include('./config/connectDb.php');
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Escape user inputs for security
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $subject = mysqli_real_escape_string($conn, $_POST['subject']);
+    $message = mysqli_real_escape_string($conn, $_POST['message']);
+
+    // Insert data into database
+    $sql = "INSERT INTO admin_messages (email, subject, message) VALUES ('$email', '$subject', '$message')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>alert(Message sent successfully.)</script>";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+?>
+
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
     <!-- Font Awesome -->
@@ -132,15 +161,15 @@
                     class="mb-4 mt-0 d-inline-block mx-auto"
                     style="width: 60px; background-color: #7c4dff; height: 2px"
                     />
-                <form action="#" class="contact-form">
+                <form method="post" action="" class="contact-form">
                     <div class="mb-2">
-                        <input type="text" class="form-control" placeholder="Your Email">
+                        <input type="text" class="form-control" placeholder="Your Email" name="email">
                     </div>
                     <div class="mb-2">
-                        <input type="text" class="form-control" placeholder="Subject">
+                        <input type="text" class="form-control" placeholder="Subject" name="subject">
                     </div>
                     <div class="mb-2">
-                        <textarea name="" id="" cols="30" rows="3" class="form-control" style="resize:none" placeholder="Message"></textarea>
+                        <textarea name="message" id="" cols="30" rows="3" class="form-control" style="resize:none" placeholder="Message"></textarea>
                     </div>
                     <div class="mb-5">
                         <button type="submit" class="btn w-100 btn-md btn-success">Send</button>

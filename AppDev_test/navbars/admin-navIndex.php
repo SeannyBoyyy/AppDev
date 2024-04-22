@@ -2,6 +2,32 @@
 include('./config/connectDb.php');
 session_start();
 
+// Check if user is logged in
+if(isset($_SESSION['admin_email'])){
+  $admin_email = $_SESSION['admin_email']; 
+
+  // Query to count messages
+  $sql = "SELECT COUNT(*) AS message_count FROM admin_messages";
+
+  // Execute query
+  $result = $conn->query($sql);
+
+  // Check if query executed successfully
+  if ($result) {
+      // Fetch the result as an associative array
+      $row = $result->fetch_assoc();
+      
+      // Get the message count
+      $msgCount = $row['message_count'];
+  } else {
+      // Handle query error
+      echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+} else {
+  // If admin is not logged in, set message count to 0
+  $msgCount = 0;
+}
+
 ?>
 
 <!doctype html>
@@ -87,6 +113,12 @@ session_start();
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-pen"></i>Manage Posts</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-ad"></i>Manage Advertisement</a></li>
+                  <li class="list-group-item">
+                    <a style="color: black;" href="./AdminModule/index.php">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
+                      <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
+                    </a>
+                  </li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AccPages/logout.php"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
                 </ul>
               </div>

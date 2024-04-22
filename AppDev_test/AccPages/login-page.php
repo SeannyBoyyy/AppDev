@@ -36,6 +36,10 @@ if(isset($_POST['submit'])){
 
         // Check if user is admin
         if ($email === 'admin@gmail.com' && $password === 'Admin1234') {
+          // Start admin session
+          session_start();
+          $_SESSION['admin_email'] = $email;
+
           header('Location: ../AdminModule/index.php');
           exit();
         }

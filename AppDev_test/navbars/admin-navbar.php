@@ -1,5 +1,15 @@
 <?php
 include('../config/connectDb.php');
+
+session_start();
+if(isset($_SESSION['admin_email'])){
+  $admin_email = $_SESSION['admin_email']; 
+}else{
+  echo 'no admin ';
+  
+  header('Location: ../AccPages/login-page.php');
+  exit();
+}
 ?>
 
 <!doctype html>
