@@ -17,6 +17,7 @@ session_start();
         border: none !important;
         margin-top: -5px;
         margin-bottom: -5px;
+        text-align: left !important;
     }
     .list-group-item a {
         display: block;
@@ -34,7 +35,8 @@ session_start();
 
     .list-group-item a:hover {
         color: white;
-        background-color: #007bff;
+        background-color: rgb(144, 255, 144);
+        transform: translateY(-5px);
     }
 
     .list-group-item a:focus {
@@ -80,7 +82,7 @@ session_start();
       <div class="offcanvas-body">
         <div class="text-center">
             <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-cover" src="ProfileModule/img/AdminIcon.png">
-            <h3 class="mt-3" style="color:black; font-size:40px">Admin</h3>
+            <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-user-tie" style="margin-right:30px;"></i>Admin</h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-users"></i>Manage Users</a></li>

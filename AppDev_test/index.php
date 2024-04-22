@@ -32,11 +32,15 @@
 
 
 ?>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<div class="site-bg" style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/bg.png');">
 
-<div class="container-fluid" style="background-color:gray">
-    <div class="container-fluid text-center">
-    <div style="height: 50px; background-color:gray;"></div>
-            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Featured</h1><div style="height: 50px; background-color:gray;"></div>
+<div class="container">
+    <div class="container text-center">
+    <div style="height: 50px; background-color:transparent;"></div>
+            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fas fa-star"style="margin-right:30px;"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
             <div class="row">
                 <div id="carouselExampleAutoplaying" class="carousel carousel-info slide"  data-bs-ride="carousel" style="width: 1500px; height: 500px;margin-left: auto;margin-right: auto;">
                     <div class="carousel-inner ">
@@ -47,7 +51,7 @@
                                         <img style="height: 450px; width: 450px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
                                     </div>
                                     <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                        <div class="col-12 col-md-6 text-center">
+                                        <div class="col-12 col-md-6 text-center" style="width:600px;height:450px;margin-right:150px;margin-top:50px;">
                                             <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
                                             <p class="text-center" style="color: black;"><?php echo $ad['text']; ?></p>
                                         </div>
@@ -56,11 +60,11 @@
                             </div>
                         <?php } ?>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:80px;">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:80px;">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>    
@@ -70,7 +74,7 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Farms</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fas fa-home"style="margin-right:20px;"></i>Farms</H1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
@@ -87,7 +91,7 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Products</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fa-solid fa-boxes-stacked"style="margin-right:20px;"></i>Products</H1>
             <?php foreach($profiles as $profile){ ?>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
@@ -166,5 +170,6 @@
 	</div>
     
 </div>
-<div style="height: 50px; background-color:gray;"></div>
+<div style="height: 50px; background-color:transparent;"></div>
+</div>
 <?php include('./navbars/viewer-footer.php') ; ?>
