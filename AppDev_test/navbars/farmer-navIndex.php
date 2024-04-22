@@ -89,20 +89,6 @@ if(isset($_SESSION['ownerID'])){
         outline: none !important;
         box-shadow: none !important;
     }
-    .nav-item {
-      display:flex;
-      align-items:center;
-      justify-content:space-evenly;
-      gap:50px;
-    }
-    .nav-item .btn{
-      background-color:rgba(44,144,200, 0.8);
-      margin-right:10px;
-    }
-    .nav-item a{
-      color:black;
-      font-size:12px;
-    }
   </style>
   </head>
   <body>
@@ -120,7 +106,7 @@ if(isset($_SESSION['ownerID'])){
     
     <div class="container d-flex justify-content-end">
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav justify-start">
             <li class="nav-item">
                 <a class="btn" href="./ProfileModule/profile-page.php">Upload</a>
               </li>
