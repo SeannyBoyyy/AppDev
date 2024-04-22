@@ -45,7 +45,7 @@ session_start();
   <nav class="navbar navbar-expand-lg sticky-top  shadow box-area p-3">
   <div class="container d-flex">
       <div class="container col-6">
-        <a class="navbar-brand fs-4" href="#">FarmDeals<img src="http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4" href="#" style="width:100px;">FarmDeals<img src="http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
       <div class="container d-flex justify-content-end col-6">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

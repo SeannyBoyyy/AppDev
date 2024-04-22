@@ -5,27 +5,30 @@
 <head>
     <style>
         .nav-link {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        transition: color 0.3s ease;
-        border: none !important;
-    }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+            border: none !important;
+        }
 
-    .nav-link i {
-        margin-right: 10px;
-    }
+        .nav-link i {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 24px;
+        }
     </style>
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-3">
-                <h1 class="nav-brand">Welcome to <br> Admin Panel</h1>
+                <h1 class="nav-brand">Admin Panel</h1>
                 <div class="col-12">
-                    <div class="d-flex align-items-start">
+                    <div class="d-flex align-items-start" style="margin-top:20px;">
                         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true" style="color: black;"><i class="fas fa-users"></i>Manage Users</button>
                             <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false" style="color: black;"><i class="fas fa-user-circle"></i>Manage Farm Profiles</button>

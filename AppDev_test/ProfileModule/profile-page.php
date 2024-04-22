@@ -295,30 +295,36 @@ if (isset($_POST["upload_advertisement"])) {
         outline: none !important;
         box-shadow: none !important;
     }
+    #preview {
+        width: 400px; 
+        height:200px; 
+        margin-left:10px;
+        margin-top:3px;
+    }
 </style>
 </head>
 <link rel="stylesheet" href="../CSS/profile-setup.css">
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<body>
-<div class="container-fluid mt-5">
+<body style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/profilebg.jpg');background-size: cover; background-repeat: no-repeat;">
+<div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
+        <div class="col-lg-3 col-12 text-center border rounded-5" style="margin-left:20px;background-color: rgba(192, 192, 192, 0.7)">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
                   
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
-                <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="img/<?php echo $row['image']; ?>">
+                <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;margin-top:20px;" src="img/<?php echo $row['image']; ?>">
                 <?php } ?>
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
             
-            <div class="container-fluid" style="width: 300px;">
+            <div class="container-fluid mt-3 bg-white border rounded-5" style="width: 350px;padding:10px;margin-bottom:20px;">
                 <div class="nav flex-column nav-pills text-start align-items-start" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='../index.php'"><i class="fas fa-home" style="margin-right: 8px;"></i>Home</button>   
-                    <button class="nav-link d-flex justify-content-start align-items-center"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false"><i class="fas fa-upload"style="margin-right: 8px;"></i>Upload a new Product</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false"><i class="fas fa-upload"style="margin-right: 8px;"></i>Upload Product</button>
                     <button class="nav-link d-flex justify-content-start align-items-center active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false"><i class="fas fa-tasks"style="margin-right: 8px;"></i>Manage Post</button>
                     <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user"style="margin-right: 8px;"></i>Update Profile</button>
                     <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad"style="margin-right: 8px;"></i>Upload Advertisement</button>
@@ -334,38 +340,53 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex  align-items-top">
+        <div class="col-lg-9 col-12 d-flex bg-white border rounded-5 align-items-top" style="width:1000px;margin-left:200px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
-                    <div class="container-fluid" style="margin:auto;">
+                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab" style="width:900px;">
+                    <div class="container-fluid" style="margin-bottom:20px;">
                         <div class="container-fluid">
                             <div class="">
-                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Upload a new Product</h1>
+                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;margin-bottom:50px;margin-top:30px;">Upload a new Product</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-flex align-items-center mt-5border rounded-5 p-3 bg-white shadow box-area p-5">
-                        <form class="row w-100 g-3" action="" method="post" enctype="multipart/form-data">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput name_product" placeholder="" name="name_product" value="">
-                                <label for="floatingInput" style="margin-left: 5px;">Product Name</label>
-                            </div>
-                            <div class="col-12">
-                                <label for="formFile" class="form-label" style="margin-left: 5px;">Upload a picture</label>
-                                <input class="form-control" type="file" id="formFile" name="image_product">
-                            </div>
+                    <div class="col-12 d-flex align-items-center mt-3 border rounded-5 p-3" style="border:1px solid black;width:950px;height:600px;background: rgba(255,255,255, 0.9)">
+                    <form class="row w-100 g-3" action="" method="post" enctype="multipart/form-data">
+                        <!-- left -->
+                        <div class="col-lg-6 col-12">
+                        <!-- Product Name -->
                             <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Write something about the Product.</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text_product"></textarea>
+                                <label for="floatingInput" class="form-label" style="margin-left:30px;">Product Name</label>
+                                <input type="text" class="form-control" id="floatingInput name_product" placeholder="" name="name_product" value="" style="margin-left:30px;width:300px;">
                             </div>
+        
+                            <!-- Write something about the Product -->
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label" style="margin-left:30px;">Write something about the Product.</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="text_product" style="margin-left:30px; width:300px;height:300px;"></textarea>
+                            </div>
+        
+                        <!-- Upload -->
                             <div class="col-12">
-                                <button class="btn btn-lg fs-6 w-100" type="upload_product" name="upload_product" style="background-color: #90EE90;">Upload</button>
+                                <button class="btn btn-lg fs-6" type="upload_product" name="upload_product" style="background-color: #90EE90; width:300px;margin-left:30px;margin-bottom:20px;">Upload</button>
+                                </div>
                             </div>
-                        </form>
+                        <!-- right -->
+                        <div class="col-lg-6 col-12">
+                        <!-- preview -->
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label" style="font-size:20px;margin-left:30px;">Upload a picture</label>
+                                <div class="image-container" style="width:425px;height:310px;border: 2px solid black;border-radius: 15px;margin-right:30px;margin-top:50px;">
+                                    <img id="preview" src="#" alt="Preview Image" style="display:none;">
+                                    </div>
+                                        <input class="form-control" style="width:300px;margin-left:30px;margin-top:30px;" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-
+                <div style="margin-top:50px;margin-bottom:50px;"></div>
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade show active container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
                     <div class="row container-fluid">
@@ -492,7 +513,8 @@ if (isset($_POST["upload_advertisement"])) {
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         </table>
-                                                    </div>
+                                                    </div>Post Advertisement
+
                                                 </div>
                                             </div>
                                     </div>
@@ -566,7 +588,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Update your profile</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
                         </div>
                     </div>
                     <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -606,7 +628,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Post Advertisement</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Post Advertisement</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -634,7 +656,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -733,6 +755,17 @@ if (isset($_POST["upload_advertisement"])) {
         </div>
     </div>
 </div>
+<script>
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var imgElement = document.getElementById("preview");
+            imgElement.src = reader.result;
+            imgElement.style.display = "block";
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
                     </body>
 <?php
     include('../navbars/footer.php')

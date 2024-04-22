@@ -132,31 +132,31 @@ if(isset($_POST['submit'])){
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($firstname)?>" placeholder="First Name" name="firstname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['firstname'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['firstname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($lastname)?>" placeholder="Last Name" name="lastname"><i class="fas fa-user"></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['lastname'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['lastname'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($email)?>" placeholder="Email" name="email"><i class='bx bxs-envelope'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['email'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['email'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" value="<?php echo htmlspecialchars($password)?>" placeholder="Password" name="password"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['password'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['password'] ?></small>
                     </div>
                     <div class="input-group mb-1">
                         <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" placeholder="Confirm Password" value="<?php echo htmlspecialchars($confirmPassword)?>" name="confirmPassword"><i class='bx bxs-lock-alt'></i>
                     </div>
                     <div class="row">
-                    <small class="text-red mb-2 " style=" color:red"><?php echo $errors['confirmPass'] ?></small>
+                    <small class="text-red mb-2 " style=" color:red;margin-left:50px;"><?php echo $errors['confirmPass'] ?></small>
                     </div>
                     
                     <div class="signup mb-3">
