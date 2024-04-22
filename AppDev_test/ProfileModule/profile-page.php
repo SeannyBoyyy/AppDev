@@ -295,11 +295,16 @@ if (isset($_POST["upload_advertisement"])) {
         outline: none !important;
         box-shadow: none !important;
     }
-    #preview {
-        width: 400px; 
-        height:200px; 
-        margin-left:10px;
-        margin-top:3px;
+    #preview1 {
+        width: 400px;
+        height: 300px;
+    }
+
+    #preview2 {
+        width: 210px;
+        height: 100px;
+        margin-left:5px;
+        margin-top:5px;
     }
 </style>
 </head>
@@ -375,12 +380,12 @@ if (isset($_POST["upload_advertisement"])) {
                         <!-- right -->
                         <div class="col-lg-6 col-12">
                         <!-- preview -->
-                            <div class="mb-3">
-                                <label for="formFile" class="form-label" style="font-size:20px;margin-left:30px;">Upload a picture</label>
+                        <div class="mb-3">
+                            <label for="formFile1" class="form-label" style="font-size:20px;margin-left:30px;">Upload a picture</label>
                                 <div class="image-container" style="width:425px;height:310px;border: 2px solid black;border-radius: 15px;margin-right:30px;margin-top:50px;">
-                                    <img id="preview" src="#" alt="Preview Image" style="display:none;">
-                                    </div>
-                                        <input class="form-control" style="width:300px;margin-left:30px;margin-top:30px;" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                                    <img id="preview1" src="#" alt="Preview Image" style="display:none;">
+                                </div>
+                                    <input class="form-control" style="width:300px;margin-left:30px;margin-top:30px;" type="file" id="formFile1" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event, 'preview1')">
                                     </div>
                                 </div>
                             </form>
@@ -585,41 +590,62 @@ if (isset($_POST["upload_advertisement"])) {
 
 
                 <!------------------------------------- Update profile Module  ---------------------------------->
-                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 50px; color:black; font-weight: bold;">
+                                Update your profile
+                            </h1>
                         </div>
                     </div>
-                    <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
-                        <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+                    <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+
+                        <!-- Business Name -->
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="businessName" placeholder="Business Name" name="name_buss" value="<?php echo $business_name; ?>">
+                            <label for="businessName" style="margin-left: 5px;">Business Name</label>
+                        </div>
+
+                        <!-- Bio -->
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="bio" placeholder="Bio" name="bio" value="<?php echo $business_bio; ?>">
+                            <label for="bio" style="margin-left: 5px;">Bio</label>
+                        </div>
+                        <!-- Contact Number -->
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="contactNumber" placeholder="Contact Number" name="contact_number" value="<?php echo $business_contact_number; ?>">
+                            <label for="contactNumber" style="margin-left: 5px;">Contact Number</label>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-floating col-md-6">
+                            <input type="text" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $business_email; ?>">
+                            <label for="email" style="margin-left: 5px;">Email</label>
+                        </div>
+                        <!-- Address -->
+                        <div class="form-floating col-md-12">
+                            <input type="text" class="form-control" id="address" placeholder="Address" name="address" value="<?php echo $business_address; ?>">
+                            <label for="address" style="margin-left: 5px;">Address</label>
+                        </div>
+
+                        
+                        <!-- Profile Picture -->
+                        <div class="col-md-6" style="margin-top: 20px;">
+                            <div class="image-container" style="width: 225px; height: 110px; border: 2px solid black; border-radius: 15px;">
+                                <img id="preview2" src="#" alt="Preview Image" style="display:none;">
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 20px;">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="<?php echo $business_name; ?>">
-                                <label for="floatingInput" style="margin-left: 5px;">Business Name</label>
+                                <input class="form-control" style="width:300px;height:40px;" type="file" id="formFile2" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event, 'preview2')">
                             </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="bio" name="bio" value="<?php echo $business_bio; ?>">
-                                <label for="floatingInput" style="margin-left: 5px;">Bio</label>
-                            </div>
-                            <div class="col-12">
-                                <label for="formFile" class="form-label" style="margin-left: 5px;">Profile Picture</label>
-                                <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" value="<?php echo $business_pfp; ?>">
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="address" name="address" value="<?php echo $business_address; ?>">
-                                <label for="floatingInput" style="margin-left: 5px;">Address</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="email" name="email" value="<?php echo $business_email; ?>">
-                                <label for="floatingInput" style="margin-left: 5px;">Email</label>
-                            </div>
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingInput" placeholder="contact_number" name="contact_number" value="<?php echo $business_contact_number; ?>">
-                                <label for="floatingInput" style="margin-left: 5px;">Contact Number</label>
-                            </div>
+                        </div>                            
+
                             <div class="col-12">
                                 <button class="btn btn-lg  w-100 fs-6" type="submit" name="submit" style="background-color: #90EE90;">Upload</button>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -756,15 +782,17 @@ if (isset($_POST["upload_advertisement"])) {
     </div>
 </div>
 <script>
-    function previewImage(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var imgElement = document.getElementById("preview");
+function previewImage(event, previewId) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var imgElement = document.getElementById(previewId);
+        if (imgElement) {
             imgElement.src = reader.result;
             imgElement.style.display = "block";
         }
-        reader.readAsDataURL(event.target.files[0]);
     }
+    reader.readAsDataURL(event.target.files[0]);
+}
 </script>
                     </body>
 <?php
