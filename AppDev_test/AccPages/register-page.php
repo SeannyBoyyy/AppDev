@@ -119,7 +119,7 @@ if(isset($_POST['submit'])){
   </style>
 </head>
 <body style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
-        <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:50px;">
+        <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:100px;">
           <div class="row border rounded-5 p-3  shadow box-area" style="background-color: rgba(255, 255, 255, 0.6);"> 
             <div class="ui col-md-6 right-box w-100">
                 <form class="row align-items-center" method="post" action="register-page.php" autocomplete="off">
@@ -170,7 +170,6 @@ if(isset($_POST['submit'])){
             </div> 
          </div>
        </div>
-       <div style="height: 50px; background-color:transparent;"></div>
     <script
       defer=""
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
