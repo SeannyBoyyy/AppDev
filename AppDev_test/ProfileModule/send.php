@@ -31,7 +31,7 @@ if(isset($_POST['sendMSG'])) {
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = 'FROM ZAMBALES LOCAL MARKET - DO NOT REPLY';
+        $mail->Subject = 'FROM ZAMBALES LOCAL MARKET - DO NOT REPLY'; // + add new line for the text from $email and $
         $mail->Body    = $message;
 
         // Send email

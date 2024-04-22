@@ -148,7 +148,7 @@ if (isset($_POST['delete'])) {
     // Delete operation
     $id = $_POST['id'];
     mysqli_query($conn, "DELETE FROM posting_module WHERE id = $id");
-    header("Location: manage_post.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -156,7 +156,7 @@ if (isset($_POST['advertisement_delete'])) {
     // Delete operation
     $advertisement_id = $_POST['advertisement_id'];
     mysqli_query($conn, "DELETE FROM business_advertisement  WHERE id = $advertisement_id");
-    header("Location: manage_advertisement.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -164,7 +164,7 @@ if (isset($_POST['photos_delete'])) {
     // Delete operation
     $photos_id = $_POST['photos_id'];
     mysqli_query($conn, "DELETE FROM business_photos  WHERE id = $photos_id");
-    header("Location: manage_photos.php");
+    header("Location: index.php");
     exit();
 }
 ?>

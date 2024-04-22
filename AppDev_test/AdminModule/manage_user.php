@@ -7,6 +7,22 @@ if (isset($_POST['user_id'])) {
     // Process form data
     $userId = $_POST['user_id'];
 
+    // Add error handling
+    if (!is_numeric($userId)) {
+        echo "
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Invalid User ID!',
+                icon: 'error'
+            }).then(function() {
+                window.location = 'index.php';
+            });
+        </script>";
+        
+        exit();
+    }
+
     // Delete dependent records from posting_module table first
     $deletePostingModuleSql = "DELETE FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)";
     $deleteBusinessAdvertisementSql = "DELETE FROM business_advertisement WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = $userId)"; 
@@ -25,7 +41,18 @@ if (isset($_POST['user_id'])) {
             // Now delete user from user_accounts table
             $deleteUserSql = "DELETE FROM user_accounts WHERE id = $userId";
             if ($conn->query($deleteUserSql) === TRUE) {
-                echo "";
+                echo "
+                <script>
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Deleting User ID!',
+                        icon: 'success'
+                    }).then(function() {
+                        window.location = 'index.php';
+                    });
+                </script>";
+
+                exit();
             } else {
                 echo "Error deleting user: " . $conn->error;
             }
@@ -40,7 +67,7 @@ if (isset($_POST['user_id'])) {
 
 
 ?>
-    
+
         <div class="container">
             <h1>Manage Users</h1>
             <br>

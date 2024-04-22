@@ -7,6 +7,22 @@ if (isset($_POST['owner_id'])) {
     // Process form data
     $owner_id = $_POST['owner_id'];
 
+    // Add error handling
+    if (!is_numeric($owner_id)) {
+        echo "
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Invalid Owner ID!',
+                icon: 'error'
+            }).then(function() {
+                window.location = 'index.php';
+            });
+        </script>";
+        
+        exit();
+    }
+
     // Delete dependent records from posting_module table first
     $deletePostingModuleSql = "DELETE FROM posting_module WHERE posted_by = $owner_id";
     $deleteBusinessAdvertisementSql = "DELETE FROM business_advertisement WHERE posted_by = $owner_id"; 
@@ -19,7 +35,18 @@ if (isset($_POST['owner_id'])) {
         // Delete user from business_profile table
         $deleteUserSql = "DELETE FROM business_profile WHERE id = $owner_id";
         if ($conn->query($deleteUserSql) === TRUE) {
-            echo "";
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Deleting Owner ID!',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'index.php';
+                });
+            </script>";
+        
+            exit();
         } else {
             echo "Error deleting user: " . $conn->error;
         }
@@ -59,7 +86,7 @@ if (isset($_POST['owner_id'])) {
             foreach ($rows as $row) :
                 ?>
                 <tr class="text-center">
-                    <td><?php echo $row["owner"]; ?></td>
+                    <td><?php echo $row["id"]; ?></td>
                     <td><?php echo $row["name"]; ?></td>
                     <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                     <td><?php echo $row["text"]; ?></td>
