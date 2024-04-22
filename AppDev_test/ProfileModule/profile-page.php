@@ -303,7 +303,7 @@ if (isset($_POST["upload_advertisement"])) {
 <body>
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
+        <div class="col-lg-3 col-12 text-center border 2px solid black" style="padding:20px;margin-left:50px;width:400px;border-radius:50px;">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
@@ -334,14 +334,14 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex  align-items-top">
+        <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;margin-left:50px;width:1200px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="">
-                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Upload a new Product</h1>
+                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Upload a new Product</h1>
                             </div>
                         </div>
                     </div>
@@ -566,7 +566,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Update your profile</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
                         </div>
                     </div>
                     <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -606,7 +606,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Post Advertisement</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Post Advertisement</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
@@ -634,7 +634,7 @@ if (isset($_POST["upload_advertisement"])) {
                 <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1>
+                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
