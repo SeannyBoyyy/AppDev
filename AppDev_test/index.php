@@ -32,11 +32,20 @@
 
 
 ?>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    .fas{
+        margin-right: 20px; /* Right margin for spacing */
+    }
+</style>
+</head>
+<div class="site-bg" style="background-image: url('http://localhost/AppDev/AppDev/AppDev_test/ProfileModule/img/bg.png'); background-repeat: no-repeat;background-size: cover;">
 
-<div class="container-fluid" style="background-color:gray">
-    <div class="container-fluid text-center">
-    <div style="height: 50px; background-color:gray;"></div>
-            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Featured</h1><div style="height: 50px; background-color:gray;"></div>
+<div class="container">
+    <div class="container text-center">
+    <div style="height: 50px; background-color:transparent;"></div>
+            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
             <div class="row">
                 <div id="carouselExampleAutoplaying" class="carousel carousel-info slide"  data-bs-ride="carousel" style="width: 1500px; height: 500px;margin-left: auto;margin-right: auto;">
                     <div class="carousel-inner ">
@@ -70,7 +79,7 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Farms</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fas fa-tractor"></i>Farms</H1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
@@ -87,7 +96,7 @@
     </div>
     <div class="container text-center mt-5">
         <div class="row">
-            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;">Products</H1>
+            <H1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:white;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</H1>
             <?php foreach($profiles as $profile){ ?>
             <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
@@ -166,5 +175,5 @@
 	</div>
     
 </div>
-<div style="height: 50px; background-color:gray;"></div>
+<div style="height: 50px; background-color:transparent;"></div>
 <?php include('./navbars/viewer-footer.php') ; ?>
