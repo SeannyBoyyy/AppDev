@@ -55,7 +55,7 @@ if (isset($_POST['user_id'])) {
             <br>
 
             <!-- Display Table -->
-            <table class="table table-striped">
+            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
                 <tr class="text-center">
                     <td style="font-weight: bold;">User ID</td>
                     <td style="font-weight: bold;">E-mail</td>

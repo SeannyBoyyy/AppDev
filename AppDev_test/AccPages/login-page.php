@@ -120,13 +120,13 @@ if(isset($_POST['submit'])){
           <input type="text" class="form-control form-control-lg bg-light fs-6 rounded" name="email" value="<?php echo htmlspecialchars($email)?>" placeholder="Email address"><i class='bx bxs-envelope'></i>
         </div>
         <div class="row">
-          <small class="text-red mb-2 " style=" color:red; margin-left:50px;"><?php echo $errors['email'] ?></small>
+          <small class="text-red mb-2 " style=" color:red"><?php echo $errors['email'] ?></small>
         </div>
         <div class="input-group mb-1">
           <input type="password" class="form-control form-control-lg bg-light fs-6 rounded" name="password" placeholder="Password" value="<?php echo htmlspecialchars($password)?>"><i class='bx bxs-lock-alt'></i> 
         </div>
         <div class="row">
-          <small class="text-red mb-2" style=" color:red; margin-left:50px;"><?php echo $errors['password'] ?></small>
+          <small class="text-red mb-2" style=" color:red"><?php echo $errors['password'] ?></small>
         </div>
         <div class="input-group mb-3">
           <button class="btn btn-lg  w-100 fs-6" name="submit" style="background-color: transparent; border:2px solid black; border-radius: 15px;margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
