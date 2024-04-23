@@ -30,7 +30,18 @@
                 if(mysqli_stmt_execute($stmt)){
                     header('location: ./profile-page.php');
                 }else{
-                    echo "<script>alert('Erorr')</script>";
+                    echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Error!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-setup.php';
+                    });
+                </script>";
+        
+                exit();
                 }
             }
 

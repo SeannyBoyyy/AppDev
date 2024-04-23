@@ -1,5 +1,4 @@
 
-
 <?php
 include('../config/connectDb.php');
 include('../navbars/profilepage-nav.php');
@@ -83,7 +82,7 @@ if(isset($_POST['submit'])) {
             echo 'Error preparing statement: ' . mysqli_error($conn);
         }
     } else {
-        echo 'Error uploading image.';
+        
     }
 }
 
@@ -94,7 +93,18 @@ if (isset($_POST["upload_product"])) {
   
 
     if ($_FILES["image_product"]["error"] === 4) {
-        echo "<script> alert('Image does not exist'); </script>";
+        echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Image does not exist!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+        
+                exit();
     } else {
         $fileName = $_FILES["image_product"]["name"];
         $fileSize = $_FILES["image_product"]["size"];
@@ -104,9 +114,32 @@ if (isset($_POST["upload_product"])) {
         $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
 
         if (!in_array($imageExtension, $validImageExtension)) {
-            echo "<script> alert('Invalid image extension'); </script>";
+            echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Invalid image extension!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+
+                exit();
         } elseif ($fileSize > 10000000) {
-            echo "<script> alert('Image size is too large'); </script>";
+            echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Image size is too large!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+
+                exit();
+
         } else {
             $newImageName = uniqid() . '.' . $imageExtension;
             $uploadPath = 'img/' . $newImageName;
@@ -153,7 +186,18 @@ if (isset($_POST["upload_advertisement"])) {
     
   
       if ($_FILES["image_advertisement"]["error"] === 4) {
-          echo "<script> alert('Image does not exist'); </script>";
+        echo "
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: 'Image does not exist!',
+                icon: 'error'
+            }).then(function() {
+                window.location = 'profile-page.php';
+            });
+        </script>";
+
+        exit();
       } else {
           $fileName = $_FILES["image_advertisement"]["name"];
           $fileSize = $_FILES["image_advertisement"]["size"];
@@ -163,9 +207,33 @@ if (isset($_POST["upload_advertisement"])) {
           $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
   
           if (!in_array($imageExtension, $validImageExtension)) {
-              echo "<script> alert('Invalid image extension'); </script>";
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Invalid image extension!',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php';
+                });
+            </script>";
+
+            exit();
+
           } elseif ($fileSize > 10000000) {
-              echo "<script> alert('Image size is too large'); </script>";
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Image size is too large!',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php';
+                });
+            </script>";
+
+            exit();
+
           } else {
               $newImageName = uniqid() . '.' . $imageExtension;
               $uploadPath = 'img/' . $newImageName;
@@ -208,7 +276,18 @@ if (isset($_POST["upload_advertisement"])) {
     if (isset($_POST["upload_photos"])) {
         
       if ($_FILES["image_farm"]["error"] === 4) {
-          echo "<script> alert('Image does not exist'); </script>";
+          echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Image does not exist!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+        
+                exit();
       } else {
           $fileName = $_FILES["image_farm"]["name"];
           $fileSize = $_FILES["image_farm"]["size"];
@@ -218,9 +297,31 @@ if (isset($_POST["upload_advertisement"])) {
           $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
   
           if (!in_array($imageExtension, $validImageExtension)) {
-              echo "<script> alert('Invalid image extension'); </script>";
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Invalid Image Extenstion!',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php';
+                });
+            </script>";
+    
+            exit();
           } elseif ($fileSize > 10000000) {
-              echo "<script>    ('Image size is too large'); </script>";
+            echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Image size is too large!',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php';
+                });
+            </script>";
+    
+            exit();
           } else {
               $newImageName = uniqid() . '.' . $imageExtension;
               $uploadPath = 'img/' . $newImageName;
@@ -750,6 +851,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                 <div class="mb-3">
                                                     <label for="message-text" class="col-form-label">Your email:</label>
                                                     <input type="text" name="my_email" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $row['email'] ?>">
+                                                    <input type="hidden" name="my_number" value="<?php echo $row['contact_number'] ?>">
                                                 </div>
                                                 <?php }?>
                                                 <div class="row">

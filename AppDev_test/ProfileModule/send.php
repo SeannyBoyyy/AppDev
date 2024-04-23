@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -31,14 +32,21 @@ if(isset($_POST['sendMSG'])) {
 
         // Content
         $mail->isHTML(true);
-        $mail->Subject = 'FROM ZAMBALES LOCAL MARKET - DO NOT REPLY'; // + add new line for the text from $email and $
+        $mail->Subject = 'FROM ZAMBALES LOCAL MARKET - DO NOT REPLY...     ' . '     From -     ' . '     Email:     ' . $_POST['my_email'] . "     " . '     Contact Number:     ' . $_POST['my_number'];
         $mail->Body    = $message;
 
         // Send email
         $mail->send();
-        echo "<script> 
-                alert('Message has been sent');
-                window.location.replace('profile-page.php');
+        echo"...";
+        echo "
+            <script>
+                Swal.fire({
+                title: 'Success!',
+                text: 'Message has been sent!',
+                icon: 'success'
+            }).then(function() {
+                window.location = 'profile-page.php';
+            });
             </script>";
         
     } catch (Exception $e) {

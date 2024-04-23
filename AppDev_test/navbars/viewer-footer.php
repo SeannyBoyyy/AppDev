@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <?php
 
 // Database connection
@@ -19,7 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO admin_messages (email, subject, message) VALUES ('$email', '$subject', '$message')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<script>alert(Message sent successfully.)</script>";
+        echo "<script>
+        Swal.fire({
+            title: 'Success!',
+            text: 'Message sent successfully!',
+            icon: 'success'
+        }).then(function() {
+            window.location = '#';
+        });
+    </script>";
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
