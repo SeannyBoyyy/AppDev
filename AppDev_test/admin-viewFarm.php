@@ -2,12 +2,6 @@
     include('./navbars/admin-navIndex.php');
     include('config/connectDb.php');
 
-    if(isset($_SESSION['ownerID'])){
-        $business_owner = $_SESSION['ownerID']; 
-    }else{
-        echo 'no owner ';
-    }
-
     // Check if an identifier is provided in the URL
     if(isset($_GET['business_id'])) {
         // Retrieve the business ID from the URL

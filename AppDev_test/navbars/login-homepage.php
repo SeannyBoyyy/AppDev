@@ -28,8 +28,8 @@
             <div class="navbar-nav ">
                 <a class="nav-link" aria-current="page" href="#farms"><i class="fas fa-tractor" style="padding:10px;"></i>Farm</a>
                 <a class="nav-link" aria-current="page" href="#"><i class="fas fa-shopping-basket" style="padding:10px;"></i>Products</a>
-                <a class="nav-link" aria-current="page" href="./AccPages/login-page.php"><i class="fas fa-sign-in-alt" style="padding:10px;"></i>Log In</a>
-                <a class="nav-link" aria-current="page" href="./AccPages/register-page.php"><i class="fas fa-user" style="padding:10px;"></i>Register</a>
+                <a class="nav-link" aria-current="page" href="../AccPages/login-page.php"><i class="fas fa-sign-in-alt" style="padding:10px;"></i>Log In</a>
+                <a class="nav-link" aria-current="page" href="../AccPages/register-page.php"><i class="fas fa-user" style="padding:10px;"></i>Register</a>
             </div>
         </div>
     </div>
