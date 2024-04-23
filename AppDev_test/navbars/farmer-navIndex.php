@@ -5,6 +5,9 @@ if(isset($_SESSION['ownerID'])){
   $business_owner = $_SESSION['ownerID']; 
 }else{
   echo 'no owner ';
+
+  header('Location: ./AccPages/login-page.php');
+  exit();
 }
 
   $getSql = "SELECT name, text, image FROM business_profile WHERE owner = ?";

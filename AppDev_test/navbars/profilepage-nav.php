@@ -1,5 +1,14 @@
 <?php
 include('../config/connectDb.php');
+
+session_start();
+if(isset($_SESSION['ownerID'])){
+    $business_owner = $_SESSION['ownerID']; 
+}else{
+    echo 'no owner ';
+    header('Location: ../AccPages/login-page.php');
+    exit();
+}
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 

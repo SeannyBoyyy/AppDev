@@ -4,12 +4,6 @@
 include('../config/connectDb.php');
 include('../navbars/profilepage-nav.php');
 
-session_start();
-if(isset($_SESSION['ownerID'])){
-    $business_owner = $_SESSION['ownerID']; 
-}else{
-    echo 'no owner ';
-}
 
     $getSql = "SELECT name, text, image, address, email, contact_number FROM business_profile WHERE owner = ?";
     $stmt = mysqli_prepare($conn, $getSql);
