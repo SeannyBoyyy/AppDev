@@ -2,6 +2,7 @@
 include('../config/connectDb.php');
 ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
 <!doctype html>
 <html lang="en">
   <head>

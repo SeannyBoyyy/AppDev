@@ -1,5 +1,6 @@
 <?php
     include('./navbars/admin-navIndex.php');
+    include('config/connectDb.php');
 
     //to get all business profiles
     $farmsSql = 'SELECT id, name, text, image FROM business_profile';
@@ -78,7 +79,7 @@
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $farm['text']?></p>
-                        <a href="viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
+                        <a href="admin-viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
             </div>
@@ -95,7 +96,7 @@
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $profile['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $profile['text']?></p>
-                        <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                        <a href="admin-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
             </div>

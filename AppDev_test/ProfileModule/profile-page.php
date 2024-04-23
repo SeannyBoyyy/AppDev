@@ -1,3 +1,5 @@
+
+
 <?php
 include('../config/connectDb.php');
 include('../navbars/profilepage-nav.php');
@@ -57,14 +59,31 @@ if(isset($_POST['submit'])) {
 
             // Check if the query executed successfully
             if(mysqli_stmt_affected_rows($stmt) > 0) {
-                echo "<script> 
-                        alert('Updated successfully'); 
-                        window.location.replace('profile-page.php');
-                    </script>";
+                echo "
+                <script>
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Updated successfully!',
+                        icon: 'success'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+            
+                exit();
             } else {
-                echo "<script> 
-                        alert(Error updating profile.)
-                    </script>";
+                echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Error updating profile!',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
+                </script>";
+        
+                exit();
             }
         } else {
             echo 'Error preparing statement: ' . mysqli_error($conn);
@@ -115,10 +134,18 @@ if (isset($_POST["upload_product"])) {
             $query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId)";
             mysqli_query($conn, $query);
 
-            echo "<script> 
-                        alert('Image uploaded successfully'); 
-                        window.location.replace('profile-page.php');
+            echo "
+                <script>
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Image uploaded successfully!',
+                        icon: 'success'
+                    }).then(function() {
+                        window.location = 'profile-page.php';
+                    });
                 </script>";
+            
+                exit();
 
         }
     }
@@ -166,10 +193,18 @@ if (isset($_POST["upload_advertisement"])) {
               $query = "INSERT INTO business_advertisement (name, text, image, posted_by) VALUES ('$name_advertisement', '$text_advertisement', '$newImageName', $businessProfileId)";
               mysqli_query($conn, $query);
   
-              echo "<script> 
-                          alert('Image uploaded successfully'); 
-                          window.location.replace('profile-page.php');
-                  </script>";
+              echo "
+              <script>
+                  Swal.fire({
+                      title: 'Success!',
+                      text: 'Image uploaded successfully!',
+                      icon: 'success'
+                  }).then(function() {
+                      window.location = 'profile-page.php';
+                  });
+              </script>";
+          
+              exit();
   
           }
       }
@@ -191,7 +226,7 @@ if (isset($_POST["upload_advertisement"])) {
           if (!in_array($imageExtension, $validImageExtension)) {
               echo "<script> alert('Invalid image extension'); </script>";
           } elseif ($fileSize > 10000000) {
-              echo "<script> alert('Image size is too large'); </script>";
+              echo "<script>    ('Image size is too large'); </script>";
           } else {
               $newImageName = uniqid() . '.' . $imageExtension;
               $uploadPath = 'img/' . $newImageName;
@@ -211,10 +246,18 @@ if (isset($_POST["upload_advertisement"])) {
               $query = "INSERT INTO business_photos (image, posted_by) VALUES ('$newImageName', $businessProfileId)";
               mysqli_query($conn, $query);
   
-              echo "<script> 
-                          alert('Image uploaded successfully'); 
-                          window.location.replace('profile-page.php');
-                  </script>";
+              echo "
+              <script>
+                  Swal.fire({
+                      title: 'Success!',
+                      text: 'Image uploaded successfully!',
+                      icon: 'success'
+                  }).then(function() {
+                      window.location = 'profile-page.php';
+                  });
+              </script>";
+          
+              exit();
   
           }
       }
@@ -225,10 +268,19 @@ if (isset($_POST["upload_advertisement"])) {
     $id = $_POST['id'];
     $query = "DELETE FROM business_photos WHERE id = $id";
     mysqli_query($conn, $query);
-    echo "<script> 
-            alert('Image delete successfully'); 
-            window.location.replace('profile-page.php');
-          </script>";
+
+    echo "
+              <script>
+                  Swal.fire({
+                      title: 'Success!',
+                      text: 'Image delete successfully!',
+                      icon: 'success'
+                  }).then(function() {
+                      window.location = 'profile-page.php';
+                  });
+              </script>";
+          
+              exit();
   }
 
     // ---------------------------------- messages module ----------------------------------------
@@ -273,23 +325,29 @@ if (isset($_POST["upload_advertisement"])) {
 ?>
 <head>
 <style>
+
     .nav-link {
         font-size: 18px;
         font-weight: bold;
         color: #333; 
         transition: color 0.3s ease;
         border: none !important;
+        margin: 2px;
     }
     .nav-link:hover {
         border: none !important;
         color: black;
-        transform: translateY(-5px);
+        background-color: #90EE90;
+        transition: ease-in 0.50s;
+        border-radius: 5px;
     }
+    
     .nav-link.active {
         border: none !important;
-        background-color: rgb(192, 192, 192);
+        background-color: #90EE90;
         color: white;
         padding: 10px 15px;
+        border-radius: 5px;
     }
     .nav-link:focus {
         outline: none !important;
@@ -303,7 +361,7 @@ if (isset($_POST["upload_advertisement"])) {
 <body>
 <div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-lg-3 col-12 text-center border 2px solid black" style="padding:20px;margin-left:50px;width:400px;border-radius:50px;">
+    <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
@@ -334,7 +392,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;margin-left:50px;width:1200px;border-radius:50px;">
+        <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">

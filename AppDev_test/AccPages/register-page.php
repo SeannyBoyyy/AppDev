@@ -1,6 +1,6 @@
 <?php
 include('../config/connectDb.php');
-include('../navbars/viewer-homepage.php');
+include('../navbars/login-homepage.php');
 $email = $password = $firstname = $lastname = $confirmPassword = '';
 $errors = array('email'=>'', 'password'=>'', 'firstname'=>'', 'lastname'=>'', 'confirmPass'=>'');
 

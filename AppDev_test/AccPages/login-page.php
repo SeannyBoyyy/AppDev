@@ -1,6 +1,5 @@
 <?php
-require_once('../config/paypal-rest.php');
-include('../navbars/viewer-homepage.php');
+include('../navbars/login-homepage.php');
 include('../config/connectDb.php');
 $email = $password = '';
 $errors = array('email'=>'', 'password'=>'');
@@ -70,7 +69,7 @@ if(isset($_POST['submit'])){
                 header('Location: ../ProfileModule/profile-page.php'); 
                 exit();
             }else{
-              header('Location: ../ProfileModule/profile-setup.php');
+              header('Location: ./payment/index.php');
             }
           } else {
               $errors['password'] = 'Invalid e-mail or password';

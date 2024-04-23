@@ -1,8 +1,7 @@
 <?php
-    include('./navbars/viewer-homepage.php');
+    include('./navbars/admin-navIndex.php');
     include('config/connectDb.php');
 
-    session_start();
     if(isset($_SESSION['ownerID'])){
         $business_owner = $_SESSION['ownerID']; 
     }else{
@@ -95,7 +94,7 @@
                     text: 'Business ID not provided!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'admin-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -121,7 +120,7 @@
                     text: 'Contact details and message are required!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'admin-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -138,7 +137,7 @@
                     text: 'Message sent successfully!',
                     icon: 'success'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'admin-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -317,7 +316,7 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" action="viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                <form method="post" action="admin-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
                 <!-- Include business_id field -->
                 <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
                 <div class="modal-body">
