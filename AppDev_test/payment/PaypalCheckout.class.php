@@ -1,13 +1,5 @@
 <?php  
-/**  
- *  
- * This PayPal Checkout API handler class is a custom PHP library to handle the PayPal REST API requests.  
- *  
- * @class   PaypalCheckout  
- * @author  CodexWorld  
- * @link    https://www.codexworld.com  
- * @version 1.0  
- */  
+
  
 // Include the configuration file 
 include_once 'config.php'; 
@@ -18,7 +10,7 @@ class PaypalCheckout{
     public $paypalBillingAPI = PAYPAL_SANDBOX?'https://api-m.sandbox.paypal.com/v1/billing':'https://api-m.paypal.com/v1/billing'; 
     public $paypalClientID   = PAYPAL_SANDBOX?PAYPAL_SANDBOX_CLIENT_ID:PAYPAL_PROD_CLIENT_ID;  
     private $paypalSecret    = PAYPAL_SANDBOX?PAYPAL_SANDBOX_CLIENT_SECRET:PAYPAL_PROD_CLIENT_SECRET;  
- 
+    
     public function generateAccessToken(){ 
         $ch = curl_init();   
         curl_setopt($ch, CURLOPT_URL, $this->paypalAuthAPI);   
