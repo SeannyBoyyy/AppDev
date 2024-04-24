@@ -69,7 +69,7 @@ if(isset($_POST['submit'])){
                 header('Location: ../ProfileModule/profile-page.php'); 
                 exit();
             }else{
-              header('Location: ./payment/index.php');
+              header('Location: ../payment/index.php');
             }
           } else {
               $errors['password'] = 'Invalid e-mail or password';

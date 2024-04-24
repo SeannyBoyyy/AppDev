@@ -6,7 +6,13 @@
     <title>Subscription Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
-  <body class="d-flex justify-content-center align-items-center">
+  
+  <body>
+  <nav class="navbar navbar sticky-top p-3 mb-5" style="background-color: whitesmoke;">
+    <div class="container-fluid  align-items-center justify-content-center">
+        <a class="navbar-brand fs-3" >ZDeals<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
+    </div>
+  </nav>
   <?php 
     // Include configuration file  
     require_once 'config.php'; 
