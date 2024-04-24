@@ -35,6 +35,8 @@
                             <button class="nav-link" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false" style="color: black;"><i class="fas fa-ad"></i>Manage Advertisement</button>
                             <button class="nav-link" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false" style="color: black;"><i class="fas fa-image"></i>Manage Farm Photos</button>
                             <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" style="color: black;"><i class="fas fa-image"></i>Manage Messages</button>
+                            <button class="nav-link" id="v-pills-subscriber-tab" data-bs-toggle="pill" data-bs-target="#v-pills-subscriber" type="button" role="tab" aria-controls="v-pills-subscriber" aria-selected="false" style="color: black;"><i class="fas fa-image"></i>Manage Subscriber</button>
+                            <button class="nav-link" id="v-pills-plans-tab" data-bs-toggle="pill" data-bs-target="#v-pills-plans" type="button" role="tab" aria-controls="v-pills-plans" aria-selected="false" style="color: black;"><i class="fas fa-image"></i>Manage Plans</button>
                         </div>
                     </div>
                 </div>
@@ -48,6 +50,8 @@
                         <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab" tabindex="0"><?php include('./manage_advertisement.php')?></div>
                         <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab" tabindex="0"><?php include('./manage_photos.php')?></div>
                         <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0"><?php include('./manage_messages.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-subscriber" role="tabpanel" aria-labelledby="v-pills-subscriber-tab" tabindex="0"><?php include('./manage_subscriber.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-plans" role="tabpanel" aria-labelledby="v-pills-plans-tab" tabindex="0"><?php include('./manage_plans.php')?></div>
                 </div>
             </div>
         </div>

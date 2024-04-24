@@ -44,33 +44,42 @@ if(isset($_POST['submit'])){
         }
 
         // Regular user login
-        $sql = "SELECT email, passWord, id FROM user_accounts WHERE email = ?";
+        $sql = "SELECT ua.id AS account_id, ua.subscription_id, ua.passWord, us.status 
+                FROM user_accounts AS ua 
+                LEFT JOIN user_subscriptions AS us ON ua.subscription_id = us.id 
+                WHERE ua.email = ?";
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, "s", $email);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         
-       
+        
         if($row = mysqli_fetch_assoc($result)) {
           if(password_verify($password, $row['passWord'])) {
               session_start();
-              $sql = "SELECT name, text, image FROM business_profile WHERE owner = ?";
-              $stmt = mysqli_prepare($conn, $sql);
-              mysqli_stmt_bind_param($stmt, "i", $row['id']);
-              mysqli_stmt_execute($stmt);
-              $_SESSION['ownerID'] = $row['id'];
-              
-              $sqlResult = mysqli_stmt_get_result($stmt);
-              if ($businessRow = mysqli_fetch_assoc($sqlResult)) {
-                $_SESSION['business_name'] = $businessRow['name'];
-                $_SESSION['bio'] = $businessRow['text'];
-                $_SESSION['pfp'] = $businessRow['image'];
-                
+              $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
+
+              if ($row['status'] !== 'ACTIVE') {
+                header('Location: ../payment/index.php');
+                exit();
+              }
+
+              // Check if profile setup is complete
+              $profile_sql = "SELECT id FROM business_profile WHERE owner = ?";
+              $profile_stmt = mysqli_prepare($conn, $profile_sql);
+              mysqli_stmt_bind_param($profile_stmt, "i", $_SESSION['ownerID']); // Use 'ownerID' session variable
+              mysqli_stmt_execute($profile_stmt);
+              $profile_result = mysqli_stmt_get_result($profile_stmt);
+
+              if ($profile_row = mysqli_fetch_assoc($profile_result)) {
+                // Profile setup complete, redirect to profile page
                 header('Location: ../ProfileModule/profile-page.php'); 
                 exit();
-            }else{
-              header('Location: ../payment/index.php');
-            }
+              } else {
+                // Profile setup incomplete, redirect to profile setup
+                header('Location: ../ProfileModule/profile-setup.php');
+                exit();
+              }
           } else {
               $errors['password'] = 'Invalid e-mail or password';
           }
@@ -80,6 +89,7 @@ if(isset($_POST['submit'])){
   }
 } 
 ?>
+
 <head>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>

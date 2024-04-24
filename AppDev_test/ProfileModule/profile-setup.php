@@ -1,6 +1,15 @@
 <?php
     include('../config/connectDb.php');
-    include('../navbars/profilepage-nav.php');
+    include('../navbars/subs-navbar.php');
+
+    session_start();
+    if(isset($_SESSION['ownerID'])){
+        $business_owner = $_SESSION['ownerID']; 
+    }else{
+        echo 'no owner ';
+        header('Location: ../AccPages/login-page.php');
+        exit();
+    }
 
     $NameSetUp = $bioSetup = $imageSetup = '';
     $errors = array('business_name'=>'', 'business_bio'=>'');

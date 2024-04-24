@@ -141,22 +141,10 @@
 
 
 ?>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <style>
-        .card-body h5 {
-        font-weight: bold;
-        font-size: 20px;
-        }
-        .card-body h5 i {
-        margin-right: 10px;
-        }
-    </style>
-</head>
 
 <!-- Your HTML code to display business profile and posting modules -->
-<div class="container-fluid" style="background-color:gray;">
+<div class="container-fluid" >
     <div class="row justify-contents-center align-items-center text-cnter">
         <div class="col-lg-4 col-12 text-center mb-3 mt-3">
             <div>
@@ -193,8 +181,8 @@
         <div class="col-lg-8 col-12 mt-3">
             <?php if (!empty($photos)): ?>
             <div class="container-fluid text-center">
-            <div style="height: 50px; background-color:gray;"></div>
-                <h1 style="font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1><div style="height: 30px; background-color:gray;"></div>
+            <div style="height: 50px;"></div>
+                <h1 style="font-size: 50px;color:white;font-weight: bold;">Farm Photos</h1><div style="height: 30px;"></div>
                 <div class="row">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -227,8 +215,8 @@
             <?php if (!empty($profiles)): ?>
             <div class="container-fluid text-center">
                 <div class="row">
-                <div style="height: 50px; background-color:gray;"></div>
-                    <h1 class="mb-3" style="font-size: 50px;color:white;font-weight: bold;">Products</h1><div style="height: 30px; background-color:gray;"></div>
+                <div style="height: 50px;"></div>
+                    <h1 class="mb-3" style="font-size: 50px;color:white;font-weight: bold;">Products</h1><div style="height: 30px;"></div>
                     <?php foreach($profiles as $profile) { ?>
                         <div class="col-12 col-md-6 col-lg-6 col-xl-3 text-center">
                             <div class="card p-3 mb-3 border-0 border-rounded shadow-lg p-3 mb-5 bg-body rounded" style="margin: auto;">
@@ -256,8 +244,8 @@
 
             <?php if (!empty($advertisements)): ?>
             <div class="container-fluid text-center">
-            <div style="height: 50px; background-color:gray;"></div>
-                <h1 style="font-size: 50px;color:white;font-weight: bold;">Advertisement</h1><div style="height: 30px; background-color:gray;"></div>
+            <div style="height: 50px;"></div>
+                <h1 style="font-size: 50px;color:white;font-weight: bold;">Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
                     <div id="carouselExampleAutoplaying2" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
                         <div class="carousel-inner">
@@ -287,7 +275,7 @@
                         </button>    
                     </div>        
                 </div>    
-            </div><div style="height: 100px; background-color:gray;"></div>
+            </div><div style="height: 100px;"></div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
             <?php endif; ?> 

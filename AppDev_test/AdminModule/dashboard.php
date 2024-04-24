@@ -21,6 +21,10 @@ $total_prods_count = mysqli_fetch_assoc($total_prods)['total_prods'];
 // Fetch total count of farm photos
 $total_farmPhotos = mysqli_query($conn, "SELECT COUNT(*) as total_farmPhotos FROM business_photos");
 $total_farmPhotos_count = mysqli_fetch_assoc($total_farmPhotos)['total_farmPhotos'];
+
+// Fetch total count of Subscriber
+$total_subscriber = mysqli_query($conn, "SELECT COUNT(*) as total_subscriber FROM user_subscriptions");
+$total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscriber'];
 ?>
 
 <!DOCTYPE html>
@@ -100,6 +104,13 @@ $total_farmPhotos_count = mysqli_fetch_assoc($total_farmPhotos)['total_farmPhoto
             <div class="card dashboard-item" id="totalFarmPhotos">
                 <h2><i class="fas fa-ad"></i>Total Farm Photos</h2>
                 <p class="count"><?php echo $total_farmPhotos_count; ?></p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card dashboard-item" id="totalSubscriber">
+                <h2><i class="fas fa-ad"></i>Total Subscriber</h2>
+                <p class="count"><?php echo $total_subscriber_count; ?></p>
             </div>
         </div>
     </div>
