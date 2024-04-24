@@ -494,6 +494,7 @@ if (isset($_POST["upload_advertisement"])) {
                         </span>
                     </button>
                     <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-accountInfo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accountInfo" type="button" role="tab" aria-controls="v-pills-accountInfo" aria-selected="false"><i class="fas fa-envelope"style="margin-right: 8px;"></i>Account Information</button>
                 </div>
             </div>
         </div>
@@ -892,6 +893,12 @@ if (isset($_POST["upload_advertisement"])) {
 
                     
                     
+                </div>
+                <!------------------------------------- Account info Module  ---------------------------------->
+                <div class="tab-pane fade " id="v-pills-accountInfo" role="tabpanel" aria-labelledby="v-pills-accountInfo-tab">
+                        <?php
+                            include './account-info.php'
+                        ?>
                 </div>
             </div>
         </div>
