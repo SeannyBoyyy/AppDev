@@ -18,15 +18,15 @@
       </style>
   </head>
   <body>
-  <nav class="navbar navbar sticky-top p-3" style="background-color: white;">
+  <nav class="navbar navbar sticky-top p-3" style="background-color: whitesmoke;">
     <div class="container-fluid">
-        <a class="navbar-brand fs-4" href="../viewer-landingPage.php">FarmDeals<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4" href="../viewer-landingPage.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <div class="navbar-nav ">
-                <a class="nav-link" aria-current="page" href="#farms"><i class="fas fa-tractor" style="padding:10px;"></i>Farm</a>
+                <a class="nav-link" aria-current="page" href="#"><i class="fas fa-tractor" style="padding:10px;"></i>Business</a>
                 <a class="nav-link" aria-current="page" href="#"><i class="fas fa-shopping-basket" style="padding:10px;"></i>Products</a>
                 <a class="nav-link" aria-current="page" href="../AccPages/login-page.php"><i class="fas fa-sign-in-alt" style="padding:10px;"></i>Log In</a>
                 <a class="nav-link" aria-current="page" href="../AccPages/register-page.php"><i class="fas fa-user" style="padding:10px;"></i>Register</a>

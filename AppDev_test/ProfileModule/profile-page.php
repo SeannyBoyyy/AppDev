@@ -24,34 +24,46 @@ include('../navbars/profilepage-nav.php');
     }
 
 
-if(isset($_POST['submit'])) {
-    $business_owner = $_SESSION['ownerID'];
-    $file_name = $_FILES['image']['name'];
-    $tempName = $_FILES['image']['tmp_name'];
-    $folder = 'img/'.$file_name;
-    $newBussName = $_POST['name_buss'];
-    $newBio = $_POST['bio'];
-
-    $newAddress = $_POST['address'];
-    $newEmail = $_POST['email'];
-    $newContact_number = $_POST['contact_number'];
-
-    // Move uploaded image to target directory
-    if(move_uploaded_file($tempName, $folder)){
-        // Prepare SQL statement to update the database
+    // Check if the form is submitted
+    if(isset($_POST['submit'])) {
+        
+        // Get form data
+        $newBussName = $_POST['name_buss'];
+        $newBio = $_POST['bio'];
+        $newAddress = $_POST['address'];
+        $newEmail = $_POST['email'];
+        $newContact_number = $_POST['contact_number'];
+        $business_owner = $_SESSION['user_id']; // Assuming you have a session variable for user_id
+        
+        // Check if an image file is uploaded
+        if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            // Move uploaded image to target directory
+            $folder = 'img/';
+            $file_name = $_FILES['image']['name'];
+            $tempName = $_FILES['image']['tmp_name'];
+            if(move_uploaded_file($tempName, $folder . $file_name)){
+                // Update image field in the database
+                $sql_image = "UPDATE business_profile SET image = ? WHERE owner = ?";
+                $stmt_image = mysqli_prepare($conn, $sql_image);
+                mysqli_stmt_bind_param($stmt_image, "si", $file_name, $business_owner);
+                mysqli_stmt_execute($stmt_image);
+            }
+        }
+        
+        // Prepare SQL statement to update other fields in the database
         $sql = "UPDATE business_profile 
-        SET name = ?, text = ?, image = ?, address = ?, email = ?, contact_number = ?
-        WHERE owner = ?";
+                SET name = ?, text = ?, address = ?, email = ?, contact_number = ?
+                WHERE owner = ?";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Check if the statement is prepared successfully
         if($stmt) {
             // Bind parameters and execute the statement
-            mysqli_stmt_bind_param($stmt, "ssssssi", $newBussName, $newBio, $file_name, $newAddress, $newEmail, $newContact_number, $business_owner);
+            mysqli_stmt_bind_param($stmt, "sssssi", $newBussName, $newBio, $newAddress, $newEmail, $newContact_number, $business_owner);
             mysqli_stmt_execute($stmt);
 
             // Check if the query executed successfully
-            if(mysqli_stmt_affected_rows($stmt) > 0) {
+            if(mysqli_stmt_affected_rows($stmt) > 0 || isset($stmt_image) && mysqli_stmt_affected_rows($stmt_image) > 0) {
                 echo "
                 <script>
                     Swal.fire({
@@ -81,10 +93,8 @@ if(isset($_POST['submit'])) {
         } else {
             echo 'Error preparing statement: ' . mysqli_error($conn);
         }
-    } else {
-        
     }
-}
+
 
 // ---------------------------------- add post ----------------------------------------
 if (isset($_POST["upload_product"])) {

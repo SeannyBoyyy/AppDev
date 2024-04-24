@@ -95,10 +95,10 @@ if(isset($_SESSION['ownerID'])){
   </style>
   </head>
   <body>
-  <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color:white;">
+  <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color: whitesmoke;">
     <div class="container d-flex">
       <div class="container col-6">
-        <a class="navbar-brand fs-4" href="index.php">FarmDeals<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.jpg" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4" href="index.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
       <div class="container d-flex justify-content-end col-6">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
