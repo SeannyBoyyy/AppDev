@@ -114,10 +114,10 @@
     </div>
     
 
-    <div class=" mt-5">
+    <div class="container mt-5">
 		<div class="row">
 			<div class="col">
-				<div class="card" style="background-color: #ECEFF1; width:1300px;margin-left:auto;margin-right:auto;">
+				<div class="card" style="background-color: #ECEFF1;">
 				    <div class="card-body">
                         <div class="row m-5">
                             <div class="col-12 p-6">
