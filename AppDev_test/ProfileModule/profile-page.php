@@ -427,6 +427,23 @@ if (isset($_POST["upload_advertisement"])) {
             $msgRows = mysqli_fetch_all($result, MYSQLI_ASSOC);
             }
 
+
+
+        // Retrieve active page from query parameter
+        $activePage = isset($_GET['active']) ? $_GET['active'] : '';
+
+        // Define function to add 'active' class to the button
+        function isActive($page, $activePage) {
+                return $page === $activePage ? 'active' : '';
+        }
+
+        // Retrieve active page from query parameter
+        $activePage = isset($_GET['active']) ? $_GET['active'] : '';
+
+        // Define function to add 'show active' class to the button
+        function isShowActive($page, $activePage) {
+                return $page === $activePage ? 'show active' : '';
+        }
 ?>
 <head>
 <style>
@@ -480,27 +497,25 @@ if (isset($_POST["upload_advertisement"])) {
             
             <div class="container-fluid" style="width: 300px;">
                 <div class="nav flex-column nav-pills text-start align-items-start" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='../index.php'"><i class="fas fa-home" style="margin-right: 8px;"></i>Home</button>   
-                    <button class="nav-link d-flex justify-content-start align-items-center"  id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false"><i class="fas fa-upload"style="margin-right: 8px;"></i>Upload a new Product</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center active" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false"><i class="fas fa-tasks"style="margin-right: 8px;"></i>Manage Post</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user"style="margin-right: 8px;"></i>Update Profile</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad"style="margin-right: 8px;"></i>Upload Advertisement</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false"><i class="fas fa-images"style="margin-right: 8px;"></i>Upload Farm Photos</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope"style="margin-right: 8px;"></i>
-                        Message
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('home', $activePage); ?>" type="button" onclick="window.location.href='../index.php'"><i class="fas fa-home" style="margin-right: 8px;"></i>Home</button>   
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('upload', $activePage); ?>" id="v-pills-upload-tab" data-bs-toggle="pill" data-bs-target="#v-pills-upload" type="button" role="tab" aria-controls="v-pills-upload" aria-selected="false"><i class="fas fa-upload" style="margin-right: 8px;"></i>Upload a new Product</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('managePosts', $activePage); ?>" id="v-pills-manageProduct-tab" data-bs-toggle="pill" data-bs-target="#v-pills-manageProduct" type="button" role="tab" aria-controls="v-pills-manageProduct" aria-selected="false"><i class="fas fa-tasks" style="margin-right: 8px;"></i>Manage Post</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('profile', $activePage); ?>" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('advertisement', $activePage); ?>" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad" style="margin-right: 8px;"></i>Upload Advertisement</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('photos', $activePage); ?>" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false"><i class="fas fa-images" style="margin-right: 8px;"></i>Upload Farm Photos</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Message 
                         <span class="badge rounded-pill bg-primary">
                             <?php echo $msgCount ?>
-                            
                         </span>
                     </button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('logout', $activePage); ?>" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
                 </div>
             </div>
         </div>
         <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
+                <div class="tab-pane fade <?php echo isShowActive('upload', $activePage); ?>" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="">
@@ -530,7 +545,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
 
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
-                <div class="tab-pane fade show active container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
+                <div class="tab-pane fade <?php echo isShowActive('managePosts', $activePage); ?> container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
                     <div class="row container-fluid">
                         <div class="nav container-fluid">
                             <div class="justify-content-start align-items-start">
@@ -726,7 +741,7 @@ if (isset($_POST["upload_advertisement"])) {
 
 
                 <!------------------------------------- Update profile Module  ---------------------------------->
-                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="tab-pane fade <?php echo isShowActive('profile', $activePage); ?>" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
@@ -766,7 +781,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
 
                 <!------------------------------------- Advertisement Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
+                <div class="tab-pane fade <?php echo isShowActive('advertisement', $activePage); ?>" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Post Advertisement</h1>
@@ -794,7 +809,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
                 
                 <!------------------------------------- Upload Farm Photos Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
+                <div class="tab-pane fade <?php echo isShowActive('photos', $activePage); ?>" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
@@ -814,7 +829,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
                 
                 <!------------------------------------- Message Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
+                <div class="tab-pane fade <?php echo isShowActive('messages', $activePage); ?>" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
                     <?php if (!empty($msgRows)): ?>
                         <div class="row d-flex align-items-start justify-content-start ">
                             <h1>Messages</h1>

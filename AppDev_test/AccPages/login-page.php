@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
           session_start();
           $_SESSION['admin_email'] = $email;
 
-          header('Location: ../AdminModule/index.php');
+          header('Location: ../AdminModule/index.php?active=dashboard');
           exit();
         }
 
@@ -59,11 +59,20 @@ if(isset($_POST['submit'])){
               session_start();
               $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
 
+              if($row['status'] === 'SUSPEND') {
+                $_SESSION['acc_info'] = $row['account_id']; // suspend acc
+
+                unset($_SESSION['ownerID']);
+                // Redirect suspended account to suspend.php
+                header('Location: ../AccPages/suspend.php');
+                exit();
+              }
+
               if ($row['status'] !== 'ACTIVE') {
                 header('Location: ../payment/index.php');
                 exit();
               }
-
+              
               // Check if profile setup is complete
               $profile_sql = "SELECT id FROM business_profile WHERE owner = ?";
               $profile_stmt = mysqli_prepare($conn, $profile_sql);
@@ -73,7 +82,7 @@ if(isset($_POST['submit'])){
 
               if ($profile_row = mysqli_fetch_assoc($profile_result)) {
                 // Profile setup complete, redirect to profile page
-                header('Location: ../ProfileModule/profile-page.php'); 
+                header('Location: ../ProfileModule/profile-page.php?active=profile'); 
                 exit();
               } else {
                 // Profile setup incomplete, redirect to profile setup

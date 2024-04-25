@@ -112,12 +112,12 @@ if(isset($_SESSION['admin_email'])){
             <h3 class="mt-3" style="color:black; font-size:40px">Admin</h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-users"></i>Manage Users</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-pen"></i>Manage Posts</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-ad"></i>Manage Advertisement</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=dashboard"><i class="fas fa-dashboard"></i>Dashboard</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=users"><i class="fas fa-user"></i>Manage Users</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=profiles"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=posts"><i class="fas fa-pen"></i>Manage Posts</a></li>
                   <li class="list-group-item">
-                    <a style="color: black;" href="./AdminModule/index.php">
+                    <a style="color: black;" href="./AdminModule/index.php?active=messages">
                     <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                       <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
                     </a>

@@ -177,4 +177,6 @@
     
 </div>
 <div style="height: 50px; background-color:transparent;"></div>
-<?php include('./navbars/viewer-footer.php') ; ?>
+<?php 
+    include('./navbars/viewer-footer.php');
+?>
