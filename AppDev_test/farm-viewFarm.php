@@ -353,8 +353,4 @@
 
 
 
-<?php
-    include('./navbars/footer.php');
-?>
-
 

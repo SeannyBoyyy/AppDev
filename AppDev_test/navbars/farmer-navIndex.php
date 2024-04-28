@@ -111,9 +111,9 @@ if(isset($_SESSION['ownerID'])){
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav justify-start">
             <li class="nav-item">
-                <a class="btn" href="./ProfileModule/profile-page.php">Upload</a>
+                <a class="btn" href="./ProfileModule/profile-page.php?active=upload">Upload</a>
               </li>
-              <li class="nav-item"><a class="btn" href="./ProfileModule/profile-page.php">Profile</a></li>
+              <li class="nav-item"><a class="btn" href="./ProfileModule/profile-page.php?active=profile">Profile</a></li>
               <li class="nav-item">
                 <button class="btn" type="button" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#90EE90" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -143,12 +143,12 @@ if(isset($_SESSION['ownerID'])){
             <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-upload" style="margin-right: 8px;" ></i>Upload</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Profile</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-tasks" style="margin-right: 8px;"></i>Manage Posts</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php?active=upload"><i class="fas fa-upload" style="margin-right: 8px;"></i>Upload</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php?active=profile"><i class="fas fa-user" style="margin-right: 8px;"></i>Profile</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php?active=managePosts"><i class="fas fa-tasks" style="margin-right: 8px;"></i>Manage Posts</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php?active=photos"><i class="fas fa-image" style="margin-right: 8px;"></i>Upload Photos</a></li>
                   <li class="list-group-item">
-                    <a style="color: black;" href="./ProfileModule/profile-page.php">
+                    <a style="color: black;" href="./ProfileModule/profile-page.php?active=messages">
                     <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                       <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
                     </a>

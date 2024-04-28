@@ -53,7 +53,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_plan'])) {
     editPlan($id, $name, $price, $interval, $interval_count);
 }
 
+// Fetch all plans from the database
+$query = "SELECT * FROM plans";
+$result = mysqli_query($conn, $query);
 ?>
+
+<div class="middle">
+    <div class="container">
+        <h1>Plan Details</h1>
+
+        <!-- Display Table -->
+        <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
+            <tr class="text-center">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Interval</th>
+                <th>Interval Count</th>
+            </tr>
+            <?php
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <tr class="text-center">
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['price']; ?></td>
+                    <td><?php echo $row['interval']; ?></td>
+                    <td><?php echo $row['interval_count']; ?></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+        <br>
+        <a class="btn btn-success" href="index.php" style="margin-bottom: 20px;">Go Back</a>
+    </div>
+</div>
 
 <div class="middle">
     <div class="container">

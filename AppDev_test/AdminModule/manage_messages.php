@@ -63,8 +63,8 @@ if ($msgCount > 0) {
                 </div>
             </div>
 
-            <!-- modal --> <!--
-            <div class="modal fade" id="exampleModal<?php echo $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- modal -->
+            <div class="modal " id="exampleModal<?php echo $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -104,7 +104,7 @@ if ($msgCount > 0) {
                     </div>
                 </div>
             </div>
-            -->
+        
         <?php endforeach; ?>
     </div>
 <?php else: ?>

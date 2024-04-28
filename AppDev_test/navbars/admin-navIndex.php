@@ -76,7 +76,7 @@ if(isset($_SESSION['admin_email'])){
   <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color:whitesmoke;">
     <div class="container d-flex">
       <div class="container col-6">
-        <a class="navbar-brand fs-4" href="#">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4" href="admin-landingPage.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
       <div class="container d-flex justify-content-end col-6">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,12 +112,12 @@ if(isset($_SESSION['admin_email'])){
             <h3 class="mt-3" style="color:black; font-size:40px">Admin</h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-users"></i>Manage Users</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-pen"></i>Manage Posts</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php"><i class="fas fa-ad"></i>Manage Advertisement</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=dashboard"><i class="fas fa-dashboard"></i>Dashboard</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=users"><i class="fas fa-user"></i>Manage Users</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=profiles"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=posts"><i class="fas fa-pen"></i>Manage Posts</a></li>
                   <li class="list-group-item">
-                    <a style="color: black;" href="./AdminModule/index.php">
+                    <a style="color: black;" href="./AdminModule/index.php?active=messages">
                     <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                       <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
                     </a>
