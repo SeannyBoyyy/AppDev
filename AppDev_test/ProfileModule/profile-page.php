@@ -493,15 +493,16 @@ if (isset($_POST["upload_advertisement"])) {
                             
                         </span>
                     </button>
+                    <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='account-info.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Subscription Information</button>
                     <button class="nav-link d-flex justify-content-start align-items-center" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center" id="v-pills-accountInfo-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accountInfo" type="button" role="tab" aria-controls="v-pills-accountInfo" aria-selected="false"><i class="fas fa-envelope"style="margin-right: 8px;"></i>Account Information</button>
+                    
                 </div>
             </div>
         </div>
         <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
+                <div class="tab-pane fade" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab" tabindex="0">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <div class="">
@@ -531,7 +532,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
 
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
-                <div class="tab-pane fade show active container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
+                <div class="tab-pane fade show active container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab" tabindex="0"> 
                     <div class="row container-fluid">
                         <div class="nav container-fluid">
                             <div class="justify-content-start align-items-start">
@@ -727,7 +728,7 @@ if (isset($_POST["upload_advertisement"])) {
 
 
                 <!------------------------------------- Update profile Module  ---------------------------------->
-                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="tab-pane fade " id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
@@ -767,7 +768,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
 
                 <!------------------------------------- Advertisement Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
+                <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab" tabindex="0">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Post Advertisement</h1>
@@ -795,7 +796,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
                 
                 <!------------------------------------- Upload Farm Photos Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
+                <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab" tabindex="0">
                     <div class="container-fluid" style="margin:auto;">
                         <div class="container-fluid">
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
@@ -815,7 +816,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
                 
                 <!------------------------------------- Message Module  ---------------------------------->
-                <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
+                <div class="tab-pane fade" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab" tabindex="0">
                     <?php if (!empty($msgRows)): ?>
                         <div class="row d-flex align-items-start justify-content-start ">
                             <h1>Messages</h1>
@@ -894,17 +895,12 @@ if (isset($_POST["upload_advertisement"])) {
                     
                     
                 </div>
+                
                 <!------------------------------------- Account info Module  ---------------------------------->
-                <div class="tab-pane fade " id="v-pills-accountInfo" role="tabpanel" aria-labelledby="v-pills-accountInfo-tab">
-                        <?php
-                            include './account-info.php'
-                        ?>
-                </div>
             </div>
         </div>
     </div>
 </div>
-                    </body>
 <?php
     include('../navbars/footer.php')
 ?>

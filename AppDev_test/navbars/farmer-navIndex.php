@@ -143,7 +143,7 @@ if(isset($_SESSION['ownerID'])){
             <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
               <div class="text-center">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-upload" style="margin-right: 8px;"></i>Upload</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-upload" style="margin-right: 8px;" ></i>Upload</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Profile</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-tasks" style="margin-right: 8px;"></i>Manage Posts</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./ProfileModule/profile-page.php"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</a></li>

@@ -43,15 +43,15 @@
             </div>
             <div class="col-9">
                 <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0"><?php include('./dashboard.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab" tabindex="0"><?php include('./manage_user.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0"><?php include('./manage_business_profile.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-posts" role="tabpanel" aria-labelledby="v-pills-posts-tab" tabindex="0"><?php include('./manage_post.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab" tabindex="0"><?php include('./manage_advertisement.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab" tabindex="0"><?php include('./manage_photos.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0"><?php include('./manage_messages.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-subscriber" role="tabpanel" aria-labelledby="v-pills-subscriber-tab" tabindex="0"><?php include('./manage_subscriber.php')?></div>
-                        <div class="tab-pane fade" id="v-pills-plans" role="tabpanel" aria-labelledby="v-pills-plans-tab" tabindex="0"><?php include('./manage_plans.php')?></div>
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab" tabindex="0"><?php include('dashboard.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab" tabindex="0"><?php include('manage_user.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0"><?php include('manage_business_profile.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-posts" role="tabpanel" aria-labelledby="v-pills-posts-tab" tabindex="0"><?php include('manage_post.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab" tabindex="0"><?php include('manage_advertisement.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab" tabindex="0"><?php include('manage_photos.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" tabindex="0"><?php include('manage_messages.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-subscriber" role="tabpanel" aria-labelledby="v-pills-subscriber-tab" tabindex="0"><?php include('manage_subscriber.php')?></div>
+                        <div class="tab-pane fade" id="v-pills-plans" role="tabpanel" aria-labelledby="v-pills-plans-tab" tabindex="0"><?php include('manage_plans.php')?></div>
                 </div>
             </div>
         </div>
