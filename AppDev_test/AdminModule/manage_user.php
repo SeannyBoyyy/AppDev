@@ -109,7 +109,3 @@ if (isset($_POST['user_id'])) {
             <a href="index.php" class="btn btn-success">Go Back</a>
         </div>
     </div>
-
-<?php
-    include('../navbars/footer.php')
-?>

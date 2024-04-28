@@ -45,7 +45,7 @@ if(isset($_POST['sendMSG'])) {
                 text: 'Message has been sent!',
                 icon: 'success'
             }).then(function() {
-                window.location = 'profile-page.php';
+                window.location = 'profile-page.php?active=messages';
             });
             </script>";
         

@@ -58,7 +58,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a class="btn btn-success" href="index.php" style="margin-bottom: 20px;">Go Back</a>
     </div>
 </div>
-
-<?php
-include('../navbars/footer.php')
-?>

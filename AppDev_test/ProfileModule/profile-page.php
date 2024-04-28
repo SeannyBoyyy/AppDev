@@ -33,7 +33,7 @@ include('../navbars/profilepage-nav.php');
         $newAddress = $_POST['address'];
         $newEmail = $_POST['email'];
         $newContact_number = $_POST['contact_number'];
-        $business_owner = $_SESSION['user_id']; // Assuming you have a session variable for user_id
+        $business_owner = $_SESSION['ownerID']; // Assuming you have a session variable for ownerID
         
         // Check if an image file is uploaded
         if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -71,7 +71,7 @@ include('../navbars/profilepage-nav.php');
                         text: 'Updated successfully!',
                         icon: 'success'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=profile';
                     });
                 </script>";
             
@@ -84,7 +84,7 @@ include('../navbars/profilepage-nav.php');
                         text: 'Error updating profile!',
                         icon: 'error'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=profile';
                     });
                 </script>";
         
@@ -110,7 +110,7 @@ if (isset($_POST["upload_product"])) {
                         text: 'Image does not exist!',
                         icon: 'error'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
         
@@ -131,7 +131,7 @@ if (isset($_POST["upload_product"])) {
                         text: 'Invalid image extension!',
                         icon: 'error'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
 
@@ -144,7 +144,7 @@ if (isset($_POST["upload_product"])) {
                         text: 'Image size is too large!',
                         icon: 'error'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
 
@@ -178,7 +178,7 @@ if (isset($_POST["upload_product"])) {
                         text: 'Image uploaded successfully!',
                         icon: 'success'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
             
@@ -203,7 +203,7 @@ if (isset($_POST["upload_advertisement"])) {
                 text: 'Image does not exist!',
                 icon: 'error'
             }).then(function() {
-                window.location = 'profile-page.php';
+                window.location = 'profile-page.php?active=advertisement';
             });
         </script>";
 
@@ -224,7 +224,7 @@ if (isset($_POST["upload_advertisement"])) {
                     text: 'Invalid image extension!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'profile-page.php';
+                    window.location = 'profile-page.php?active=advertisement';
                 });
             </script>";
 
@@ -238,7 +238,7 @@ if (isset($_POST["upload_advertisement"])) {
                     text: 'Image size is too large!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'profile-page.php';
+                    window.location = 'profile-page.php?active=advertisement';
                 });
             </script>";
 
@@ -272,7 +272,7 @@ if (isset($_POST["upload_advertisement"])) {
                       text: 'Image uploaded successfully!',
                       icon: 'success'
                   }).then(function() {
-                      window.location = 'profile-page.php';
+                      window.location = 'profile-page.php?active=advertisement';
                   });
               </script>";
           
@@ -293,7 +293,7 @@ if (isset($_POST["upload_advertisement"])) {
                         text: 'Image does not exist!',
                         icon: 'error'
                     }).then(function() {
-                        window.location = 'profile-page.php';
+                        window.location = 'profile-page.php?active=photos';
                     });
                 </script>";
         
@@ -314,7 +314,7 @@ if (isset($_POST["upload_advertisement"])) {
                     text: 'Invalid Image Extenstion!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'profile-page.php';
+                    window.location = 'profile-page.php?active=photos';
                 });
             </script>";
     
@@ -327,7 +327,7 @@ if (isset($_POST["upload_advertisement"])) {
                     text: 'Image size is too large!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'profile-page.php';
+                    window.location = 'profile-page.php?active=photos';
                 });
             </script>";
     
@@ -358,7 +358,7 @@ if (isset($_POST["upload_advertisement"])) {
                       text: 'Image uploaded successfully!',
                       icon: 'success'
                   }).then(function() {
-                      window.location = 'profile-page.php';
+                      window.location = 'profile-page.php?active=photos';
                   });
               </script>";
           
@@ -381,7 +381,7 @@ if (isset($_POST["upload_advertisement"])) {
                       text: 'Image delete successfully!',
                       icon: 'success'
                   }).then(function() {
-                      window.location = 'profile-page.php';
+                      window.location = 'profile-page.php?active=managePosts';
                   });
               </script>";
           
@@ -483,7 +483,7 @@ if (isset($_POST["upload_advertisement"])) {
 <body>
 <div class="container-fluid mt-5">
     <div class="row">
-    <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
+        <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");

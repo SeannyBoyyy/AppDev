@@ -51,7 +51,3 @@ include('../config/connectDb.php');
         </div>
 
     </div>
-    
-<?php
-    include('../navbars/footer.php')
-?>

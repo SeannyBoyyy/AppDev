@@ -37,7 +37,7 @@
             if($stmt){
                 mysqli_stmt_bind_param($stmt, "issssss", $business_owner, $NameSetUp, $bioSetup, $file_name, $newAddress, $newEmail, $newContact_number);
                 if(mysqli_stmt_execute($stmt)){
-                    header('location: ./profile-page.php');
+                    header('location: ./profile-page.php?active=profile');
                 }else{
                     echo "
                 <script>

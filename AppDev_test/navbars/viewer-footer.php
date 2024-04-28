@@ -138,16 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     style="width: 60px; background-color: #7c4dff; height: 2px"
                     />
                 <p>
-                <a href="#!" class="text-dark">MDBootstrap</a>
+                <a href="#!" class="text-dark">Vegetable Products</a>
                 </p>
                 <p>
-                <a href="#!" class="text-dark">MDWordPress</a>
+                <a href="#!" class="text-dark">Fruit Products</a>
                 </p>
                 <p>
-                <a href="#!" class="text-dark">BrandFlow</a>
+                <a href="#!" class="text-dark">Meat Products</a>
                 </p>
                 <p>
-                <a href="#!" class="text-dark">Bootstrap Angular</a>
+                <a href="#!" class="text-dark">Other Products</a>
                 </p>
             </div>
             <!-- Grid column -->
