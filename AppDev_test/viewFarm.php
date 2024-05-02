@@ -213,34 +213,27 @@
             <?php endif; ?>                    
 
             <?php if (!empty($profiles)): ?>
-            <div class="container-fluid text-center">
-                <div class="row">
-                <div style="height: 50px;"></div>
-                    <h1 class="mb-3" style="font-size: 50px;color:white;font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1><div style="height: 30px;"></div>
-                    <?php foreach($profiles as $profile) { ?>
-                        <div class="col-12 col-md-6 col-lg-6 col-xl-3 text-center">
-                            <div class="card p-3 mb-3 border-0 border-rounded shadow-lg p-3 mb-5 bg-body rounded" style="margin: auto;">
-                                <div class="card-body overflow-auto">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <img style="width: 150px; height: 150px;" class=" card-img img-fluid img-thumbnail rounded-circle object-fit-cover mx-auto" src="ProfileModule/img/<?php echo $profile['image']; ?>">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <h5 class="card-title"><?php echo $profile['name']; ?></h5>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <p class="card-text" style="height: 60px;"><?php echo $profile['text']; ?></p>
-                                        </li>
-                                    </ul>
+                <div class="container-fluid text-center">
+                    <div class="row">
+                        <div style="height: 50px;"></div>
+                        <h1 class="mb-3" style="font-size: 50px; color: white; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
+                        <div style="height: 30px;"></div>
+                        <?php foreach($profiles as $profile) { ?>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+                                <div class="card border-0 rounded shadow">
+                                    <img src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $profile['name']; ?></h5>
+                                        <p class="card-text"><?php echo $profile['text']; ?></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>        
-                    <?php } ?>
-                </div>
-            </div> 
+                        <?php } ?>
+                    </div>
+                </div> 
             <?php else: ?>
-                <p>No Product found.</p>
-            <?php endif; ?>             
+                <p>No Products found.</p>
+            <?php endif; ?>         
 
             <?php if (!empty($advertisements)): ?>
             <div class="container-fluid text-center">

@@ -1,6 +1,6 @@
 <?php
 include('../config/connectDb.php');
-include('../navbars/profilepage-nav.php'); 
+include('../navbars/admin-navbar.php'); 
 
 if (isset($_POST['read'])) {
     // Read operation
@@ -59,7 +59,7 @@ if (isset($_POST['read'])) {
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
                   <img src='../ProfileModule/img/{$record['image']}' width='200' title=''>
-                  <a clas='btn btn-success' href='index.php'>Back to List</a>
+                  <a clas='btn btn-success' href='index.php?active=posts'>Back to List</a>
               </div>
           </body>
           </html>";
@@ -122,7 +122,7 @@ if (isset($_POST['advertisement_read'])) {
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
                   <img src='../ProfileModule/img/{$record['image']}' width='200' title=''>
-                  <a clas='btn btn-success' href='index.php'>Back to List</a>
+                  <a clas='btn btn-success' href='index.php?active=advertisement'>Back to List</a>
               </div>
           </body>
           </html>";
@@ -148,7 +148,7 @@ if (isset($_POST['delete'])) {
     // Delete operation
     $id = $_POST['id'];
     mysqli_query($conn, "DELETE FROM posting_module WHERE id = $id");
-    header("Location: index.php");
+    header("Location: index.php?active=posts");
     exit();
 }
 
@@ -156,7 +156,7 @@ if (isset($_POST['advertisement_delete'])) {
     // Delete operation
     $advertisement_id = $_POST['advertisement_id'];
     mysqli_query($conn, "DELETE FROM business_advertisement  WHERE id = $advertisement_id");
-    header("Location: index.php");
+    header("Location: index.php?active=advertisement");
     exit();
 }
 
@@ -164,7 +164,7 @@ if (isset($_POST['photos_delete'])) {
     // Delete operation
     $photos_id = $_POST['photos_id'];
     mysqli_query($conn, "DELETE FROM business_photos  WHERE id = $photos_id");
-    header("Location: index.php");
+    header("Location: index.php?active=photos");
     exit();
 }
 ?>

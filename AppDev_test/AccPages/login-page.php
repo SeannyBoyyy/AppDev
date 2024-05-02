@@ -56,10 +56,9 @@ if(isset($_POST['submit'])){
         
         if($row = mysqli_fetch_assoc($result)) {
           if(password_verify($password, $row['passWord'])) {
-              session_start();
-              $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
 
               if($row['status'] === 'SUSPEND') {
+                session_start();
                 $_SESSION['acc_info'] = $row['account_id']; // suspend acc
 
                 unset($_SESSION['ownerID']);
@@ -68,10 +67,15 @@ if(isset($_POST['submit'])){
                 exit();
               }
 
+              session_start();
+              $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
+
               if ($row['status'] !== 'ACTIVE') {
                 header('Location: ../payment/index.php');
                 exit();
               }
+
+              
               
               // Check if profile setup is complete
               $profile_sql = "SELECT id FROM business_profile WHERE owner = ?";
@@ -105,30 +109,38 @@ if(isset($_POST['submit'])){
     .ui {
       background: transparent;
       border-radius: 15px;
-      width:500px;
-      height:600px;
+      width: 100%; /* Start at full width */
+      max-width: 500px; /* Maximum width */
+      height: 525px;
     }
-    .container {
-      width: 500px !important;
-    }
+
     .input-group {
-      width:350px;
-      height:55px;
-      border:none;
-      outline:none;
-      margin-left:50px;
+      width: 100%; /* Start at full width */
+      max-width: 350px; /* Maximum width */
+      height: 55px;
+      border: none;
+      outline: none;
+      margin-left: auto; /* Center the input group horizontally on larger screens */
+      margin-right: auto;
     }
-    .input-group i{
+
+    .input-group i {
       position: absolute;
-      right:20px;
-      top:50%;
-      transform:translateY(-50%);
-    } 
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+        @media (min-width: 576px) {
+          .container {
+              width: 500px;
+          }
+        }
   </style>
 </head>
 <body style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
-<div class="container d-flex justify-content-center align-items-center min-vh-80" style="margin-top:100px;">
-<div class="row border rounded-5 p-3 shadow box-area w-100" style="width: 600px; margin-left: auto; margin-right: auto;background-color: rgba(255, 255, 255, 0.6);">
+<div class="container d-flex justify-content-center align-items-center min-vh-80" style="margin-top: 100px; max-width: 500px; width: 100%;">
+<div class="row border rounded-5 p-3 shadow box-area w-100 mb-5" style="width: 600px; margin-left: auto; margin-right: auto;background-color: rgba(255, 255, 255, 0.6);">
   <div class="ui">
     <div class="col-md-6 right-box w-100 " style="margin-top:30px;">
       <form class="row align-items-center" method="post" action="login-page.php" autocomplete="off">

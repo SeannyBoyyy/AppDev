@@ -89,33 +89,50 @@ if(isset($_POST['submit'])){
 
   <style>
     .ui {
-      background: transparent;
-      border-radius: 15px;
-      width:500px;
-      height:680px;
-    }
-    .container {
-      width: 500px !important;
-    }
-    .input-group {
-      width:350px;
-      height:55px;
-      border:none;
-      outline:none;
-      margin-left:50px;
-    }
-    .input-group i{
-      position: absolute;
-      right:20px;
-      top:50%;
-      transform:translateY(-50%);
-    } 
-    .signup{
+        background: transparent;
+        border-radius: 15px;
+        width: 100%; /* Start at full width */
+        max-width: 500px; /* Maximum width */
+        height: 680px;
+        margin-left: auto; /* Center the form horizontally */
+        margin-right: auto;
+        }
+
+        .container {
+        width: 100%; /* Adjust the width as needed */
+        max-width: 500px; /* Maximum width */
+        margin-left: auto; /* Center the container horizontally */
+        margin-right: auto;
+        padding: 20px; /* Add padding to create space between the content and container edges */
+        }
+
+        .input-group {
+        width: 100%; /* Start at full width */
+        max-width: 320px; /* Maximum width */
+        height: 55px;
+        border: none;
+        outline: none;
+        margin-left: auto; /* Center the input group horizontally on larger screens */
+        margin-right: auto;
+        }
+
+        .input-group i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        }
+
+        .signup {
         border: 2px solid black;
         border-radius: 15px;
-        width:320px;
-        margin-left:70px;
-    }
+        width: 100%; /* Start at full width */
+        max-width: 320px; /* Maximum width */
+        margin-left: auto; /* Center the button horizontally */
+        margin-right: auto;
+        }
+
+
   </style>
 </head>
 <body style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">

@@ -1,0 +1,190 @@
+                <div class="container-fluid">
+                    <div class="tab-pane fade container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="nav nav-underline top-0 start-0" id="nav-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Farm Photos</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Product Management</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Advertisement Management</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                        <!------------------------------------- Farm Photos Management Module  ---------------------------------->
+                                        <div class="container-fluid" style="margin:auto;">
+                                            <div class="container-fluid">
+                                                <div class="container-fluid">
+                                                    <br>
+                                                    <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos Module</h1>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center align-items-center"> <!-- Center the content -->
+                                            <div class="container-fluid"> <!-- Adjust the column width as needed -->
+                                                <div class="table-responsive">
+                                                    <!-- Display Table -->  
+                                                    <table class="table table-striped table-borderless overflow-auto">
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Image</td>
+                                                            <td>Created At</td> <!-- Added Created At column -->
+
+                                                            <td>Action</td>
+                                                        </tr>
+                                                        <?php
+                                                        $i = 1;
+                                                        // Modify the SQL query to select products associated with the current user's business profile
+                                                        $query = "SELECT * FROM business_photos WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";                                                            $stmt = mysqli_prepare($conn, $query);
+                                                        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                                        mysqli_stmt_execute($stmt);
+                                                        $result = mysqli_stmt_get_result($stmt);
+                                                        foreach ($result as $row) :
+                                                        ?>
+                                                            <tr>
+                                                                <td><?php echo $i++; ?></td>
+                                                                <td><img src="img/<?php echo $row['image']; ?>" width="250" height="150" title=""></td>
+                                                                <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                                                <!-- ... -->
+                                                                <td>
+                                                                <!-- CRUD Operations Form -->
+                                                                    <form action="" method="post" enctype="multipart/form-data">
+                                                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                        <button class="btn btn-danger mb-2" type="submit" name="photos_delete">Delete</button>
+                                                                    </form>
+                                                                </td>
+                                                                <!-- ... -->
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                        <!------------------------------------- Product-Management Module  ---------------------------------->
+                                        <div class="container-fluid" style="margin:auto;">
+                                            <div class="container-fluid">
+                                                <div class="container-fluid">
+                                                    <br>
+                                                    <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Post Module</h1>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center align-items-center"> <!-- Center the content -->
+                                            <div class="container-fluid"> <!-- Adjust the column width as needed -->
+                                                <div class="table-responsive">
+                                                    <!-- Display Table -->  
+                                                    <table class="table table-striped table-borderless overflow-auto">
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Name</td>
+                                                            <td>Image</td>
+                                                            <td>Information</td>
+                                                            <td>Created At</td> <!-- Added Created At column -->
+
+                                                            <td>Action</td>
+                                                        </tr>
+                                                        <?php
+                                                        $i = 1;
+                                                        // Modify the SQL query to select products associated with the current user's business profile
+                                                        $query = "SELECT * FROM posting_module WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
+                                                        $stmt = mysqli_prepare($conn, $query);
+                                                        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                                        mysqli_stmt_execute($stmt);
+                                                        $result = mysqli_stmt_get_result($stmt);
+                                                        foreach ($result as $row) :
+                                                        ?>
+                                                            <tr>
+                                                                <td><?php echo $i++; ?></td>
+                                                                <td><?php echo $row["name"]; ?></td>
+                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>                                                                    <td><?php echo $row["text"]; ?></td>    
+                                                                <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                                                <!-- ... -->
+                                                                <td>
+                                                                    <!-- CRUD Operations Form -->
+                                                                    <form action="crud.php" method="post">
+                                                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                        <button type="submit" class="btn btn-success mb-2" name="read">Read</button>
+                                                                        <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                                        <button class="btn btn-danger mb-2" type="submit" name="delete">Delete</button>
+                                                                    </form>
+                                                                </td>
+                                                                <!-- ... -->
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                                        <!------------------------------------- Advertisement-Management Module  ---------------------------------->                        
+                                        <div class="container-fluid" style="margin:auto;">
+                                            <div class="container-fluid">
+                                                <div class="container-fluid">
+                                                    <br>
+                                                    <h1 class="fw-bold">Advertisement Module</h1>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-center"> <!-- Center the content -->
+                                            <div class="container-fluid"> <!-- Adjust the column width as needed -->
+                                                <div class="table-responsive">
+                                                    <!-- Display Table -->  
+                                                    <table class="table table-striped table-borderless overflow-auto">
+                                                        <tr>
+                                                            <td>#</td>
+                                                            <td>Name</td>
+                                                            <td>Image</td>
+                                                            <td>Information</td>
+                                                            <td>Created At</td> <!-- Added Created At column -->
+                                                            <td>Action</td>
+                                                        </tr>
+                                                        <?php
+                                                        $i = 1;
+                                                        // Modify the SQL query to select products associated with the current user's business profile
+                                                        $query = "SELECT * FROM business_advertisement WHERE posted_by IN (SELECT id FROM business_profile WHERE owner = ?) ORDER BY id DESC";
+                                                        $stmt = mysqli_prepare($conn, $query);
+                                                        mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                                                        mysqli_stmt_execute($stmt);
+                                                        $result = mysqli_stmt_get_result($stmt);
+                                                        foreach ($result as $row) :
+                                                        ?>
+                                                            <tr>
+                                                                <td><?php echo $i++; ?></td>
+                                                                <td><?php echo $row["name"]; ?></td>
+                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>
+                                                                <td class="overflow-x-auto" width="365"><?php echo $row["text"]; ?></td>    
+                                                                <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
+                                                                <!-- ... -->
+                                                                <td>
+                                                                    <!-- CRUD Operations Form -->
+                                                                    <form action="advertisement-crud.php" method="post">
+                                                                        <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                                                        <button type="submit" class="btn btn-success mb-2" name="read">Read</button>
+                                                                        <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                                        <button class="btn btn-danger mb-2" type="submit" name="delete">Delete</button>
+                                                                    </form>
+                                                                </td>
+                                                                <!-- ... -->
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>

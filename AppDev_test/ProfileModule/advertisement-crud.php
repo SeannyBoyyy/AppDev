@@ -63,8 +63,6 @@ if (isset($_POST['read'])) {
               </div>
           </body>
           </html>";
-} else {
-    echo "Invalid request.";
 }
 
 if (isset($_POST['edit'])) {
@@ -79,7 +77,17 @@ if (isset($_POST['delete'])) {
     // Delete operation
     $id = $_POST['id'];
     mysqli_query($conn, "DELETE FROM business_advertisement WHERE id = $id");
-    header("Location: profile-page.php?active=managePosts");
-    exit();
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Advertisement Deleted!',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'profile-page.php?active=managePosts';
+                });
+            </script>";
+        
+            exit();
 }
 ?>

@@ -50,7 +50,19 @@ if(isset($_POST['sendMSG'])) {
             </script>";
         
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo"...";
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php?active=messages';
+                });
+            </script>";
+        
+            exit();
     }
 }
 ?>

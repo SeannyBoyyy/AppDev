@@ -16,7 +16,7 @@ if (isset($_POST['user_id'])) {
                 text: 'Invalid User ID!',
                 icon: 'error'
             }).then(function() {
-                window.location = 'index.php';
+                window.location = 'index.php?active=users';
             });
         </script>";
         
@@ -48,7 +48,7 @@ if (isset($_POST['user_id'])) {
                         text: 'Deleting User ID!',
                         icon: 'success'
                     }).then(function() {
-                        window.location = 'index.php';
+                        window.location = 'index.php?active=users';
                     });
                 </script>";
 
@@ -67,45 +67,48 @@ if (isset($_POST['user_id'])) {
 
 
 ?>
+<div class="middle">
+    <div class="container p-3">
+        <h1>Manage Users</h1>
+        <br>
+        <h5>Delete User</h5>
+        <form method="post" action="">
+            <div class="input-group flex-nowrap mb-2" style="max-width: 200px;">
+                <span class="input-group-text" id="addon-wrapping">ID</span>
+                <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
+            </div>
+            <input type="submit" class="btn btn-danger" id="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Delete">
+        </form>
+        <br>
 
-        <div class="container">
-            <h1>Manage Users</h1>
-            <br>
-            <h5>Delete User</h5>
-            <form method="post" action="">
-                <div class="input-group flex-nowrap mb-2" style="width:200px;">
-                    <span class="input-group-text" id="addon-wrapping">ID</span>
-                    <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
-                </div>
-                <input type="submit" class="btn btn-danger" id="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Delete">
-            </form>
-            <br>
-
-            <!-- Display Table -->
-            <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
-                <tr class="text-center">
-                    <td style="font-weight: bold;">User ID</td>
-                    <td style="font-weight: bold;">E-mail</td>
-                    <td style="font-weight: bold;">First Name</td>
-                    <td style="font-weight: bold;">Last Name</td>
-                    <td style="font-weight: bold;">Created At</td> <!-- Added Created At column -->
-                </tr>
-                <?php
-                $i = 1;
-                $rows = mysqli_query($conn, "SELECT * FROM user_accounts ORDER BY id DESC");
-                foreach ($rows as $row) :
-                ?>
+        <!-- Display Table -->
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
                     <tr class="text-center">
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row["email"]; ?></td>
-                        <td><?php echo $row["firstName"]; ?></td>
-                        <td><?php echo $row["lastName"]; ?></td>   
-                        <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At --> 
-                        <!-- ... -->
+                        <th>User ID</th>
+                        <th>E-mail</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Created At</th>
                     </tr>
-                <?php endforeach; ?>
+                </thead>
+                <tbody>
+                    <?php
+                    $rows = mysqli_query($conn, "SELECT * FROM user_accounts ORDER BY id DESC");
+                    foreach ($rows as $row) :
+                    ?>
+                        <tr class="text-center">
+                            <td><?php echo $row['id']; ?></td>
+                            <td><?php echo $row["email"]; ?></td>
+                            <td><?php echo $row["firstName"]; ?></td>
+                            <td><?php echo $row["lastName"]; ?></td>   
+                            <td><?php echo $row["created_at"]; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
             </table>
-            <br>
-            <a href="index.php" class="btn btn-success">Go Back</a>
         </div>
+        <br>
     </div>
+</div>

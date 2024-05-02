@@ -33,7 +33,7 @@ $total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscribe
 
 
     <style>
-        body {
+        .body {
             font-family: Arial, sans-serif;
             padding: 20px;
         }
@@ -41,7 +41,7 @@ $total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscribe
             border: 1px solid #ccc;
             padding: 20px;
             margin-bottom: 20px;
-            width: 300px;
+            width: 100%;
             text-align: center;
         }
         .count {
@@ -63,50 +63,59 @@ $total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscribe
 
 <div class="body">
 
-<div class="container mt-5 border 2px solid black p-5" style="border-radius:20px;background-color:rgba(192,192,192, 0.6)">
-    <h1 class="text-left mb-4" style="font-size:60px;font-family:impact;"><i class="fas fa-desktop" style="margin-right:20px;"></i>Dashboard</h1>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalUsers">
-                <h2><i class="fas fa-user"></i>Total User Accounts</h2>
-                <p class="count"><?php echo $total_users_count; ?></p>
+<div class="container mt-5">
+    <div class="border 2px solid black p-5" style="border-radius:20px;background-color:rgba(192,192,192, 0.6)">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4" style="font-size: 5vw; font-family: impact;">
+                    <i class="fas fa-desktop" style="margin-right: 20px;"></i>Dashboard
+                </h1>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalProfiles">
-                <h2><i class="fas fa-building"></i>Total Business Profiles</h2>
-                <p class="count"><?php echo $total_profiles_count; ?></p>
-            </div>
-        </div>
+        <div class="row">
 
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalAds">
-                <h2><i class="fas fa-ad"></i>Total Advertisements</h2>
-                <p class="count"><?php echo $total_ads_count; ?></p>
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalUsers">
+                    <h2><i class="fas fa-user"></i>Total User Accounts</h2>
+                    <p class="count"><?php echo $total_users_count; ?></p>
+                </div>
             </div>
-        </div>
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalProfiles">
+                    <h2><i class="fas fa-user-circle"></i>Total Business Profiles</h2>
+                    <p class="count"><?php echo $total_profiles_count; ?></p>
+                </div>
+            </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalProds">
-                <h2><i class="fas fa-ad"></i>Total Product Posts</h2>
-                <p class="count"><?php echo $total_prods_count; ?></p>
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalAds">
+                    <h2><i class="fas fa-ad"></i>Total Advertisements</h2>
+                    <p class="count"><?php echo $total_ads_count; ?></p>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalFarmPhotos">
-                <h2><i class="fas fa-ad"></i>Total Farm Photos</h2>
-                <p class="count"><?php echo $total_farmPhotos_count; ?></p>
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalProds">
+                    <h2><i class="fas fa-pen"></i>Total Product Posts</h2>
+                    <p class="count"><?php echo $total_prods_count; ?></p>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <div class="card dashboard-item" id="totalSubscriber">
-                <h2><i class="fas fa-ad"></i>Total Subscriber</h2>
-                <p class="count"><?php echo $total_subscriber_count; ?></p>
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalFarmPhotos">
+                    <h2><i class="fas fa-image"></i>Total Farm Photos</h2>
+                    <p class="count"><?php echo $total_farmPhotos_count; ?></p>
+                </div>
             </div>
+
+            <div class="col-md-4">
+                <div class="card dashboard-item" id="totalSubscriber">
+                    <h2><i class="fas fa-drivers-license"></i>Total Subscriber</h2>
+                    <p class="count"><?php echo $total_subscriber_count; ?></p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

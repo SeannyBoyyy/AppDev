@@ -45,12 +45,24 @@ if(isset($_POST['sendMSG'])) {
                 text: 'Message has been sent!',
                 icon: 'success'
             }).then(function() {
-                window.location = 'index.php';
+                window.location = 'index.php?active=messages';
             });
             </script>";
         
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        echo "...";
+        echo "
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Message could not be sent. Mailer Error: {$mail->ErrorInfo}',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'index.php?active=messages';
+                });
+            </script>";
+    
+            exit();
     }
 }
 ?>
