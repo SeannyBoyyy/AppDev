@@ -1,6 +1,6 @@
 <?php
 include('../config/connectDb.php');
-include('../navbars/profilepage-nav.php'); 
+include('../navbars/admin-navbar.php'); 
 
 // product post
 if (isset($_GET['id'])) {
@@ -61,7 +61,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Update the image filename in the database
                 mysqli_query($conn, "UPDATE posting_module SET image = '$newImageName' WHERE id = $id");
             } else {
-                echo "Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.";
+                echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'index.php?active=posts';
+                    });
+                </script>";
+        
                 exit();
             }
         }
@@ -91,7 +101,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Update the image filename in the database
                 mysqli_query($conn, "UPDATE business_advertisement SET image = '$newImageName' WHERE id = $advertisement_id");
             } else {
-                echo "Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.";
+                echo "
+                <script>
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Invalid Image. Please upload a valid image file (jpg, jpeg, or png) with size up to 1MB.',
+                        icon: 'error'
+                    }).then(function() {
+                        window.location = 'index.php?active=advertisement';
+                    });
+                </script>";
+        
                 exit();
             }
         }
@@ -99,9 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Redirect back to the appropriate page based on the type of post edited
     if (isset($_GET['id'])) {
-        header("Location: index.php");
+        header("Location: index.php?active=posts");
     } elseif (isset($_GET['advertisement_id'])) {
-        header("Location: index.php");
+        header("Location: index.php?active=advertisement");
     }
     exit();
 

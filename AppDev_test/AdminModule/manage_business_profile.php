@@ -16,7 +16,7 @@ if (isset($_POST['owner_id'])) {
                 text: 'Invalid Owner ID!',
                 icon: 'error'
             }).then(function() {
-                window.location = 'index.php';
+                window.location = 'index.php?active=profiles';
             });
         </script>";
         
@@ -42,7 +42,7 @@ if (isset($_POST['owner_id'])) {
                     text: 'Deleting Owner ID!',
                     icon: 'success'
                 }).then(function() {
-                    window.location = 'index.php';
+                    window.location = 'index.php?active=profiles';
                 });
             </script>";
         
@@ -59,45 +59,54 @@ if (isset($_POST['owner_id'])) {
 
 
 <div class="middle">
-    <div class="container">
-        <h1>Manage Business Profiles</h1>
+    <div class="container p-3">
+        <h1 class="text-center">Manage Business Profiles</h1>
         <br>
-        <h5>Delete Business Profile</h5>
-        <form method="post" action="">
-            <div class="input-group flex-nowrap mb-2" style="width:200px;">
-                <span class="input-group-text" id="addon-wrapping">ID</span>
-                <!-- Corrected name attribute -->
-                <input type="text" class="form-control" name="owner_id" placeholder="Owner ID" aria-label="Username" aria-describedby="addon-wrapping">
+        <div class="row">
+            <div class="col-6">
+            <h5>Delete Business Profile</h5>
+            <form method="post" action="">
+                <div class="input-group mb-2"> <!-- Removed fixed width -->
+                    <span class="input-group-text" id="addon-wrapping">ID</span>
+                    <!-- Corrected name attribute -->
+                    <input type="text" class="form-control" name="owner_id" placeholder="Owner ID" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
             </div>
-            <input class="btn btn-danger" type="submit" value="Delete">
-        </form>
+        </div>
         <br>
 
         <!-- Display Table -->
-        <table border="1" cellspacing="0" cellpadding="10" class="table table-striped">
-            <tr class="text-center">
-                <th>Owner ID</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-            </tr>
-            <?php
-            $rows = mysqli_query($conn, "SELECT * FROM business_profile ORDER BY id DESC");
-            foreach ($rows as $row) :
-                ?>
-                <tr class="text-center">
-                    <td><?php echo $row["id"]; ?></td>
-                    <td><?php echo $row["name"]; ?></td>
-                    <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
-                    <td><?php echo $row["text"]; ?></td>
-                    <!-- ... -->
-                </tr>
-            <?php endforeach; ?>
-        </table>
+        <div class="table-responsive"> <!-- Added to make table responsive -->
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th>Owner ID</th>
+                        <th>Name</th>
+                        <th>Image</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $rows = mysqli_query($conn, "SELECT * FROM business_profile ORDER BY id DESC");
+                    foreach ($rows as $row) :
+                        ?>
+                        <tr class="text-center">
+                            <td><?php echo $row["id"]; ?></td>
+                            <td><?php echo $row["name"]; ?></td>
+                            <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
+                            <td><?php echo $row["text"]; ?></td>
+                            <!-- ... -->
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
         <br>
-        <a class="btn btn-success" href="index.php" style="margin-bottom: 20px;">Go Back</a>
     </div>
-</div>    
+</div>  
 
 <?php
 $conn->close();

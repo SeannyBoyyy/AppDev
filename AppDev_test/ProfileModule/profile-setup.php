@@ -37,7 +37,7 @@
             if($stmt){
                 mysqli_stmt_bind_param($stmt, "issssss", $business_owner, $NameSetUp, $bioSetup, $file_name, $newAddress, $newEmail, $newContact_number);
                 if(mysqli_stmt_execute($stmt)){
-                    header('location: ./profile-page.php');
+                    header('location: ./profile-page.php?active=profile');
                 }else{
                     echo "
                 <script>
@@ -68,117 +68,95 @@
     <link rel="stylesheet" href="../CSS/farmer-van.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        .container .form-floating {
-            width:350px;
+         /* Custom styles */
+        body {
+            background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            min-height: 100vh; /* Ensure the background covers the entire viewport height */
         }
-        .container{
-            width:800px;
-            height:700px;
-            display:flex;
-            align-items:center;
-            margin-top:50px;
-            border:1px solid black ;
+        .container-border {
+            border: 1px solid black;
             border-radius: 25px;
-            background:rgba(255,255,255, 0.5); 
+            padding: 40px; /* Increased padding for more space */
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .image-container {
+            border: 2px solid black;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
         }
         #preview {
-            width: 300px; 
-            height:200px; 
-            margin-left:10px;
-            margin-top:3px;
+            width: 100%;
+            height: auto;
         }
-        .text-center .btn {
-            width:300px;
+        .btn.upload-btn {
+            width: 100%;
             border-radius: 15px;
-        }
-        .text-center.btn:hover {
-            background-color: #ffffff;
-            color:rgba(0,0,0,0.1)
-        }
-        .text-center.btn:active {
-            background-color: #6DBA9E;
+            background-color: #90EE90; /* Button color */
         }
         .upload-btn:hover {
-        transform: translateY(-5px);
-        transition: transform 0.3s ease;
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;/
         }
-        
     </style>
 </head>
-<body style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
-</head>
-<link rel="stylesheet" href="../CSS/profile-setup.css">
-<div class="container-fluid w-50" style="margin-top: 90px;">
-    <div class="col-md-6 container-fluid text-center">
-        <h1>Set Up you profile</h1>
-    </div>  
-</div>
-<div class="container">
-    <form class="row g-3" method="post" enctype="multipart/form-data">
-         <!-- 左側欄位（Profile Picture） -->
-         <div class="col-md-6">
-            <div class="text-center" style="margin-left:50px;">
-                <!-- 預覽圖片容器 -->
-                <h4 class="form-label" style="text-align:left;margin-top:15px;font-size:28px;font-weight:bold;color:black">Profile Picture:</h4>
-                <div class="image-container" style="width:325px;height:210px;border: 2px solid black;border-radius: 15px; ">
-                    <img id="preview" src="#" alt="Preview Image" style="display:none;">
-                </div>
-                <div style="height:50px;"></div>
-                <input class="form-control" style="width:325px;" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
-            </div>
-        </div>
+<body>
 
-             <!-- 右側欄位 -->
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
         <div class="col-md-6">
-            
-            <!-- Business Name -->
-            <div class="col-md-12 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="business_name" style="border-radius:15px;margin-right:20px;">
-                    <label for="floatingInput">Business Name</label>
-                    <small class="text-red mb-2" style="color:red"><?php echo $errors['business_name'] ?></small>
-                </div>
+            <h1 class="text-center mb-4">Set Up Your Profile</h1> <!-- Title outside the container -->
+            <div class="container-border">
+                <form class="row g-3" method="post" enctype="multipart/form-data">
+                    <!-- Profile Picture -->
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <h5>Profile Picture</h5> <!-- Text indicating profile picture upload -->
+                            <div class="image-container mb-3">
+                                <img id="preview" src="#" alt="Preview Image" style="display:none;">
+                            </div>
+                            <input class="form-control mt-3" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                        </div>
+                    </div>
+                    <!-- Profile Details -->
+                    <div class="col-md-6">
+                        <!-- Business Name -->
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control" placeholder="Business Name" name="business_name">
+                            <small class="text-danger"><?php echo $errors['business_name'] ?></small>
+                        </div>
+                        <!-- Bio -->
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control" placeholder="Bio" name="business_bio">
+                            <small class="text-danger"><?php echo $errors['business_bio'] ?></small>
+                        </div>
+                        <!-- Email -->
+                        <div class="col-md-12 mb-3">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
+                        </div>
+                        <!-- Contact Number -->
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control" placeholder="Contact Number" name="contact_number">
+                        </div>
+                        <!-- Address -->
+                        <div class="col-md-12 mb-3">
+                            <input type="text" class="form-control" placeholder="Address" name="address">
+                        </div>
+                    </div>
+                    <!-- Upload Button -->
+                    <div class="col-md-12 text-center mt-5 mb-3">
+                        <button class="btn upload-btn w-50" type="submit" name="submit">Upload</button>
+                    </div>
+                </form>
             </div>
-
-            <!-- Bio -->
-            <div class="col-md-12 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="business_bio" style="border-radius:15px;">
-                    <label for="floatingInput">Bio</label>
-                    <small class="text-red mb-2" style="color:red"><?php echo $errors['business_bio'] ?></small>
-                </div>
-            </div>
-            
-            <!-- Email -->
-            <div class="col-md-12 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="email" style="border-radius:15px;">
-                    <label for="floatingInput">Email</label>
-                </div>
-            </div>
-            
-            <!-- Contact Number -->
-            <div class="col-md-12 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="contact_number" style="border-radius:15px;">
-                    <label for="floatingInput">Contact Number</label>
-                </div>
-            </div>
-
-            <!-- Address -->
-            <div class="col-md-12 mb-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="address" style="border-radius:15px;">
-                    <label for="floatingInput">Address</label>
-                </div>
-            </div>
-        </div>
-         <!-- 上傳按鈕 -->
-         <div class="col-md-12 text-center" style="margin-top:50px;">
-            <button class="btn upload-btn" type="submit" style="background-color: #90EE90;" name="submit">Upload</button>
-            </div>
-    </form>
+        </div>  
     </div>
+</div>
 
 <script>
     function previewImage(event) {
@@ -191,4 +169,5 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
+
 </body>

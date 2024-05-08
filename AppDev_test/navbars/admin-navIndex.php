@@ -113,8 +113,8 @@ if(isset($_SESSION['admin_email'])){
               <div class="text-center">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=dashboard"><i class="fas fa-dashboard"></i>Dashboard</a></li>
-                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=users"><i class="fas fa-user"></i>Manage Users</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=profiles"><i class="fas fa-user-circle"></i>Manage Profiles</a></li>
+                  <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=subsciber"><i class="fas fa-drivers-license"></i>Manage Subscriber</a></li>
                   <li class="list-group-item"><a style="color: black; text-decoration:none;"  href="./AdminModule/index.php?active=posts"><i class="fas fa-pen"></i>Manage Posts</a></li>
                   <li class="list-group-item">
                     <a style="color: black;" href="./AdminModule/index.php?active=messages">

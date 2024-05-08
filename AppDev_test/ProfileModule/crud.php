@@ -59,14 +59,11 @@ if (isset($_POST['read'])) {
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
                   <img src='img/{$record['image']}' width='200' title=''>
-                  <a href='profile-page.php'>Back to List</a>
+                  <a href='profile-page.php?active=managePosts'>Back to List</a>
               </div>
           </body>
           </html>";
-} else {
-    echo "Invalid request.";
 }
-
 if (isset($_POST['edit'])) {
     // Edit operation (similar to update)
     $id = $_POST['id'];
@@ -79,7 +76,17 @@ if (isset($_POST['delete'])) {
     // Delete operation
     $id = $_POST['id'];
     mysqli_query($conn, "DELETE FROM posting_module WHERE id = $id");
-    header("Location: profile-page.php");
-    exit();
+    echo "
+            <script>
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Post Deleted!',
+                    icon: 'success'
+                }).then(function() {
+                    window.location = 'profile-page.php?active=managePosts';
+                });
+            </script>";
+        
+            exit();
 }
 ?>

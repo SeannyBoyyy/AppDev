@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     mysqli_query($conn, "UPDATE business_advertisement SET name = '$newName', text = '$newText' WHERE id = $id");
 
     // Redirect back to the profile-page.php page
-    header("Location: profile-page.php");
+    header("Location: profile-page.php?active=managePosts");
     exit();
 }
 ?>
