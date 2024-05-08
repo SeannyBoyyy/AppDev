@@ -53,9 +53,10 @@ if(isset($_SESSION['ownerID'])){
                   while($row = mysqli_fetch_assoc($res)){
                 ?>
                 <img style="width: 300px; height:300px;" class="img-fluid img-thumbnail rounded-circle object-fit-cover" src="img/<?php echo $row['image'] ?>">
+                <h3 class="mt-3"><?php echo $row['name'] ?></h3>
                 <?php } ?>
             </div>
-            <h3 class="mt-3"><?php echo $business_name?></h3>
+            
               <div class="text-center">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><a href="../ProfileModule/profile-page.php">Profile</a></li>

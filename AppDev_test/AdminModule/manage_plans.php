@@ -103,6 +103,12 @@ $query = "SELECT * FROM plans";
 $result = mysqli_query($conn, $query);
 ?>
 
+<style>
+    input{
+        margin-bottom: 15px;
+    }
+</style>
+
 <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">

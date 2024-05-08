@@ -160,9 +160,13 @@
         .card-body h5 {
         font-weight: bold;
         font-size: 20px;
+        color: black;
         }
         .card-body h5 i {
         margin-right: 10px;
+        }
+        .card-text{
+            color: black;
         }
     </style>
 </head>
@@ -175,7 +179,7 @@
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-            <div class="card text-center mb-3 border-0">
+            <div class="card bg-transparent text-center mb-3  border-0 shadow-none">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
                     <p class="card-text"><?php 
@@ -454,8 +458,7 @@
     </div>
 
     <div class="sticky-bottom">
-        <button type="button"  class="btn btn-lg bg-white position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <small>Message us!</small>
+        <button type="button"  class="btn btn-lg shadow-none position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
             </svg>

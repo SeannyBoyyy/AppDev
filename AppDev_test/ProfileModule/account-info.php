@@ -1,14 +1,12 @@
 <?php
-    include('../config/connectDb.php');
-    include('../navbars/acc-info-nav.php');
     $sqlQ = "SELECT S.*, P.name as plan_name, P.price as plan_price, P.interval, P.interval_count FROM user_subscriptions as S LEFT JOIN plans as P ON P.id=S.plan_id WHERE user_id = $business_owner";
     $stmt = $conn->prepare($sqlQ);
     $stmt->execute();
     $result = $stmt->get_result();
     $subscr_data = $result->fetch_assoc();
 ?>
-        <div class="container justify-content-center align-items-center text-center">
-            <div class="col-12 rounded-5 bg-white shadow box-area p-3 justify-content-center align-items-center text-center">
+        <div class="justify-content-center align-items-center text-center">
+            <div class="col-12">
                 <h4>Payment Information</h4>
                     <ul class="list-group text-center">
                         <li class="list-group-item"><b>Reference Number:</b> #<?php echo $subscr_data['id']; ?></li>
@@ -33,6 +31,7 @@
                         <li class="list-group-item"><b>Email:</b> <?php echo $subscr_data['subscriber_email']; ?></li>
                     </ul>
             </div>
+            <button class="btn btn-lg mt-3 btn-danger">Cancel Subscription</button>
         </div>        
 
 

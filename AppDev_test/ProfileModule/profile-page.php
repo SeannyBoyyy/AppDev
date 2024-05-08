@@ -503,16 +503,17 @@ if (isset($_POST["upload_advertisement"])) {
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('profile', $activePage); ?>" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('advertisement', $activePage); ?>" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad" style="margin-right: 8px;"></i>Upload Advertisement</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('photos', $activePage); ?>" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false"><i class="fas fa-images" style="margin-right: 8px;"></i>Upload Farm Photos</button>
-                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Message 
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                         <span class="badge rounded-pill bg-primary">
                             <?php echo $msgCount ?>
                         </span>
                     </button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('subDetails', $activePage); ?>" id="v-pills-accDeets-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accDeets" type="button" role="tab" aria-controls="v-pills-accDeets" aria-selected="false"><i class="fa-solid fa-file-invoice-dollar" style="margin-right: 8px"></i>Subscription Details</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('logout', $activePage); ?>" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex  align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
+        <div class="col-lg-9 col-12 d-flex align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('upload', $activePage); ?>" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
@@ -523,7 +524,7 @@ if (isset($_POST["upload_advertisement"])) {
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-flex align-items-center mt-5border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-5border rounded-5 p-3 bg-white box-area p-5">
                         <form class="row w-100 g-3" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput name_product" placeholder="" name="name_product" value="">
@@ -745,7 +746,7 @@ if (isset($_POST["upload_advertisement"])) {
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
                         </div>
                     </div>
-                    <div class=" col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class=" col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
                         <form class="row g-3" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="<?php echo $business_name; ?>">
@@ -785,7 +786,7 @@ if (isset($_POST["upload_advertisement"])) {
                             <h1 class="fw-bold">Post Advertisement</h1>
                         </div>
                     </div>
-                    <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
                         <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="name_advertisement" placeholder="Advertisement Name" name="name_advertisement" value="">
@@ -813,7 +814,7 @@ if (isset($_POST["upload_advertisement"])) {
                             <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
                         </div>
                     </div>
-                    <div class="col-12 d-flex align-items-center mt-5 border rounded-5 p-3 bg-white shadow box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
                         <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
                             <div class="col-12">
                                 <label for="image_farm" class="form-label" style="margin-left: 5px;">Farm Photos</label>
@@ -905,6 +906,14 @@ if (isset($_POST["upload_advertisement"])) {
 
                     
                     
+                </div>
+                <!------------------------------------- AccountDetails Module  ---------------------------------->
+                <div class="tab-pane fade <?php echo isShowActive('subDetails', $activePage); ?>" id="v-pills-accDeets" role="tabpanel" aria-labelledby="v-pills-accDeets-tab">
+                    <div class="container mt-5">
+                        <?php
+                            include('./account-info.php');
+                        ?>    
+                    </div>
                 </div>
             </div>
         </div>
