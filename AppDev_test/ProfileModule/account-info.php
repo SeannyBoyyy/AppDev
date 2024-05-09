@@ -31,7 +31,55 @@
                         <li class="list-group-item"><b>Email:</b> <?php echo $subscr_data['subscriber_email']; ?></li>
                     </ul>
             </div>
-            <button class="btn btn-lg mt-3 btn-danger">Cancel Subscription</button>
-        </div>        
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-lg mt-3 btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Cancel Subscription
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Cancel Subscription?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to cancel your subscription?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="unSub" data-bs-dismiss="modal">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+        <script>
+            const updateButton = document.getElementById('unSub');
+            updateButton.addEventListener('click', function() {
+                
+                const newValue = "CANCELLED";
+                const recordId = <?php echo $business_owner?>;
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'update.php'); 
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+               
+                xhr.send(`newValue=${newValue}&recordId=${recordId}`);
+              
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log("Database updated successfully!");
+                        
+                    } else {
+                        console.error("Error updating database:", xhr.statusText);
+                    }
+                };
+            });
+
+            
+        </script>  
 
 
