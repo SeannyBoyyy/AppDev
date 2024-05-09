@@ -160,10 +160,9 @@
         }
     </style>
 </head>
-<div class="site-bg" style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/bg.png'); background-repeat: no-repeat;background-size: cover;">
 <!-- Your HTML code to display business profile and posting modules -->
 <div class="container-fluid">
-    <div class="row justify-contents-center align-items-center text-cnter">
+    <div class="row justify-contents-center text-cnter">
         <div class="col-lg-4 col-12 text-center mb-3 mt-3">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
@@ -239,8 +238,8 @@
                         <?php foreach($profiles as $profile) { ?>
                             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card border-0 rounded shadow">
-                                    <img src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
-                                    <div class="card-body">
+                                    <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
+                                    <div class="card-body" style="height: 150px;">
                                         <h5 class="card-title"><?php echo $profile['name']; ?></h5>
                                         <p class="card-text"><?php echo $profile['text']; ?></p>
                                     </div>
@@ -376,8 +375,8 @@
             ?>
                     <div class="row mb-3">
                         <div class="col-sm-1">
-                            <div class="rounded-circle bg-danger text-white pt-2 pb-2">
-                                <h3 class="text-center"><?php echo strtoupper(substr($row['user_name'], 0, 1)); ?></h3>
+                            <div class="rounded-circle bg-danger text-white pt-2 pb-2 d-flex justify-content-center align-items-center" style="height: 60px; width: 60px;">
+                                <h3 style="margin: 0;"><?php echo strtoupper(substr($row['user_name'], 0, 1)); ?></h3>
                             </div>
                         </div>
                         <div class="col-sm-11">
@@ -493,7 +492,6 @@
                 </div>
             </div>
         </div>
-</div>
 </div>
 
 

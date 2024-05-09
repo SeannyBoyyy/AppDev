@@ -25,7 +25,7 @@ include('../config/connectDb.php');
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
-                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $row["id"]; ?></td>
                             <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                             <td><?php echo $row["created_at"]; ?></td>
                             <td><?php echo $row["posted_by"]; ?></td>

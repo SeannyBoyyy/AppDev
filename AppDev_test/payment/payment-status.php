@@ -92,5 +92,9 @@
         <div class="container-fluid text-center m-5">
             <a class="btn upload_btn" style="background-color: #90EE90" href="../ProfileModule/profile-setup.php" style="margin-bottom: 20px;">SetUp Profile</a>
         </div>
+        <div class="container-fluid text-center m-5">
+            <p>View Account</p>
+            <a class="btn upload_btn" style="background-color: #90EE90" href="../ProfileModule/profile-page.php?active=profile" style="margin-bottom: 20px;">Profile Page</a>
+        </div>
     </body>
 </html>

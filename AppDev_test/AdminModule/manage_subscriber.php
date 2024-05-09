@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
-                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["user_id"]; ?></td>
                             <td><?php echo $row["plan_id"]; ?></td>
                             <td><?php echo $row["status"]; ?></td>

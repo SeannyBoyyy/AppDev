@@ -45,7 +45,6 @@
     }
 </style>
 </head>
-<div class="site-bg" style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/bg.png'); background-repeat: no-repeat;background-size: cover;">
 
 <div class="container">
     <div class="container text-center">
@@ -179,7 +178,6 @@
 		</div>
 	</div>
     
-</div>
 <div style="height: 50px; background-color:transparent;"></div>
 <?php 
     include('./navbars/footer.php');

@@ -128,6 +128,69 @@ if (isset($_POST['advertisement_read'])) {
           </html>";
 }
 
+if (isset($_POST['rating_read'])) {
+    // Read operation
+    $review_id = $_POST['review_id'];
+    $result = mysqli_query($conn, "SELECT * FROM review_table WHERE review_id = $review_id");
+    $record = mysqli_fetch_assoc($result);
+
+    // Display read data with design
+    echo "<!DOCTYPE html>
+          <html lang='en'>
+          <head>
+              <meta charset='UTF-8'>
+              <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+              <title>Read Record</title>
+              <style>
+                  body {
+                      font-family: Arial, sans-serif;
+                      background-color: #f4f4f4;
+                      margin: 0;
+                      padding: 0;
+                  }
+
+                  .container {
+                      max-width: 600px;
+                      margin: 20px auto;
+                      padding: 20px;
+                      background-color: #fff;
+                      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  }
+
+                  h3 {
+                      color: #333;
+                  }
+
+                  img {
+                      max-width: 100%;
+                      height: auto;
+                      margin-top: 10px;
+                  }
+
+                  a {
+                      display: block;
+                      margin-top: 10px;
+                      color: #black;
+                      text-decoration: none;
+                  }
+
+                  a:hover {
+                      text-decoration: underline;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class='container border-rounded'>
+                  <h3>Read Record:</h3>
+                  <p><strong>Name:</strong> {$record['user_name']}</p>
+                  <p><strong>Review:</strong> {$record['user_review']}</p>
+                  <p><strong>Star Rating:</strong> {$record['user_rating']}</p>
+                  <a clas='btn btn-success' href='index.php?active=rating'>Back to List</a>
+              </div>
+          </body>
+          </html>";
+}
+
 if (isset($_POST['edit'])) {
     // Edit operation (similar to update)
     $id = $_POST['id'];
@@ -157,6 +220,14 @@ if (isset($_POST['advertisement_delete'])) {
     $advertisement_id = $_POST['advertisement_id'];
     mysqli_query($conn, "DELETE FROM business_advertisement  WHERE id = $advertisement_id");
     header("Location: index.php?active=advertisement");
+    exit();
+}
+
+if (isset($_POST['rating_delete'])) {
+    // Delete operation
+    $review_id = $_POST['review_id'];
+    mysqli_query($conn, "DELETE FROM review_table WHERE review_id = $review_id");
+    header("Location: index.php?active=rating");
     exit();
 }
 

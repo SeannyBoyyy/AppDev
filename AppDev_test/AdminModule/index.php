@@ -85,6 +85,7 @@
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('posts', $activePage); ?>" id="v-pills-posts-tab" data-bs-toggle="pill" data-bs-target="#v-pills-posts" type="button" role="tab" aria-controls="v-pills-posts" aria-selected="false" style="color: black;"><i class="fas fa-pen"></i>Manage Posts</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('advertisement', $activePage); ?>" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false" style="color: black;"><i class="fas fa-ad"></i>Manage Advertisement</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('photos', $activePage); ?>" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false" style="color: black;"><i class="fas fa-image"></i>Manage Business Photos</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('rating', $activePage); ?>" id="v-pills-rating-tab" data-bs-toggle="pill" data-bs-target="#v-pills-rating" type="button" role="tab" aria-controls="v-pills-rating" aria-selected="false" style="color: black;"><i class="fas fa-star"></i>Manage Business Ratings</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('subscriber', $activePage); ?>" id="v-pills-subscriber-tab" data-bs-toggle="pill" data-bs-target="#v-pills-subscriber" type="button" role="tab" aria-controls="v-pills-subscriber" aria-selected="false" style="color: black;"><i class="fas fa-drivers-license"></i>Manage Subscriber</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('plans', $activePage); ?>" id="v-pills-plans-tab" data-bs-toggle="pill" data-bs-target="#v-pills-plans" type="button" role="tab" aria-controls="v-pills-plans" aria-selected="false" style="color: black;"><i class="fas fa-edit"></i>Manage Plans</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false" style="color: black;"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Message 
@@ -143,6 +144,14 @@
                     <div class="row">
                         <div class="col-md-12">
                             <?php include('./manage_photos.php');?>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ratings content -->
+                <div class="tab-pane fade <?php echo isShowActive('rating', $activePage); ?>" id="v-pills-rating" role="tabpanel" aria-labelledby="v-pills-rating-tab">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php include('./manage_ratings.php');?>
                         </div>
                     </div>
                 </div>

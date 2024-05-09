@@ -29,7 +29,7 @@ include('../config/connectDb.php');
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
-                            <td><?php echo $i++; ?></td>
+                            <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["name"]; ?></td>
                             <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                             <td><?php echo $row["text"]; ?></td>   

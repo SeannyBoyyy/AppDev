@@ -45,7 +45,8 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Are you sure you want to cancel your subscription?
+                            <p>Are you sure you want to cancel your subscription?</p>
+                            <p>(Once log-out you need to subscribe again to manage your acc)</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" id="unSub" data-bs-dismiss="modal">Yes</button>
@@ -72,7 +73,11 @@
                 xhr.onload = function() {
                     if (xhr.status === 200) {
                         console.log("Database updated successfully!");
-                        
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Subscription has been canceled!',
+                            icon: 'success'
+                        })
                     } else {
                         console.error("Error updating database:", xhr.statusText);
                     }

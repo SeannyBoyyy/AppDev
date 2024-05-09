@@ -160,26 +160,21 @@
         .card-body h5 {
         font-weight: bold;
         font-size: 20px;
-        color: black;
         }
         .card-body h5 i {
         margin-right: 10px;
         }
-        .card-text{
-            color: black;
-        }
     </style>
 </head>
-<div class="site-bg" style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/bg.png'); background-repeat: no-repeat;background-size: cover;">
 <!-- Your HTML code to display business profile and posting modules -->
 <div class="container-fluid">
-    <div class="row justify-contents-center align-items-center text-cnter">
+    <div class="row justify-contents-center text-cnter">
         <div class="col-lg-4 col-12 text-center mb-3 mt-3">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-            <div class="card bg-transparent text-center mb-3  border-0 shadow-none">
+            <div class="card text-center mb-3 border-0">
                 <div class="card-body">
                     <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
                     <p class="card-text"><?php 
@@ -249,8 +244,8 @@
                         <?php foreach($profiles as $profile) { ?>
                             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
                                 <div class="card border-0 rounded shadow">
-                                    <img src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
-                                    <div class="card-body">
+                                    <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
+                                    <div class="card-body" style="height: 150px;">
                                         <h5 class="card-title"><?php echo $profile['name']; ?></h5>
                                         <p class="card-text"><?php echo $profile['text']; ?></p>
                                     </div>
@@ -387,8 +382,8 @@
             ?>
                     <div class="row mb-3">
                         <div class="col-sm-1">
-                            <div class="rounded-circle bg-danger text-white pt-2 pb-2">
-                                <h3 class="text-center"><?php echo strtoupper(substr($row['user_name'], 0, 1)); ?></h3>
+                            <div class="rounded-circle bg-danger text-white pt-2 pb-2 d-flex justify-content-center align-items-center" style="height: 60px; width: 60px;">
+                                <h3 style="margin: 0;"><?php echo strtoupper(substr($row['user_name'], 0, 1)); ?></h3>
                             </div>
                         </div>
                         <div class="col-sm-11">
@@ -458,8 +453,7 @@
     </div>
 
     <div class="sticky-bottom">
-        <button type="button"  class="btn btn-lg shadow-none position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
+        <button type="button"  class="btn btn-lg bg-white position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">  <small>Message us!</small> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
                 <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
             </svg>
         </button>
@@ -503,7 +497,6 @@
                 </div>
             </div>
         </div>
-</div>
 </div>
 
 
