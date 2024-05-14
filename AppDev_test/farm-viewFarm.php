@@ -205,7 +205,7 @@
             <?php if (!empty($photos)): ?>
             <div class="container-fluid text-center">
             <div style="height: 50px;"></div>
-                <h1 style="font-size: 50px;color:white;font-weight: bold;"><i class="fas fa-image p-4"></i>Farm Photos</h1><div style="height: 30px;"></div>
+                <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-image p-4"></i>Farm Photos</h1><div style="height: 30px;"></div>
                 <div class="row">
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
@@ -239,7 +239,7 @@
                 <div class="container-fluid text-center">
                     <div class="row">
                         <div style="height: 50px;"></div>
-                        <h1 class="mb-3" style="font-size: 50px; color: white; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
+                        <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
                         <div style="height: 30px;"></div>
                         <?php foreach($profiles as $profile) { ?>
                             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
@@ -262,7 +262,7 @@
             <?php if (!empty($advertisements)): ?>
             <div class="container-fluid text-center">
             <div style="height: 50px;"></div>
-                <h1 style="font-size: 50px;color:white;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
+                <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
                     <div id="carouselExampleAutoplaying2" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
                         <div class="carousel-inner">
