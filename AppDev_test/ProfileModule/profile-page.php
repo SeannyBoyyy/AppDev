@@ -468,7 +468,7 @@ if (isset($_POST["upload_advertisement"])) {
         border: none !important;
         background-color: #90EE90;
         color: white;
-        padding: 10px 15px;
+        padding: 15px 20px;
         border-radius: 5px;
     }
     .nav-link:focus {
@@ -480,7 +480,7 @@ if (isset($_POST["upload_advertisement"])) {
 <link rel="stylesheet" href="../CSS/profile-setup.css">
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<body>
+<body style="background-color: #f6f8fc;">
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
@@ -513,7 +513,7 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex align-items-top border 2px solid black" style="padding:20px;border-radius:50px;">
+        <div class="col-lg-9 col-12 d-flex align-items-top border 2px solid black bg-white" style="padding:20px;border-radius:50px;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('upload', $activePage); ?>" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
@@ -547,7 +547,7 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('managePosts', $activePage); ?> container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
-                    <div class="container-fluid">
+                    <div class="container-fluid bg-white">
                         <div class="row">
                             <div class="col-md-12">
                                 <ul class="nav nav-underline top-0 start-0" id="nav-tab" role="tablist">
@@ -829,26 +829,30 @@ if (isset($_POST["upload_advertisement"])) {
                 
                 <!------------------------------------- Message Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('messages', $activePage); ?>" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
+                    <ul class="nav nav-underline">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Inbox</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sent</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Archive</a>
+                        </li>
+                    </ul>                                  
                     <?php if (!empty($msgRows)): ?>
-                        <div class="row d-flex align-items-start justify-content-start ">
+                        <div class="row d-block align-items-start justify-content-start ">
                             <h1>Messages</h1>
                             <?php foreach ($msgRows as $index => $msgRow): ?> <!-- Add $index variable -->
-                                <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
-                                    <div class="card text-center">
-                                        <div class="card-header">
-                                            <?php echo $msgRow['sent_by'] ?>
+                                <div class="container">
+                                    <div class="row g-0 w-100">
+                                        <div class="card mb-3">
+                                        <div class="card-header w-100">
+                                            <p class="me-2 w-50"><?php echo $msgRow['sent_by'] ?></p>
+                                            <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
                                         </div>
                                         <div class="card-body">
                                             <p class="card-text"><?php echo $msgRow['message'] ?>.</p>
-                                            <button type="button"  class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $index ?>">
-                                                <small>Message Back!</small>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <div class="card-footer text-body-secondary">
-                                            <?php echo $msgRow['created_at'] ?>
                                         </div>
                                     </div>
                                 </div>

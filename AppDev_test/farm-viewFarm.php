@@ -164,18 +164,19 @@
         .card-body h5 i {
         margin-right: 10px;
         }
+       
     </style>
 </head>
 <!-- Your HTML code to display business profile and posting modules -->
 <div class="container-fluid">
-    <div class="row justify-contents-center text-cnter">
-        <div class="col-lg-4 col-12 text-center mb-3 mt-3">
+    <div class="row justify-contents-center text-center">
+        <div class="col-lg-4 col-12 text-center mb-3 mt-3 overflow-auto" style="height: 850px;">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-            <div class="card text-center mb-3 border-0">
-                <div class="card-body">
+            <div class="card text-center mb-3 shadow-none">
+                <div class="card-body text-dark">
                     <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
                     <p class="card-text"><?php 
                         echo $business_bio; 
@@ -200,7 +201,7 @@
                 </iframe>
             </div>
         </div>    
-
+                    
         <div class="col-lg-8 col-12 mt-3">
             <?php if (!empty($photos)): ?>
             <div class="container-fluid text-center">
@@ -234,7 +235,7 @@
             <?php else: ?>
                 <p>No Farm Photos found.</p>
             <?php endif; ?>                    
-
+            <hr>   
             <?php if (!empty($profiles)): ?>
                 <div class="container-fluid text-center">
                     <div class="row">
@@ -257,49 +258,48 @@
             <?php else: ?>
                 <p>No Products found.</p>
             <?php endif; ?>
-          
-
-            <?php if (!empty($advertisements)): ?>
+            <hr>
+        </div>
+    </div>
+    <div class="container-fluid mt-3">
+        <?php if (!empty($advertisements)): ?>
             <div class="container-fluid text-center">
-            <div style="height: 50px;"></div>
+                <div style="height: 50px;"></div>
                 <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying2" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
+                    <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <img style="height: 300px; width: 300px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
-                                        </div>
-                                        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                            <div class="col-12 col-md-6 text-center">
-                                                <h1 style="color: black;"><?php echo $advertisement['name']; ?></h1>
-                                                <p class="text-center" style="color: black;"><?php echo $advertisement['text']; ?></p>
-                                            </div>
-                                        </div>
+                                    <img style="height: 500px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                                    <div class="carousel-caption align-items-start justify-content-start">
+                                        <h1 style="color:black;"><?php echo $advertisement['name']; ?></h1>
+                                        <p class="" style="color: black;"><?php echo $advertisement['text']; ?></p>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev" style="width:70px;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="next" style="width:70px;margin-right:80px;">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
-                        </button>    
-                    </div>        
-                </div>    
-            </div><div style="height: 100px;"></div>
+                        </button>
+                    </div>    
+                </div>
+            </div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
             <?php endif; ?> 
-
-        </div>
+            <hr>    
     </div>
-
     <div class="row justify-contents-center align-items-center text-cnter">
         <div class="container" style="max-width: 70%;">
             <div class="card">
