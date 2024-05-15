@@ -8,23 +8,31 @@ $business_id = $_GET['business_id'];
 if(isset($_POST["rating_data"]))
 {
 
-	$data = array(
-		':user_name'		=>	$_POST["user_name"],
-		':business_id'		=>	$_POST["business_id"], 
-		':user_rating'		=>	$_POST["rating_data"],
-		':user_review'		=>	$_POST["user_review"],
-		':datetime'			=>	time()
-	);
+	// Check if status is set and valid
+    if(isset($_POST['status']) && ($_POST['status'] == 'APPROVE' || $_POST['status'] == 'DENY')) {
+        $status = $_POST['status'];
+    } else {
+        $status = 'PENDING'; // Default status
+    }
 
-	$query = "
-	INSERT INTO review_table	
-	(user_name, business_id, user_rating, user_review, datetime) 
-	VALUES (:user_name, :business_id, :user_rating, :user_review, :datetime)
+    $data = array(
+        ':user_name'    =>  $_POST["user_name"],
+        ':business_id'  =>  $_POST["business_id"], 
+        ':user_rating'  =>  $_POST["rating_data"],
+        ':user_review'  =>  $_POST["user_review"],
+        ':datetime'     =>  time(),
+        ':status'       =>  $status // Include status in data array
+    );
+
+    $query = "
+    INSERT INTO review_table  
+    (user_name, business_id, user_rating, user_review, datetime, status) 
+    VALUES (:user_name, :business_id, :user_rating, :user_review, :datetime, :status)
 	";
 
-	$statement = $connect->prepare($query);
+    $statement = $connect->prepare($query);
 
-	$statement->execute($data);
+    $statement->execute($data);
 
 }
 
@@ -42,7 +50,7 @@ if(isset($_POST["action"]))
 
 	$query = "
 	SELECT * FROM review_table
-    WHERE business_id = $business_id
+    WHERE business_id = $business_id AND status = 'APPROVE'
     ORDER BY review_id DESC
 	";
 

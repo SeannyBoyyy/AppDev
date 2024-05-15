@@ -429,6 +429,8 @@ if (isset($_POST["upload_advertisement"])) {
 
 
 
+
+        // ---------------------------------- Active responsive ----------------------------------------
         // Retrieve active page from query parameter
         $activePage = isset($_GET['active']) ? $_GET['active'] : '';
 
@@ -444,6 +446,97 @@ if (isset($_POST["upload_advertisement"])) {
         function isShowActive($page, $activePage) {
                 return $page === $activePage ? 'show active' : '';
         }
+
+
+
+        // ---------------------------------- review and ratings module ----------------------------------------
+
+        // Query to fetch pending reviews using the fetched business profile ID
+        $query = "SELECT * FROM review_table WHERE business_id = ? AND status = 'PENDING'";
+        $stmt = mysqli_prepare($conn, $query);
+        mysqli_stmt_bind_param($stmt, "i", $businessProfileId);
+        mysqli_stmt_execute($stmt);
+        $pending_reviews = mysqli_stmt_get_result($stmt);
+
+        // Process form submission
+        if(isset($_POST['review_id']) && isset($_POST['action'])) {
+            $review_id = $_POST['review_id'];
+            $action = $_POST['action'];
+
+            if ($action == 'approve') {
+                $update_query = "UPDATE review_table SET status = 'APPROVE' WHERE review_id = ?";
+                
+                // Prepare the update query
+                $statement = mysqli_prepare($conn, $update_query);
+                
+                // Check if the statement is prepared successfully
+                if ($statement) {
+                    // Bind parameters and execute the statement
+                    mysqli_stmt_bind_param($statement, "i", $review_id);
+                    mysqli_stmt_execute($statement);
+                    
+                    // Handle success
+                    echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Approve Rating successfully.',
+                                icon: 'success'
+                            }).then(function() {
+                                window.location = 'profile-page.php?active=ratings';
+                            });
+                        </script>";
+                    
+                    exit();
+                }
+        
+            } elseif ($action == 'deny') {
+                $update_query = "UPDATE review_table SET status = 'DENY' WHERE review_id = ?";
+                
+                // Prepare the update query
+                $statement = mysqli_prepare($conn, $update_query);
+                
+                // Check if the statement is prepared successfully
+                if ($statement) {
+                    // Bind parameters and execute the statement
+                    mysqli_stmt_bind_param($statement, "i", $review_id);
+                    mysqli_stmt_execute($statement);
+                    
+                    // Handle success
+                    echo "
+                        <script>
+                            Swal.fire({
+                                title: 'Success!',
+                                text: 'Deny Rating successfully.',
+                                icon: 'success'
+                            }).then(function() {
+                                window.location = 'profile-page.php?active=ratings';
+                            });
+                        </script>";
+                    
+                    exit();
+                }
+            }            
+
+            // Prepare the update query
+            $update_query = "UPDATE review_table SET status = ? WHERE review_id = ?";
+
+            // Execute the update query
+            $statement = mysqli_prepare($conn, $update_query);
+
+            // Check if the statement is prepared successfully
+            if ($statement) {
+                // Bind parameters and execute the statement
+                mysqli_stmt_bind_param($statement, "si", $action, $review_id);
+                mysqli_stmt_execute($statement);
+            } else {
+                // Handle the error if the statement is not prepared successfully
+                echo "Error preparing statement: " . mysqli_error($conn);
+            }
+
+
+        }
+
 ?>
 <head>
 <style>
@@ -503,12 +596,13 @@ if (isset($_POST["upload_advertisement"])) {
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('profile', $activePage); ?>" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-user" style="margin-right: 8px;"></i>Update Profile</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('advertisement', $activePage); ?>" id="v-pills-advertisement-tab" data-bs-toggle="pill" data-bs-target="#v-pills-advertisement" type="button" role="tab" aria-controls="v-pills-advertisement" aria-selected="false"><i class="fas fa-ad" style="margin-right: 8px;"></i>Upload Advertisement</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('photos', $activePage); ?>" id="v-pills-photos-tab" data-bs-toggle="pill" data-bs-target="#v-pills-photos" type="button" role="tab" aria-controls="v-pills-photos" aria-selected="false"><i class="fas fa-images" style="margin-right: 8px;"></i>Upload Farm Photos</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('ratings', $activePage); ?>" id="v-pills-ratings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ratings" type="button" role="tab" aria-controls="v-pills-ratings" aria-selected="false"><i class="fa-solid fa-star" style="margin-right: 8px"></i>Review and Ratings</button>
+                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('subDetails', $activePage); ?>" id="v-pills-accDeets-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accDeets" type="button" role="tab" aria-controls="v-pills-accDeets" aria-selected="false"><i class="fa-solid fa-file-invoice-dollar" style="margin-right: 8px"></i>Subscription Details</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
                         <span class="badge rounded-pill bg-primary">
                             <?php echo $msgCount ?>
                         </span>
                     </button>
-                    <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('subDetails', $activePage); ?>" id="v-pills-accDeets-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accDeets" type="button" role="tab" aria-controls="v-pills-accDeets" aria-selected="false"><i class="fa-solid fa-file-invoice-dollar" style="margin-right: 8px"></i>Subscription Details</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('logout', $activePage); ?>" type="button" onclick="window.location.href='../AccPages/logout.php'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i>Log Out</button>
                 </div>
             </div>
@@ -919,6 +1013,42 @@ if (isset($_POST["upload_advertisement"])) {
                         ?>    
                     </div>
                 </div>
+
+                <!------------------------------------- Review and Rating Module  ---------------------------------->
+                <div class="tab-pane fade <?php echo isShowActive('ratings', $activePage); ?>" id="v-pills-ratings" role="tabpanel" aria-labelledby="v-pills-ratings-tab">
+                    <div class="container mt-5">
+                        <h2>Pending Reviews</h2>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User Name</th>
+                                    <th>Review</th>
+                                    <th>Star Ratings</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; foreach($pending_reviews as $review): ?>
+                                    <tr>
+                                        <td><?php echo $i++; ?></td>
+                                        <td><?php echo $review['user_name']; ?></td>
+                                        <td><?php echo $review['user_review']; ?></td>
+                                        <td><?php echo $review['user_rating']; ?></td>
+                                        <td>
+                                            <form method="post">
+                                                <input type="hidden" name="review_id" value="<?php echo $review['review_id']; ?>">
+                                                <button type="submit" name="action" value="approve" class="btn btn-success mb-2">Approve</button>
+                                                <button type="submit" name="action" value="deny" class="btn btn-danger mb-2">Deny</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>    
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

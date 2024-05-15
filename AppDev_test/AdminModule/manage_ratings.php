@@ -18,6 +18,7 @@ include('../config/connectDb.php');
                         <th>User Name</th>
                         <th>Star Ratings</th>
                         <th>Reviews</th>
+                        <th>Status</th>
                         <th>Date time</th>
                         <th>Action</th>
                     </tr>
@@ -34,6 +35,7 @@ include('../config/connectDb.php');
                             <td><?php echo $row['user_name']; ?></td>
                             <td><?php echo $row["user_rating"]; ?></td>   
                             <td><?php echo $row["user_review"]; ?></td> 
+                            <td><?php echo $row["status"]; ?></td> 
                             <td><?php echo date('l jS, F Y h:i:s A', ($row["datetime"])); ?></td>
                             <td>
                                 <!-- CRUD Operations Form -->
