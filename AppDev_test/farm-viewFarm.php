@@ -371,7 +371,7 @@
             <div class="mt-5" id="review_content">
             <?php
             // Query to fetch reviews based on business_id
-            $query = "SELECT * FROM review_table WHERE business_id = '$business_id' ORDER BY review_id DESC";
+            $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
             $result = mysqli_query($conn, $query);
 
             // Check if there are any reviews
@@ -600,7 +600,7 @@ $(document).ready(function(){
             $.ajax({
                 url:"submit_rating.php?business_id=<?php echo $business_id;?>",
                 method:"POST",
-                data:{rating_data:rating_data, user_name:user_name, business_id:business_id, user_review:user_review},
+                data:{rating_data:rating_data, user_name:user_name, business_id:business_id, user_review:user_review, status:'PENDING'}, // Add status field
                 success:function(data)
                 {
                     $('#review_modal').modal('hide');
