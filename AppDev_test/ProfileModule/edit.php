@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate and process the submitted data
     $newName = mysqli_real_escape_string($conn, $_POST['new_name']);
     $newText = mysqli_real_escape_string($conn, $_POST['new_text']);
-
+    $newCateg = mysqli_real_escape_string($conn, $_POST["new_Categ"]);
     // Process image upload if a new image is provided
     if ($_FILES['new_image']['error'] !== 4) {
         $fileName = $_FILES["new_image"]["name"];
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update the name and text in the database
-    mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText' WHERE id = $id");
+    mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText', category = '$newCateg' WHERE id = $id");
 
     // Redirect back to the profile-page.php page
     header("Location: profile-page.php?active=managePosts");
@@ -86,6 +86,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="exampleFormControlInput1" class="form-label">New Text:</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="new_text" value="<?php echo $record['text']; ?>">
             </div>
+    
+            <div class="mb-3">
+                <label for="category_product" class="form-label">Category</label>
+                <select class="form-select" id="new_Categ" name="new_Categ">
+                    <option value="<?php echo $record['category']; ?>"><?php echo $record['category']; ?></option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Grains">Grains</option>
+                    <option value="Dairy">Dairy</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Fish">Fish</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Farm Accessories">Farm Accessories</option>
+                    <!-- Add more options as needed -->
+                </select>         
+            </div>
+            
             <div class="mb-3">
             <label for="formFile" class="form-label">New Image:</label>
                 <input type="file" id="formFile" class="form-control" name="new_image" accept=".jpg, .jpeg, .png" value="<?php echo $record['image']; ?>">

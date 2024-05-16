@@ -100,7 +100,7 @@ include('../navbars/profilepage-nav.php');
 if (isset($_POST["upload_product"])) {
   $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
   $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
-  
+  $category_product = mysqli_real_escape_string($conn, $_POST["category_product"]);
 
     if ($_FILES["image_product"]["error"] === 4) {
         echo "
@@ -168,7 +168,7 @@ if (isset($_POST["upload_product"])) {
             $businessProfileId = $businessProfile['id'];
 
             // Insert into posting_module with the retrieved business profile ID
-            $query = "INSERT INTO posting_module (name, text, image, posted_by) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId)";
+            $query = "INSERT INTO posting_module (name, text, image, posted_by, category) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId, '$category_product')";
             mysqli_query($conn, $query);
 
             echo "
@@ -632,6 +632,20 @@ if (isset($_POST["upload_advertisement"])) {
                                 <label for="exampleFormControlTextarea1" class="form-label">Write something about the Product.</label>
                                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text_product"></textarea>
                             </div>
+                            <div class="mb-3">
+                                <label for="category_product" class="form-label">Category</label>
+                                <select class="form-select" id="category_product" name="category_product">
+                                    <option value="Vegetables">Vegetables</option>
+                                    <option value="Fruits">Fruits</option>
+                                    <option value="Grains">Grains</option>
+                                    <option value="Dairy">Dairy</option>
+                                    <option value="Meat">Meat</option>
+                                    <option value="Fish">Fish</option>
+                                    <option value="Seafood">Seafood</option>
+                                    <option value="Farm Accessories">Farm Accessories</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
                             <div class="col-12">
                                 <button class="btn btn-lg fs-6 w-100" type="upload_product" name="upload_product" style="background-color: #90EE90;">Upload</button>
                             </div>
@@ -730,6 +744,7 @@ if (isset($_POST["upload_advertisement"])) {
                                                             <td>Name</td>
                                                             <td>Image</td>
                                                             <td>Information</td>
+                                                            <td>Category</td>
                                                             <td>Created At</td> <!-- Added Created At column -->
 
                                                             <td>Action</td>
@@ -747,7 +762,9 @@ if (isset($_POST["upload_advertisement"])) {
                                                             <tr>
                                                                 <td><?php echo $i++; ?></td>
                                                                 <td><?php echo $row["name"]; ?></td>
-                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>                                                                    <td><?php echo $row["text"]; ?></td>    
+                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>                                                                    
+                                                                <td><?php echo $row["text"]; ?></td>    
+                                                                <td><?php echo $row["category"]; ?></td>  
                                                                 <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
                                                                 <!-- ... -->
                                                                 <td>

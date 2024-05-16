@@ -58,6 +58,7 @@ if (isset($_POST['read'])) {
                   <h3>Read Record:</h3>
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
+                  <p><strong>Category:</strong> {$record['category']}</p>
                   <img src='img/{$record['image']}' width='200' title=''>
                   <a href='profile-page.php?active=managePosts'>Back to List</a>
               </div>

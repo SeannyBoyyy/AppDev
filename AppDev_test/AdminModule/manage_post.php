@@ -17,6 +17,7 @@ include('../config/connectDb.php');
                         <th>Name</th>
                         <th>Image</th>
                         <th>Information</th>
+                        <th>Category</th>
                         <th>Created At</th>
                         <th>Posted By</th>
                         <th>Action</th>
@@ -33,6 +34,7 @@ include('../config/connectDb.php');
                             <td><?php echo $row["name"]; ?></td>
                             <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                             <td><?php echo $row["text"]; ?></td>   
+                            <td><?php echo $row["category"]; ?></td> 
                             <td><?php echo $row["created_at"]; ?></td> 
                             <td><?php echo $row["posted_by"]; ?></td> 
                             <td>

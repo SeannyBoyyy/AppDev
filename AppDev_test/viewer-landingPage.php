@@ -15,7 +15,7 @@
 
 
     //to get all posts from all farms
-    $PostSql = 'SELECT name, text, image, posted_by FROM posting_module';
+    $PostSql = 'SELECT name, text, image, posted_by, category FROM posting_module';
 
     $postSqlRes = mysqli_query($conn, $PostSql);
 
@@ -34,7 +34,7 @@
 
     mysqli_free_result($adsRes);
 
-    mysqli_close($conn);
+    // mysqli_close($conn);
 
 ?>
 <head>
@@ -102,18 +102,54 @@
     <div class="container text-center mt-5">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</h1>
-            <?php foreach($profiles as $profile){ ?>
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-3">
-                <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
-                    <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $profile['image'] ?>" style="width: 150px; height: 150px;">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="card-title"><?php echo $profile['name']?></h5>
-                        <p class="card-text" style="height: 60px;"><?php echo $profile['text']?></p>
-                        <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
-                    </div>
+            <!-- Category Tabs -->
+            <div class="col-12">
+                <ul class="nav nav-pills justify-content-center mb-5" id="categoryTabs" role="tablist">
+                    <?php 
+                    // Query to get distinct categories from the database
+                    $categoryQuery = "SELECT DISTINCT category FROM posting_module";
+                    $categoryResult = mysqli_query($conn, $categoryQuery);
+                    $firstCategory = true;
+                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link <?php if($firstCategory) echo 'active'; ?>" id="<?php echo $categoryRow['category']; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $categoryRow['category']; ?>" type="button" role="tab" aria-controls="<?php echo $categoryRow['category']; ?>" aria-selected="<?php echo $firstCategory ? 'true' : 'false'; ?>"><?php echo $categoryRow['category']; ?></button>
+                        </li>
+                        <?php $firstCategory = false; ?>
+                    <?php } ?>
+                </ul>
+                <div class="tab-content" id="categoryTabsContent">
+                    <?php 
+                    // Reset the category result
+                    mysqli_data_seek($categoryResult, 0);
+                    $firstCategory = true;
+                    while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
+                        <div class="tab-pane fade <?php if($firstCategory) echo 'show active'; ?>" id="<?php echo $categoryRow['category']; ?>" role="tabpanel" aria-labelledby="<?php echo $categoryRow['category']; ?>-tab">
+                            <!-- Products of this category -->
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                <?php 
+                                // Query to get products of this category
+                                $categoryProductsQuery = "SELECT * FROM posting_module WHERE category = '{$categoryRow['category']}'";
+                                $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
+                                while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
+                                    <div class="col">
+                                        <div class="card h-100 border-0 shadow-sm">
+                                            <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $profile['name']?></h5>
+                                                <p class="card-text"><?php echo $profile['text']?></p>
+                                            </div>
+                                            <div class="card-footer bg-transparent border-top-0">
+                                                <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                        <?php $firstCategory = false; ?>
+                    <?php } ?>
                 </div>
             </div>
-            <?php } ?>
         </div>
     </div>
     
