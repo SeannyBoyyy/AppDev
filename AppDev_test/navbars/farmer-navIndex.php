@@ -95,7 +95,7 @@ if(isset($_SESSION['ownerID'])){
   </style>
   </head>
   <body>
-  <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color: whitesmoke;">
+  <nav class=" sticky-top navbar navbar-expand-lg border-bottom p-3 w-100" style="background-color: #21d192;">
     <div class="container d-flex">
       <div class="container col-6">
         <a class="navbar-brand fs-4" href="index.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
@@ -111,12 +111,14 @@ if(isset($_SESSION['ownerID'])){
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav justify-start">
             <li class="nav-item">
-                <a class="btn" href="./ProfileModule/profile-page.php?active=upload">Upload</a>
+                <a class="btn shadow-none" href="./ProfileModule/profile-page.php?active=upload">Upload</a>
               </li>
-              <li class="nav-item"><a class="btn" href="./ProfileModule/profile-page.php?active=profile">Profile</a></li>
               <li class="nav-item">
-                <button class="btn" type="button" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#90EE90" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <a class="btn shadow-none" href="./ProfileModule/profile-page.php?active=profile">Profile</a>
+              </li>
+              <li class="nav-item ">
+                <button class="btn shadow-none" type="button" aria-current="page" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ffffff" class="bi bi-person-circle" viewBox="0 0 16 16">
                       <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                       <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                     </svg>

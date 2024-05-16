@@ -35,53 +35,45 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
-    .fas{
-        margin-right: 20px; /* Right margin for spacing */
-    }
+    
 </style>
 </head>
-<div>
-<div class="container">
-    <div class="container text-center">
-    <div style="height: 50px; background-color:transparent;"></div>
-            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
-            <div class="row">
-                <div id="carouselExampleAutoplaying" class="carousel carousel-info slide"  data-bs-ride="carousel" style="width: 1500px; height: 500px;margin-left: auto;margin-right: auto;">
-                    <div class="carousel-inner ">
-                        <?php foreach($ads as $key => $ad) { ?>
-                            <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <img style="height: 450px; width: 450px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
-                                    </div>
-                                    <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                        <div class="col-12 col-md-6 text-center">
-                                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
-                                            <p class="text-center" style="color: black;"><?php echo $ad['text']; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+    <div class="container-fluid text-center">
+        <div style="height: 50px; background-color:transparent;"></div>
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
+        <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <?php foreach($ads as $key => $ad) { ?>
+                    <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                        <img style="height: 500px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                        <div class="carousel-caption align-items-start justify-content-start">
+                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
+                            <p class="" style="color: black;"><?php echo $ad['text']; ?></p>
+                        </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev"style="width:80px;">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next"style="width:80px;">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>    
-                </div>
-                
-            </div> 
+                <?php } ?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </div>
-    <div class="container text-center mt-5">
-        <div class="row">
-            <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Business</h1>
+    <div class="container-fluid text-center mt-5">
+        <div class="row w-100">
+            <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-                <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
+                <div class="card text-center" style="width: 300px; margin: auto; height: 450px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $farm['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
@@ -93,7 +85,7 @@
             <?php } ?>
         </div>
     </div>
-    <div class="container text-center mt-5">
+    <div class="container-fluid text-center mt-5">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</h1>
             <!-- Category Tabs -->
@@ -210,6 +202,6 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 <div style="height: 50px; background-color:transparent;"></div>
 <?php include('./navbars/viewer-footer.php') ; ?>
