@@ -939,89 +939,125 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
                 
                 <!------------------------------------- Message Module  ---------------------------------->
-                <div class="tab-pane fade <?php echo isShowActive('messages', $activePage); ?>" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">
-                    <ul class="nav nav-underline">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Inbox</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sent</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Archive</a>
-                        </li>
-                    </ul>                                  
+                <style>
+                    /* Set width for the first span */
+                    .card-body span:first-child {
+                        width: 250px; 
+                        display: inline-flex;
+                        margin-right: 100px;
+                    }
+                    
+                    
+                    .card-body span:nth-child(2) {
+                        display: inline-flex; 
+                        text-align: center;
+                        width: 250px;
+                    }
+                    .card-body{
+                        transition: box-shadow 0.3s ease;
+                    }
+                   .card-body:hover{
+                    color: black;
+                    transform: translateY(-5px);
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                   }
+                </style>
+                <div class="tab-pane fade <?php echo isShowActive('messages', $activePage); ?>" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">                               
                     <?php if (!empty($msgRows)): ?>
                         <div class="row d-block align-items-start justify-content-start ">
                             <h1>Messages</h1>
-                            <?php foreach ($msgRows as $index => $msgRow): ?> <!-- Add $index variable -->
-                                <div class="container">
-                                    <div class="row g-0 w-100">
-                                        <div class="card mb-3">
-                                        <div class="card-header w-100">
-                                            <p class="me-2 w-50"><?php echo $msgRow['sent_by'] ?></p>
-                                            <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="card-text"><?php echo $msgRow['message'] ?>.</p>
+                            <?php foreach ($msgRows as $index => $msgRow): ?>
+                                <div class="container-fluid" data-bs-toggle="modal" data-bs-target="#viewMessageModal<?php echo $index ?>">
+                                    <div class="row g-0">
+                                        <div class="card w-100 p-0 mx-1 my-1 border-0">
+                                            <div class="card-body w-100 p-2 border-bottom my-0">
+                                                <span class="p-0 overflow-hidden"><?php echo $msgRow['sent_by'] ?></span> 
+                                                <span class="card-text overflow-hidden"><?php echo $msgRow['message'] ?>.</span> 
+                                                <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- modal -->
-                                <div class="modal fade" id="exampleModal<?php echo $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- view message modal -->
+                                <div class="modal fade" id="viewMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="viewMessageModalLabel<?php echo $index ?>" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                                <h1 class="modal-title fs-5" id="viewMessageModalLabel<?php echo $index ?>">Message Details</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form method="post" action="send.php" enctype="multipart/form-data">
                                             <div class="modal-body">
                                                 <div class="mb-3">
-                                                    <label for="staticEmail" class="col-form-label">Recipient:</label>
-                                                    <input type="text" name="to_sent" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['sent_by'] ?>">
-                                                </div>
-
-                                                <?php
-                                                $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
-                                                
-                                                while($row = mysqli_fetch_assoc($res)){
-                                                ?>
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Your email:</label>
-                                                    <input type="text" name="my_email" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $row['email'] ?>">
-                                                    <input type="hidden" name="my_number" value="<?php echo $row['contact_number'] ?>">
-                                                </div>
-                                                <?php }?>
-                                                <div class="row">
-                                                    <small class="text-red mb-2" style=" color:red"></small>
+                                                    <label for="staticEmail" class="col-form-label">Sent By:</label>
+                                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['sent_by'] ?>">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="message-text" class="col-form-label">Message:</label>
-                                                    <textarea name="message" class="form-control" id="message-text"></textarea>
+                                                    <textarea readonly class="form-control" id="message-text"><?php echo $msgRow['message'] ?></textarea>
                                                 </div>
-                                                <div class="row">
-                                                    <small class="text-red mb-2 " style=" color:red"></small>
+                                                <div class="mb-3">
+                                                    <label for="message-time" class="col-form-label">Sent At:</label>
+                                                    <input type="text" readonly class="form-control-plaintext" id="message-time" value="<?php echo $msgRow['created_at'] ?>">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMessageModal<?php echo $index ?>">Reply</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- reply message modal -->
+                                <div class="modal fade" id="replyMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="replyMessageModalLabel<?php echo $index ?>" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">New message</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form method="post" action="send.php" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="recipientEmail<?php echo $index ?>" class="col-form-label">Recipient:</label>
+                                                        <input type="text" name="to_sent" readonly class="form-control-plaintext" id="recipientEmail<?php echo $index ?>" value="<?php echo $msgRow['sent_by'] ?>">
+                                                    </div>
+
+                                                    <?php
+                                                    $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
+                                                    while ($row = mysqli_fetch_assoc($res)) {
+                                                    ?>
+                                                    <div class="mb-3">
+                                                        <label for="senderEmail<?php echo $index ?>" class="col-form-label">Your email:</label>
+                                                        <input type="text" name="my_email" readonly class="form-control-plaintext" id="senderEmail<?php echo $index ?>" value="<?php echo $row['email'] ?>">
+                                                        <input type="hidden" name="my_number" value="<?php echo $row['contact_number'] ?>">
+                                                    </div>
+                                                    <?php } ?>
+                                                    <div class="row">
+                                                        <small class="text-red mb-2" style=" color:red"></small>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="replyMessageText<?php echo $index ?>" class="col-form-label">Message:</label>
+                                                        <textarea name="message" class="form-control" id="replyMessageText<?php echo $index ?>"></textarea>
+                                                    </div>
+                                                    <div class="row">
+                                                        <small class="text-red mb-2 " style=" color:red"></small>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
-
                             <?php endforeach; ?>
                         </div>
                     <?php else: ?>
                         <p>No messages found.</p>
                     <?php endif; ?>
-
-                    
-                    
                 </div>
+
                 <!------------------------------------- AccountDetails Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('subDetails', $activePage); ?>" id="v-pills-accDeets" role="tabpanel" aria-labelledby="v-pills-accDeets-tab">
                     <div class="container mt-5">

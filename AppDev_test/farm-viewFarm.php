@@ -170,7 +170,7 @@
 <!-- Your HTML code to display business profile and posting modules -->
 <div class="container-fluid">
     <div class="row justify-contents-center text-center">
-        <div class="col-lg-4 col-12 text-center mb-3 mt-3 overflow-auto" style="height: 850px;">
+        <div class="col-lg-3 col-12 text-center mb-3 mt-3 overflow-auto" style="height: 850px;">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
             </div>
@@ -202,7 +202,7 @@
             </div>
         </div>    
                     
-        <div class="col-lg-8 col-12 mt-3">
+        <div class="col-lg-9 col-12 mt-3">
             <?php if (!empty($photos)): ?>
             <div class="container-fluid text-center">
             <div style="height: 50px;"></div>
@@ -234,8 +234,7 @@
             </div>
             <?php else: ?>
                 <p>No Farm Photos found.</p>
-            <?php endif; ?>                    
-            <hr>   
+            <?php endif; ?>                     
             <?php if (!empty($profiles)): ?>
                 <div class="container-fluid text-center">
                     <div class="row">
@@ -244,7 +243,7 @@
                         <div style="height: 30px;"></div>
                         <?php foreach($profiles as $profile) { ?>
                             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                                <div class="card border-0 rounded shadow">
+                                <div class="card border-0 text-left rounded shadow">
                                     <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
                                     <div class="card-body" style="height: 150px;">
                                         <h5 class="card-title"><?php echo $profile['name']; ?></h5>
@@ -258,7 +257,6 @@
             <?php else: ?>
                 <p>No Products found.</p>
             <?php endif; ?>
-            <hr>
         </div>
     </div>
     <div class="container-fluid mt-3">
@@ -297,8 +295,7 @@
             </div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
-            <?php endif; ?> 
-            <hr>    
+            <?php endif; ?>    
     </div>
     <div class="row justify-contents-center align-items-center text-cnter">
         <div class="container" style="max-width: 70%;">

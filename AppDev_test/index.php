@@ -72,7 +72,7 @@
         <div class="row w-100">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
             <?php foreach($farms as $farm){ ?>
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mx-auto mb-3" style="width: 300px;">
                 <div class="card text-center" style="width: 300px; margin: auto; height: 450px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $farm['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -111,14 +111,14 @@
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <div class="tab-pane fade <?php if($firstCategory) echo 'show active'; ?>" id="<?php echo $categoryRow['category']; ?>" role="tabpanel" aria-labelledby="<?php echo $categoryRow['category']; ?>-tab">
                             <!-- Products of this category -->
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            <div class="row mx-auto">
                                 <?php 
                                 // Query to get products of this category
                                 $categoryProductsQuery = "SELECT * FROM posting_module WHERE category = '{$categoryRow['category']}'";
                                 $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
-                                    <div class="col">
-                                        <div class="card h-100 border-0 shadow-sm">
+                                    <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
+                                        <div class="card h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
                                             <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
