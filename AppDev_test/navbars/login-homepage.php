@@ -18,7 +18,7 @@
       </style>
   </head>
   <body>
-  <nav class="navbar navbar sticky-top p-3" style="background-color: whitesmoke;">
+  <nav class="navbar navbar sticky-top p-3" style="background-color: #21d192;">
     <div class="container-fluid">
         <a class="navbar-brand fs-4" href="../viewer-landingPage.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
