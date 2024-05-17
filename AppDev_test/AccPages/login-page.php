@@ -67,6 +67,16 @@ if(isset($_POST['submit'])){
                 exit();
               }
 
+              if($row['status'] === 'PENDING') {
+                session_start();
+                $_SESSION['acc_info'] = $row['account_id']; // suspend acc
+
+                unset($_SESSION['ownerID']);
+                // Redirect suspended account to suspend.php
+                header('Location: ../payment/approval.php');
+                exit();
+              }
+
               session_start();
               $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
 

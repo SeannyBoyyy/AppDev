@@ -13,7 +13,7 @@ if(isset($_SESSION['ownerID'])){
 <style>
   nav{
     background-color: #21d192;
-    filter: brightness(110%);
+    
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 

@@ -98,23 +98,24 @@ include('../navbars/profilepage-nav.php');
 
 // ---------------------------------- add post ----------------------------------------
 if (isset($_POST["upload_product"])) {
-  $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
-  $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
-  $category_product = mysqli_real_escape_string($conn, $_POST["category_product"]);
+    $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
+    $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
+    $category_product = mysqli_real_escape_string($conn, $_POST["category_product"]);
+    $price_range = mysqli_real_escape_string($conn, $_POST["price_range"]);
 
     if ($_FILES["image_product"]["error"] === 4) {
         echo "
-                <script>
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Image does not exist!',
-                        icon: 'error'
-                    }).then(function() {
-                        window.location = 'profile-page.php?active=upload';
-                    });
-                </script>";
+            <script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Image does not exist!',
+                    icon: 'error'
+                }).then(function() {
+                    window.location = 'profile-page.php?active=upload';
+                });
+            </script>";
         
-                exit();
+        exit();
     } else {
         $fileName = $_FILES["image_product"]["name"];
         $fileSize = $_FILES["image_product"]["size"];
@@ -135,7 +136,7 @@ if (isset($_POST["upload_product"])) {
                     });
                 </script>";
 
-                exit();
+            exit();
         } elseif ($fileSize > 10000000) {
             echo "
                 <script>
@@ -148,15 +149,12 @@ if (isset($_POST["upload_product"])) {
                     });
                 </script>";
 
-                exit();
-
+            exit();
         } else {
             $newImageName = uniqid() . '.' . $imageExtension;
             $uploadPath = 'img/' . $newImageName;
         
             move_uploaded_file($tmpName, $uploadPath);
-
-            $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
 
             // Fetch the business profile ID associated with the current owner
             $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
@@ -168,25 +166,25 @@ if (isset($_POST["upload_product"])) {
             $businessProfileId = $businessProfile['id'];
 
             // Insert into posting_module with the retrieved business profile ID
-            $query = "INSERT INTO posting_module (name, text, image, posted_by, category) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId, '$category_product')";
+            $query = "INSERT INTO posting_module (name, text, image, posted_by, category, price_range) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId, '$category_product', '$price_range')";
             mysqli_query($conn, $query);
 
             echo "
                 <script>
                     Swal.fire({
                         title: 'Success!',
-                        text: 'Image uploaded successfully!',
+                        text: 'Product uploaded successfully!',
                         icon: 'success'
                     }).then(function() {
                         window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
             
-                exit();
-
+            exit();
         }
     }
 }
+
 
 
 // ---------------------------------- advertisement module ----------------------------------------
@@ -646,12 +644,17 @@ if (isset($_POST["upload_advertisement"])) {
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="price_range" class="form-label">Price</label>
+                                <input type="text" class="form-control" id="price_range" name="price_range" placeholder="Enter Price ">
+                            </div>
                             <div class="col-12">
                                 <button class="btn btn-lg fs-6 w-100" type="upload_product" name="upload_product" style="background-color: #90EE90;">Upload</button>
                             </div>
                         </form>
                     </div>
                 </div>
+
 
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('managePosts', $activePage); ?> container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
@@ -745,8 +748,8 @@ if (isset($_POST["upload_advertisement"])) {
                                                             <td>Image</td>
                                                             <td>Information</td>
                                                             <td>Category</td>
+                                                            <td>Price</td> <!-- Added Price Range column -->
                                                             <td>Created At</td> <!-- Added Created At column -->
-
                                                             <td>Action</td>
                                                         </tr>
                                                         <?php
@@ -762,21 +765,20 @@ if (isset($_POST["upload_advertisement"])) {
                                                             <tr>
                                                                 <td><?php echo $i++; ?></td>
                                                                 <td><?php echo $row["name"]; ?></td>
-                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>                                                                    
-                                                                <td><?php echo $row["text"]; ?></td>    
-                                                                <td><?php echo $row["category"]; ?></td>  
+                                                                <td><img src="img/<?php echo $row['image']; ?>" width="200" height="150" title=""></td>
+                                                                <td><?php echo $row["text"]; ?></td>
+                                                                <td><?php echo $row["category"]; ?></td>
+                                                                <td><?php echo $row["price_range"]; ?></td> <!-- Display Price Range -->
                                                                 <td><?php echo $row["created_at"]; ?></td> <!-- Display Created At -->
-                                                                <!-- ... -->
                                                                 <td>
                                                                     <!-- CRUD Operations Form -->
                                                                     <form action="crud.php" method="post">
                                                                         <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                                                         <button type="submit" class="btn btn-success mb-2" name="read">Read</button>
-                                                                        <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button> <!-- Updated from "Update" to "Edit" -->
+                                                                        <button type="submit" class="btn btn-success mb-2" name="edit">Edit</button>
                                                                         <button class="btn btn-danger mb-2" type="submit" name="delete">Delete</button>
                                                                     </form>
                                                                 </td>
-                                                                <!-- ... -->
                                                             </tr>
                                                         <?php endforeach; ?>
                                                     </table>
@@ -784,6 +786,7 @@ if (isset($_POST["upload_advertisement"])) {
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
                                         <!------------------------------------- Advertisement-Management Module  ---------------------------------->                        
                                         <div class="container-fluid" style="margin:auto;">

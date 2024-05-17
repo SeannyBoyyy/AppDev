@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newName = mysqli_real_escape_string($conn, $_POST['new_name']);
     $newText = mysqli_real_escape_string($conn, $_POST['new_text']);
     $newCateg = mysqli_real_escape_string($conn, $_POST["new_Categ"]);
+    $newPrice = mysqli_real_escape_string($conn, $_POST["new_price"]);
     // Process image upload if a new image is provided
     if ($_FILES['new_image']['error'] !== 4) {
         $fileName = $_FILES["new_image"]["name"];
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Update the name and text in the database
-    mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText', category = '$newCateg' WHERE id = $id");
+    mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText', category = '$newCateg', price_range = '$newPrice' WHERE id = $id");
 
     // Redirect back to the profile-page.php page
     header("Location: profile-page.php?active=managePosts");
@@ -103,6 +104,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </select>         
             </div>
             
+            <div class="mb-3">
+                <label for="new_price" class="form-label">New Price:</label>
+                <input type="text" class="form-control" id="new_price" name="new_price" value="<?php echo $record['price_range']; ?>">
+            </div>
+
             <div class="mb-3">
             <label for="formFile" class="form-label">New Image:</label>
                 <input type="file" id="formFile" class="form-control" name="new_image" accept=".jpg, .jpeg, .png" value="<?php echo $record['image']; ?>">

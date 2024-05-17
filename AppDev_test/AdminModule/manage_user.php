@@ -90,7 +90,6 @@ if (isset($_POST['user_id'])) {
                         <th>E-mail</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Created At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -103,7 +102,6 @@ if (isset($_POST['user_id'])) {
                             <td><?php echo $row["email"]; ?></td>
                             <td><?php echo $row["firstName"]; ?></td>
                             <td><?php echo $row["lastName"]; ?></td>   
-                            <td><?php echo $row["created_at"]; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

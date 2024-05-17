@@ -37,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $newName = mysqli_real_escape_string($conn, $_POST['new_name']);
     $newText = mysqli_real_escape_string($conn, $_POST['new_text']);
     $newCateg = mysqli_real_escape_string($conn, $_POST["new_Categ"]);
-
+    $newPrice = mysqli_real_escape_string($conn, $_POST["new_price"]);
     // Check if it's a product post
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
 
         // Update the name and text in the posting_module table
-        mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText', category = '$newCateg' WHERE id = $id");
+        mysqli_query($conn, "UPDATE posting_module SET name = '$newName', text = '$newText', category = '$newCateg', price_range = '$newPrice' WHERE id = $id");
 
         // Process image upload if a new image is provided
         if ($_FILES['new_image']['error'] !== 4) {
@@ -173,7 +173,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <!-- Add more options as needed -->
                     </select>         
                 </div>    
-
+                <div class="mb-3">
+                    <label for="new_price" class="form-label">New Price:</label>
+                    <input type="text" class="form-control" id="new_price" name="new_price" value="<?php echo $record['price_range']; ?>">
+                </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label">New Image:</label>
                         <input class="form-control" type="file" id="formFile" name="new_image" accept=".jpg, .jpeg, .png">

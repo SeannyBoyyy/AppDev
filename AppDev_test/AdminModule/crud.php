@@ -59,6 +59,7 @@ if (isset($_POST['read'])) {
                   <p><strong>Name:</strong> {$record['name']}</p>
                   <p><strong>Text:</strong> {$record['text']}</p>
                   <p><strong>Category:</strong> {$record['category']}</p>
+                  <p><strong>Price:</strong> {$record['price_range']}</p>
                   <img src='../ProfileModule/img/{$record['image']}' width='200' title=''>
                   <a clas='btn btn-success' href='index.php?active=posts'>Back to List</a>
               </div>

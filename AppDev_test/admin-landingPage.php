@@ -42,42 +42,41 @@
 </style>
 </head>
 
-<div>
-<div class="container">
-    <div class="container text-center">
+
     <div style="height: 50px; background-color:transparent;"></div>
-            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
-            <div class="row">
-                <div id="carouselExampleAutoplaying" class="carousel carousel-info slide"  data-bs-ride="carousel" style="width: 1500px; height: 500px;margin-left: auto;margin-right: auto;">
-                    <div class="carousel-inner ">
-                        <?php foreach($ads as $key => $ad) { ?>
-                            <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                <div class="row">
-                                    <div class="col-md-6 col-12">
-                                        <img style="height: 450px; width: 450px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="img-fluid object-fit-contain">
-                                    </div>
-                                    <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                        <div class="col-12 col-md-6 text-center">
-                                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
-                                            <p class="text-center" style="color: black;"><?php echo $ad['text']; ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
+    <div class="container-fluid text-center">
+        <div style="height: 50px; background-color:transparent;"></div>
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1>
+        <div style="height: 50px; background-color:transparent;"></div>
+        <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel" style="height: 500px;">
+            <div class="carousel-indicators">
+                <?php foreach($ads as $key => $ad) { ?>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                <?php } ?>
+            </div>
+            <div class="carousel-inner">
+                <?php foreach($ads as $key => $ad) { ?>
+                    <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                        <img style="height: 500px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                        <div class="carousel-caption align-items-start justify-content-start">
+                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
+                            <p class="" style="color: black;"><?php echo $ad['text']; ?></p>
+                        </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev"style="width:80px;">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next"style="width:80px;">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>    
-                </div>
-                
-            </div> 
+                <?php } ?>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        
     </div>
+    
     <div class="container text-center mt-5">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Business</h1>
@@ -133,6 +132,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
                                                 <p class="card-text"><?php echo $profile['text']?></p>
+                                                <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
                                             <div class="card-footer bg-transparent border-top-0">
                                                 <a href="admin-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
@@ -210,7 +210,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 <div style="height: 50px; background-color:transparent;"></div>
 <?php 
     include('./navbars/viewer-footer.php');

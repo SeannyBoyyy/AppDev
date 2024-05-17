@@ -58,12 +58,52 @@
                         <div id="paymentResponse" class="hidden"></div>
 
                         <div id="paypal-button-container"></div>
+
+                        <!-- Button for GCash modal -->
+                        <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#gcashModal">
+                            Pay with GCash
+                        </button> 
+
                     </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal for GCash payment -->
+    <div class="modal fade" id="gcashModal" tabindex="-1" aria-labelledby="gcashModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gcashModalLabel">Pay with GCash</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- GCash payment instructions -->
+                    <p>Please scan the QR code below or transfer the amount to the provided GCash number.</p>
+                    <!-- Insert QR code image or GCash number here -->
+                    <img src="gcash_qr_code.jpg" alt="GCash QR Code" class="img-fluid">
+                    <p>GCash Number: 09171025899</p>
+                    
+                    <!-- Form for uploading GCash receipt -->
+                    <form action="gcash_checkout_init.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="loggedInUserID" value="<?php echo $loggedInUserID; ?>">
+                        <div class="mb-3">
+                            <label for="gcashReceipt" class="form-label">Upload GCash Receipt</label>
+                            <input type="file" class="form-control" id="gcashReceipt" name="gcashReceipt" accept="image/*" required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit Receipt</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- Add additional buttons if needed -->
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
 
     <script>
     paypal.Buttons({

@@ -40,12 +40,13 @@
 </head>
     <div class="container-fluid text-center">
         <div style="height: 50px; background-color:transparent;"></div>
-        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1><div style="height: 50px; background-color:transparent;"></div>
-        <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+        <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1>
+        <div style="height: 50px; background-color:transparent;"></div>
+        <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel" style="height: 500px;">
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <?php foreach($ads as $key => $ad) { ?>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                <?php } ?>
             </div>
             <div class="carousel-inner">
                 <?php foreach($ads as $key => $ad) { ?>
@@ -68,6 +69,7 @@
             </button>
         </div>
     </div>
+
     <div class="container-fluid text-center mt-5">
         <div class="row w-100">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
@@ -123,6 +125,7 @@
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
                                                 <p class="card-text"><?php echo $profile['text']?></p>
+                                                <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
                                             <div class="card-footer bg-transparent border-top-0">
                                                 <a href="farm-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
