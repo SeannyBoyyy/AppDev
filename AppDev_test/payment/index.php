@@ -83,12 +83,26 @@
                     <!-- GCash payment instructions -->
                     <p>Please scan the QR code below or transfer the amount to the provided GCash number.</p>
                     <!-- Insert QR code image or GCash number here -->
-                    <img src="gcash_qr_code.jpg" alt="GCash QR Code" class="img-fluid">
+                    <img src="../ProfileModule/img/gcash_qr_code.jpg" alt="GCash QR Code" class="img-fluid">
                     <p>GCash Number: 09171025899</p>
                     
-                    <!-- Form for uploading GCash receipt -->
+                    <!-- Form for uploading GCash receipt and additional details -->
                     <form action="gcash_checkout_init.php" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="loggedInUserID" value="<?php echo $loggedInUserID; ?>">
+                        
+                        <div class="mb-3">
+                            <label for="subscriberID" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="subscriberID" name="subscriberID" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subscriberName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="subscriberName" name="subscriberName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subscriberEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="subscriberEmail" name="subscriberEmail" required>
+                        </div>
+                        
                         <div class="mb-3">
                             <label for="gcashReceipt" class="form-label">Upload GCash Receipt</label>
                             <input type="file" class="form-control" id="gcashReceipt" name="gcashReceipt" accept="image/*" required>
@@ -97,7 +111,6 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit Receipt</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- Add additional buttons if needed -->
                 </div>
                     </form>
             </div>

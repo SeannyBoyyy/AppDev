@@ -106,6 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <tr class="text-center">
                         <th>#</th>
                         <th>User ID</th>
+                        <th>Phone Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
                         <th>Status</th>
                         <th>Image</th>
                         <th>Action</th>
@@ -117,18 +120,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
-                            <td><?php echo $row["id"]; ?></td>
-                            <td><?php echo $row["user_id"]; ?></td>
-                            <td><?php echo $row["status"]; ?></td>
+                            <td><?php echo htmlspecialchars($row["id"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["user_id"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["subscriber_id"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["subscriber_name"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["subscriber_email"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["status"]); ?></td>
                             <td>
-                                <a href="../ProfileModule/img/<?php echo $row["image"]; ?>" target="_blank">
-                                    <img src="../ProfileModule/img/<?php echo $row["image"]; ?>" alt="Receipt Image" width="100">
+                                <a href="../ProfileModule/img/<?php echo htmlspecialchars($row["image"]); ?>" target="_blank">
+                                    <img src="../ProfileModule/img/<?php echo htmlspecialchars($row["image"]); ?>" alt="Receipt Image" width="100">
                                 </a>
                             </td>
                             <td>
                                 <!-- Form for status change -->
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
                                     <button type="submit" class="btn btn-success mb-2" name="action" value="ACTIVE">Approve</button>
                                     <button type="submit" class="btn btn-danger mb-2" name="action" value="REJECT">Reject</button>
                                     <button type="button" class="btn btn-warning mb-2" onclick="document.getElementById('editModal<?php echo $row['id']; ?>').style.display='block'">Edit</button>
@@ -140,30 +146,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <span class="close" onclick="document.getElementById('editModal<?php echo $row['id']; ?>').style.display='none'">&times;</span>
                                         <h2>Edit Subscription Details</h2>
                                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id']); ?>">
                                             <div class="form-group">
                                                 <label for="valid_from">Valid From:</label>
-                                                <input type="datetime-local" class="form-control" id="valid_from" name="valid_from" value="<?php echo $row['valid_from']; ?>">
+                                                <input type="datetime-local" class="form-control" id="valid_from" name="valid_from" value="<?php echo htmlspecialchars($row['valid_from']); ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="valid_to">Valid To:</label>
-                                                <input type="datetime-local" class="form-control" id="valid_to" name="valid_to" value="<?php echo $row['valid_to']; ?>">
+                                                <input type="datetime-local" class="form-control" id="valid_to" name="valid_to" value="<?php echo htmlspecialchars($row['valid_to']); ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="paid_amount">Paid Amount:</label>
-                                                <input type="text" class="form-control" id="paid_amount" name="paid_amount" value="<?php echo $row['paid_amount']; ?>">
+                                                <input type="text" class="form-control" id="paid_amount" name="paid_amount" value="<?php echo htmlspecialchars($row['paid_amount']); ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="currency_code">Currency Code:</label>
-                                                <input type="text" class="form-control" id="currency_code" name="currency_code" value="<?php echo $row['currency_code']; ?>">
+                                                <input type="text" class="form-control" id="currency_code" name="currency_code" value="<?php echo htmlspecialchars($row['currency_code']); ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="created">Created:</label>
-                                                <input type="datetime-local" class="form-control" id="created" name="created" value="<?php echo $row['created']; ?>">
+                                                <input type="datetime-local" class="form-control" id="created" name="created" value="<?php echo htmlspecialchars($row['created']); ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="modified">Modified:</label>
-                                                <input type="datetime-local" class="form-control" id="modified" name="modified" value="<?php echo $row['modified']; ?>">
+                                                <input type="datetime-local" class="form-control" id="modified" name="modified" value="<?php echo htmlspecialchars($row['modified']); ?>">
                                             </div>
                                             <button type="submit" class="btn btn-primary" name="action" value="EDIT">Save Changes</button>
                                         </form>
@@ -209,5 +215,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>
