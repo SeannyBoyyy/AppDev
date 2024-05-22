@@ -15,7 +15,7 @@
         transition: color 0.3s ease, transform 0.3s ease;
         transform: translateY(-5px);
       }
-      </style>
+    </style>
   </head>
   <body>
   <nav class="navbar navbar sticky-top p-3" style="background-color: #21d192;">

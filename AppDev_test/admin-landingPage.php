@@ -39,12 +39,19 @@
     .fas{
         margin-right: 20px; /* Right margin for spacing */
     }
+    .cardHover{
+        transition: box-shadow 0.3s ease;
+    }
+    .cardHover:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 </style>
 </head>
 
 
-    <div style="height: 50px; background-color:transparent;"></div>
-    <div class="container-fluid text-center">
+    
+<div class="container-fluid text-center">
         <div style="height: 50px; background-color:transparent;"></div>
         <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1>
         <div style="height: 50px; background-color:transparent;"></div>
@@ -74,27 +81,26 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        
     </div>
-    
-    <div class="container text-center mt-5">
-        <div class="row">
-            <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Business</h1>
+
+    <div class="container-fluid text-center mt-5">
+        <div class="row w-100">
+            <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
             <?php foreach($farms as $farm){ ?>
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
-                <div class="card text-center" style="width: 300px; margin: auto; height: 500px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); border-radius: 20px;">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mx-auto mb-3" style="width: 300px;">
+                <div class="card text-center cardHover" style="width: 300px; margin: auto; height: 450px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $farm['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $farm['text']?></p>
-                        <a href="admin-viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
+                        <a href="farm-viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
-            </div>
+            </div>  
             <?php } ?>
         </div>
     </div>
-    <div class="container text-center mt-5">
+    <div class="container-fluid text-center mt-5">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</h1>
             <!-- Category Tabs -->
@@ -120,14 +126,14 @@
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <div class="tab-pane fade <?php if($firstCategory) echo 'show active'; ?>" id="<?php echo $categoryRow['category']; ?>" role="tabpanel" aria-labelledby="<?php echo $categoryRow['category']; ?>-tab">
                             <!-- Products of this category -->
-                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                            <div class="row mx-auto">
                                 <?php 
                                 // Query to get products of this category
                                 $categoryProductsQuery = "SELECT * FROM posting_module WHERE category = '{$categoryRow['category']}'";
                                 $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
-                                    <div class="col">
-                                        <div class="card h-100 border-0 shadow-sm">
+                                    <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
+                                        <div class="card cardHover h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
                                             <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
@@ -135,7 +141,7 @@
                                                 <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
                                             <div class="card-footer bg-transparent border-top-0">
-                                                <a href="admin-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                                                <a href="farm-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                                             </div>
                                         </div>
                                     </div>
@@ -148,6 +154,8 @@
             </div>
         </div>
     </div>
+
+
     
 
     <div class="container mt-5">

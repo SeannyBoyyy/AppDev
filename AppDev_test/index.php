@@ -35,7 +35,13 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
-    
+    .cardHover{
+        transition: box-shadow 0.3s ease;
+    }
+    .cardHover:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 </style>
 </head>
     <div class="container-fluid text-center">
@@ -75,7 +81,7 @@
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mx-auto mb-3" style="width: 300px;">
-                <div class="card text-center" style="width: 300px; margin: auto; height: 450px;">
+                <div class="card text-center cardHover" style="width: 300px; margin: auto; height: 450px;">
                     <img class="img-fluid img-thumbnail rounded-circle objext-fit-cover mx-auto d-block mt-5" src="ProfileModule/img/<?php echo $farm['image'] ?>" style="width: 150px; height: 150px;">
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
@@ -120,7 +126,7 @@
                                 $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
                                     <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
-                                        <div class="card h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
+                                        <div class="card cardHover h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
                                             <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>

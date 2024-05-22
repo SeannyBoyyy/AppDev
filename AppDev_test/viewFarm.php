@@ -147,112 +147,134 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+<style>
+        .card-body h5 {
+        font-weight: bold;
+        font-size: 20px;
+        }
+        .card-body h5 i {
+        margin-right: 10px;
+        }
+        .cardUnderLine{
+             transition: box-shadow 0.3s ease;
+        }
+       .cardUnderLine:hover{
+        text-decoration: underline;
+        transform: translateY(-5px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+       }
+       .msgBtn{
+        background-color: #e4e6eb;
+        font-size: 15px;
+       }
+       .msgBtn:hover{
+        filter: brightness(90%);
+       }
+    </style>
     <!-- Your HTML code to display business profile and posting modules -->
-    <div class="container-fluid" >
-        <div class="row justify-contents-center text-cnter">
-            <div class="col-lg-4 col-12 text-center mb-3 mt-3 overflow-auto" style="height: 850px;">
-                <div>
-                    <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
-                </div>
-                <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-                <div class="card shadow-none text-center mb-3 border-0">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
-                        <p class="card-text"><?php 
-                            echo $business_bio; 
-                        ?></p>
-                        <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>Address</h5>
-                        <p class="card-text"><?php
-                            echo $business_address
-                        ?></p>
-                        <h5 class="card-title"><i class="fas fa-envelope"></i>Email</h5>
-                        <p class="card-text"><?php
-                            echo $business_email
-                        ?></p>
-                        <h5 class="card-title"><i class="fas fa-phone"></i>Contact Number</h5>
-                        <p class="card-text"><?php
-                            echo $business_contact_number
-                        ?></p>
+    <body style="background-color: #f0f2f5;">
+        <div class="container-fluid">
+            <div class="row justify-contents-center text-center">
+                <div class="col-lg-3 col-12 text-center overflow-auto bg-white p-0 m-0">
+                    <div>
+                        <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
                     </div>
-                </div>
-                <div class="col-12">
-                    <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                    width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>    
-
-            <div class="col-lg-8 col-12 mt-3">
-                <?php if (!empty($photos)): ?>
-                <div class="container-fluid text-center">
-                <div style="height: 50px;"></div>
-                    <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-image p-4"></i>Farm Photos</h1><div style="height: 30px;"></div>
-                    <div class="row">
-                        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <?php foreach($photos as $key => $photo) { ?>
-                                    <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                        <div class="">
-                                            <div class="">
-                                                <img style="height: 400px; max-width: 850px" src="ProfileModule/img/<?php echo $photo['image']; ?>" class="img-fluid object-fit-contain">
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:70px;">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:70px;margin-right:80px;">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>    
+                    <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building"></i><?php echo $business_name; ?></h3>
+                    <button type="button"  class="msgBtn btn-lg border-0 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">  <small>Message</small> 
+                    </button>
+                    <div class="card text-center mb-3 shadow-none bg-transparent">
+                        <div class="card-body text-dark">
+                            <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
+                            <p class="card-text"><?php 
+                                echo $business_bio; 
+                            ?></p>
+                            <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>Address</h5>
+                            <p class="card-text"><?php
+                                echo $business_address
+                            ?></p>
+                            <h5 class="card-title"><i class="fas fa-envelope"></i>Email</h5>
+                            <p class="card-text"><?php
+                                echo $business_email
+                            ?></p>
+                            <h5 class="card-title"><i class="fas fa-phone"></i>Contact Number</h5>
+                            <p class="card-text"><?php
+                                echo $business_contact_number
+                            ?></p>
                         </div>
-                        
-                    </div>    
-                </div>
-                <?php else: ?>
-                    <p>No Farm Photos found.</p>
-                <?php endif; ?>                    
-
-                <?php if (!empty($profiles)): ?>
-                    <div class="container-fluid text-center">
-                        <div class="row">
-                            <div style="height: 50px;"></div>
-                            <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
-                            <div style="height: 30px;"></div>
-                            <?php foreach($profiles as $profile) { ?>
-                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                                    <div class="card border-0 rounded shadow">
-                                        <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
-                                        <div class="card-body" style="height: 150px;">
-                                            <h5 class="card-title"><?php echo $profile['name']; ?></h5>
-                                            <p class="card-text"><?php echo $profile['text']; ?></p>
-                                        </div>
-                                    </div>
+                    </div>
+                    <div class="col-12">
+                        <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                        width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>    
+                            
+                <div class="col-lg-9 col-12 p-0">
+                    <?php if (!empty($photos)): ?>
+                        <div class="container-fluid text-center p-0">
+                            <div class="row">
+                                <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+                                <div class="carousel-indicators">
+                                    <?php foreach($photos as $key => $photo) { ?>
+                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                                    <?php } ?>
                                 </div>
-                            <?php } ?>
-                        </div>
-                    </div> 
-                <?php else: ?>
-                    <p>No Products found.</p>
-                <?php endif; ?>         
+                                    <div class="carousel-inner">
+                                        <?php foreach($photos as $key => $photo) { ?>
+                                            <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                                                <img style="height: 500px;"  src="ProfileModule/img/<?php echo $photo['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>    
+                                </div>
+                                <?php else: ?>
+                                    <p>No Farm Photos found.</p>
+                                <?php endif; ?> 
+                                <?php if (!empty($profiles)): ?>
+                                <div class="container-fluid text-center">
+                                    <div class="row">
+                                        <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
+                                        <div style="height: 30px;"></div>
+                                        <?php foreach($profiles as $profile) { ?>
+                                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 cardContainer p-0 mx-auto" style="height: 399.17px;width:288.2px;">
+                                                <div class="card border-0 text-left m-0 cardUnderLine" style="height: 399.17px;width:288.2px;padding:4px;">
+                                                    <img style="height: 280px;width:280px;" class="object-fit-cover card-img-top m-0" src="ProfileModule/img/<?php echo $profile['image']; ?>" alt="<?php echo $profile['name']; ?>">
+                                                    <div class="card-body mt-3" style="height: 100px;width:280px; padding:4px;">
+                                                        <h5 class="card-title"><?php echo $profile['name']; ?></h5>
+                                                        <p class="card-text"><?php echo $profile['text']; ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div> 
+                                <?php else: ?>
+                                    <p>No Products found.</p>
+                                <?php endif; ?>
+                    </div>                    
+                </div>
+                <hr>
             </div>
         </div>
-
-        <div class="container-fluid mt-3">
-            <?php if (!empty($advertisements)): ?>
-            <div class="container-fluid text-center">
-                <div style="height: 50px;"></div>
+    <div class="container-fluid mt-3 p-0">
+        <?php if (!empty($advertisements)): ?>
+            <div class="container-fluid text-center p-0">
                 <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
                     <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <?php foreach($advertisements as $key => $advertisement) { ?>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                            <?php } ?>
                         </div>
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
@@ -278,10 +300,9 @@
             </div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
-            <?php endif; ?> 
-            <hr>    
-        </div>
-    <div class="row justify-contents-center align-items-center text-cnter">
+            <?php endif; ?>    
+    </div>
+    <div class="row justify-contents-center align-items-center text-cnter mt-5">
         <div class="container" style="max-width: 70%;">
             <div class="card">
                 <div class="card-header"><h1 class="mt-3 mb-3">Review & Rating</h1></div>
@@ -352,7 +373,6 @@
             <div class="mt-5" id="review_content">
             <?php
             // Query to fetch reviews based on business_id
-            // Modify the SQL query to select only approved reviews
             $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
             $result = mysqli_query($conn, $query);
 
@@ -434,22 +454,17 @@
                     
     </div>
 
-        <div class="sticky-bottom">
-            <button type="button"  class="btn btn-lg bg-white position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <small>Message us!</small>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
-                </svg>
-            </button>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="sticky-bottom">
+        
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="post" action="viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                    <form method="post" action="farm-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
                     <!-- Include business_id field -->
                     <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
                     <div class="modal-body">
@@ -482,6 +497,7 @@
                 </div>
             </div>
     </div>
+</body>
 
 
 <style>

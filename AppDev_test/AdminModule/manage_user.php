@@ -75,7 +75,7 @@ if (isset($_POST['user_id'])) {
         <form method="post" action="">
             <div class="input-group flex-nowrap mb-2" style="max-width: 200px;">
                 <span class="input-group-text" id="addon-wrapping">ID</span>
-                <input type="text" class="form-control" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
+                <input type="text" class="form-control my-0" name="user_id" placeholder="User ID" aria-label="Username" aria-describedby="addon-wrapping">
             </div>
             <input type="submit" class="btn btn-danger" id="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" value="Delete">
         </form>

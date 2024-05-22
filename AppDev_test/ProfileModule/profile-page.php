@@ -538,7 +538,6 @@ if (isset($_POST["upload_advertisement"])) {
 ?>
 <head>
 <style>
-
     .nav-link {
         font-size: 18px;
         font-weight: bold;
@@ -572,9 +571,8 @@ if (isset($_POST["upload_advertisement"])) {
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <body style="background-color: #f6f8fc;">
-<div class="container-fluid mt-5">
     <div class="row">
-        <div class="col-lg-3 col-12 text-center" style="padding: 20px;">
+        <div class="col-lg-3 col-12 text-center overflow-auto" style="background-color:#ffffff; height: 850px;">
             <div>
                 <?php
                   $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
@@ -605,19 +603,13 @@ if (isset($_POST["upload_advertisement"])) {
                 </div>
             </div>
         </div>
-        <div class="col-lg-9 col-12 d-flex align-items-top border 2px solid black bg-white" style="padding:20px;border-radius:50px;">
+        <div class="col-lg-9 col-12 d-flex align-items-top" style="background-color:#f0f2f5;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!------------------------------------- Upload-Product Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('upload', $activePage); ?>" id="v-pills-upload" role="tabpanel" aria-labelledby="v-pills-upload-tab">
-                    <div class="container-fluid" style="margin:auto;">
-                        <div class="container-fluid">
-                            <div class="">
-                                <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Upload a new Product</h1>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex align-items-center mt-5border rounded-5 p-3 bg-white box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-5 border-0 border rounded-5 bg-white box-area p-5">
                         <form class="row w-100 g-3" action="" method="post" enctype="multipart/form-data">
+                            <h1 class="fw-bold">Upload a new Product</h1>
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput name_product" placeholder="" name="name_product" value="">
                                 <label for="floatingInput" style="margin-left: 5px;">Product Name</label>
@@ -658,8 +650,8 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Posting-Management Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('managePosts', $activePage); ?> container-fluid" id="v-pills-manageProduct" role="tabpanel" aria-labelledby="v-pills-manageProduct-tab"> 
-                    <div class="container-fluid bg-white">
-                        <div class="row">
+                    <div class="col-12 d-flex align-items-center mt-5 border-0 border rounded-5 bg-white box-area p-5">
+                        <div class="row d-block align-items-start justify-content-start w-100 mx-auto">
                             <div class="col-md-12">
                                 <ul class="nav nav-underline top-0 start-0" id="nav-tab" role="tablist">
                                     <li class="nav-item">
@@ -671,8 +663,8 @@ if (isset($_POST["upload_advertisement"])) {
                                     <li class="nav-item">
                                         <a class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Advertisement Management</a>                           
                                     </li>
-                                
                                 </ul>
+                                <hr>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                                         <!------------------------------------- Farm Photos Management Module  ---------------------------------->
@@ -689,14 +681,15 @@ if (isset($_POST["upload_advertisement"])) {
                                             <div class="container-fluid"> <!-- Adjust the column width as needed -->
                                                 <div class="table-responsive">
                                                     <!-- Display Table -->  
-                                                    <table class="table table-striped table-borderless overflow-auto">
-                                                        <tr>
-                                                            <td>#</td>
-                                                            <td>Image</td>
-                                                            <td>Created At</td> <!-- Added Created At column -->
-
-                                                            <td>Action</td>
-                                                        </tr>
+                                                    <table class="table table-hover table-striped overflow-auto">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Image</th>
+                                                                <th>Created At</th> <!-- Added Created At column -->
+                                                                <th>Action</th>
+                                                                </tr>
+                                                        </thead>
                                                         <?php
                                                         $i = 1;
                                                         // Modify the SQL query to select products associated with the current user's business profile
@@ -741,17 +734,19 @@ if (isset($_POST["upload_advertisement"])) {
                                             <div class="container-fluid"> <!-- Adjust the column width as needed -->
                                                 <div class="table-responsive">
                                                     <!-- Display Table -->  
-                                                    <table class="table table-striped table-borderless overflow-auto">
-                                                        <tr>
-                                                            <td>#</td>
-                                                            <td>Name</td>
-                                                            <td>Image</td>
-                                                            <td>Information</td>
-                                                            <td>Category</td>
-                                                            <td>Price</td> <!-- Added Price Range column -->
-                                                            <td>Created At</td> <!-- Added Created At column -->
-                                                            <td>Action</td>
-                                                        </tr>
+                                                    <table class="table table-hover table-striped overflow-auto">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Image</th>
+                                                                <th>Information</th>
+                                                                <th>Category</th>
+                                                                <th>Price</th> <!-- Added Price Range column -->
+                                                                <th>Created At</th> <!-- Added Created At column -->
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
                                                         <?php
                                                         $i = 1;
                                                         // Modify the SQL query to select products associated with the current user's business profile
@@ -802,15 +797,17 @@ if (isset($_POST["upload_advertisement"])) {
                                             <div class="container-fluid"> <!-- Adjust the column width as needed -->
                                                 <div class="table-responsive">
                                                     <!-- Display Table -->  
-                                                    <table class="table table-striped table-borderless overflow-auto">
-                                                        <tr>
-                                                            <td>#</td>
-                                                            <td>Name</td>
-                                                            <td>Image</td>
-                                                            <td>Information</td>
-                                                            <td>Created At</td> <!-- Added Created At column -->
-                                                            <td>Action</td>
-                                                        </tr>
+                                                    <table class="table table-hover table-striped overflow-auto">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Image</th>
+                                                                <th>Information</th>
+                                                                <th>Created At</th> <!-- Added Created At column -->
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
                                                         <?php
                                                         $i = 1;
                                                         // Modify the SQL query to select products associated with the current user's business profile
@@ -855,13 +852,9 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Update profile Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('profile', $activePage); ?>" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <div class="container-fluid" style="margin:auto;">
-                        <div class="">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Update your profile</h1>
-                        </div>
-                    </div>
-                    <div class=" col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
+                    <div class=" col-12 d-flex align-items-center mt-3 border-0 border rounded-5 p-3 bg-white box-area p-5">
                         <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+                            <h1 class="fw-bold">Update your profile</h1>
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="name_buss" value="<?php echo $business_name; ?>">
                                 <label for="floatingInput" style="margin-left: 5px;">Business Name</label>
@@ -895,13 +888,9 @@ if (isset($_POST["upload_advertisement"])) {
 
                 <!------------------------------------- Advertisement Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('advertisement', $activePage); ?>" id="v-pills-advertisement" role="tabpanel" aria-labelledby="v-pills-advertisement-tab">
-                    <div class="container-fluid" style="margin:auto;">
-                        <div class="container-fluid">
-                            <h1 class="fw-bold">Post Advertisement</h1>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
+                    <div class="col-12 d-flex align-items-center mt-5 border-0 border rounded-5 bg-white box-area p-5 mx-auto">
                         <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
+                            <h1 class="fw-bold">Post Advertisement</h1>
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="name_advertisement" placeholder="Advertisement Name" name="name_advertisement" value="">
                                 <label for="name_advertisement" style="margin-left: 5px;">Advertisement Name</label>
@@ -923,21 +912,20 @@ if (isset($_POST["upload_advertisement"])) {
                 
                 <!------------------------------------- Upload Farm Photos Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('photos', $activePage); ?>" id="v-pills-photos" role="tabpanel" aria-labelledby="v-pills-photos-tab">
-                    <div class="container-fluid" style="margin:auto;">
-                        <div class="container-fluid">
-                            <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 50px;color:black;font-weight: bold;">Farm Photos</h1>
+                    <div class="col-12 d-flex align-items-center mt-5 border border-0 rounded-5 bg-white box-area p-5">
+                        <div class="row d-block align-items-start justify-content-start w-100 mx-auto">
+                            <h1 class="fw-bold">Farm Photos</h1>
+                            <hr>
+                            <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
+                                <div class="col-12">
+                                    <label for="image_farm" class="form-label" style="margin-left: 5px;">Farm Photos</label>
+                                    <input class="form-control" type="file" id="image_farm" name="image_farm" accept=".jpg, .jpeg, .png" value="">
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-lg  w-100 fs-6" type="submit" name="upload_photos" style="background-color: #90EE90;">Upload</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="col-12 d-flex align-items-center mt-3 border rounded-5 p-3 bg-white box-area p-5">
-                        <form class="row g-3 w-100" action="" method="post" enctype="multipart/form-data">
-                            <div class="col-12">
-                                <label for="image_farm" class="form-label" style="margin-left: 5px;">Farm Photos</label>
-                                <input class="form-control" type="file" id="image_farm" name="image_farm" accept=".jpg, .jpeg, .png" value="">
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-lg  w-100 fs-6" type="submit" name="upload_photos" style="background-color: #90EE90;">Upload</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
                 
@@ -966,150 +954,152 @@ if (isset($_POST["upload_advertisement"])) {
                    }
                 </style>
                 <div class="tab-pane fade <?php echo isShowActive('messages', $activePage); ?>" id="v-pills-message" role="tabpanel" aria-labelledby="v-pills-message-tab">                               
-                    <?php if (!empty($msgRows)): ?>
-                        <div class="row d-block align-items-start justify-content-start ">
-                            <h1>Messages</h1>
-                            <?php foreach ($msgRows as $index => $msgRow): ?>
-                                <div class="container-fluid" data-bs-toggle="modal" data-bs-target="#viewMessageModal<?php echo $index ?>">
-                                    <div class="row g-0">
-                                        <div class="card w-100 p-0 mx-1 my-1 border-0">
-                                            <div class="card-body w-100 p-2 border-bottom my-0">
-                                                <span class="p-0 overflow-hidden"><?php echo $msgRow['sent_by'] ?></span> 
-                                                <span class="card-text overflow-hidden"><?php echo $msgRow['message'] ?>.</span> 
-                                                <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
+                    <div class="col-12 d-flex align-items-center border mt-5 border-0 rounded-5 p-3 bg-white box-area">
+                        <?php if (!empty($msgRows)): ?>
+                            <div class="row d-block align-items-start justify-content-start w-100 mx-auto">
+                                <h1 class="fw-bold">Messages</h1>
+                                <?php foreach ($msgRows as $index => $msgRow): ?>
+                                    <div class="container-fluid" data-bs-toggle="modal" data-bs-target="#viewMessageModal<?php echo $index ?>">
+                                        <div class="row g-0">
+                                            <div class="card w-100 p-0 mx-1 my-1 border-0">
+                                                <div class="card-body w-100 p-2 border-bottom my-0">
+                                                    <span class="p-0 overflow-hidden"><?php echo $msgRow['sent_by'] ?></span> 
+                                                    <span class="card-text overflow-hidden"><?php echo $msgRow['message'] ?>.</span> 
+                                                    <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- view message modal -->
-                                <div class="modal fade" id="viewMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="viewMessageModalLabel<?php echo $index ?>" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="viewMessageModalLabel<?php echo $index ?>">Message Details</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="mb-3">
-                                                    <label for="staticEmail" class="col-form-label">Sent By:</label>
-                                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['sent_by'] ?>">
+                                    <!-- view message modal -->
+                                    <div class="modal fade" id="viewMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="viewMessageModalLabel<?php echo $index ?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="viewMessageModalLabel<?php echo $index ?>">Message Details</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <label for="message-text" class="col-form-label">Message:</label>
-                                                    <textarea readonly class="form-control" id="message-text"><?php echo $msgRow['message'] ?></textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="message-time" class="col-form-label">Sent At:</label>
-                                                    <input type="text" readonly class="form-control-plaintext" id="message-time" value="<?php echo $msgRow['created_at'] ?>">
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMessageModal<?php echo $index ?>">Reply</button>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- reply message modal -->
-                                <div class="modal fade" id="replyMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="replyMessageModalLabel<?php echo $index ?>" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">New message</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form method="post" action="send.php" enctype="multipart/form-data">
                                                 <div class="modal-body">
                                                     <div class="mb-3">
-                                                        <label for="recipientEmail<?php echo $index ?>" class="col-form-label">Recipient:</label>
-                                                        <input type="text" name="to_sent" readonly class="form-control-plaintext" id="recipientEmail<?php echo $index ?>" value="<?php echo $msgRow['sent_by'] ?>">
-                                                    </div>
-
-                                                    <?php
-                                                    $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
-                                                    while ($row = mysqli_fetch_assoc($res)) {
-                                                    ?>
-                                                    <div class="mb-3">
-                                                        <label for="senderEmail<?php echo $index ?>" class="col-form-label">Your email:</label>
-                                                        <input type="text" name="my_email" readonly class="form-control-plaintext" id="senderEmail<?php echo $index ?>" value="<?php echo $row['email'] ?>">
-                                                        <input type="hidden" name="my_number" value="<?php echo $row['contact_number'] ?>">
-                                                    </div>
-                                                    <?php } ?>
-                                                    <div class="row">
-                                                        <small class="text-red mb-2" style=" color:red"></small>
+                                                        <label for="staticEmail" class="col-form-label">Sent By:</label>
+                                                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['sent_by'] ?>">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="replyMessageText<?php echo $index ?>" class="col-form-label">Message:</label>
-                                                        <textarea name="message" class="form-control" id="replyMessageText<?php echo $index ?>"></textarea>
+                                                        <label for="message-text" class="col-form-label">Message:</label>
+                                                        <textarea readonly class="form-control" id="message-text"><?php echo $msgRow['message'] ?></textarea>
                                                     </div>
-                                                    <div class="row">
-                                                        <small class="text-red mb-2 " style=" color:red"></small>
+                                                    <div class="mb-3">
+                                                        <label for="message-time" class="col-form-label">Sent At:</label>
+                                                        <input type="text" readonly class="form-control-plaintext" id="message-time" value="<?php echo $msgRow['created_at'] ?>">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMessageModal<?php echo $index ?>">Reply</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php else: ?>
-                        <p>No messages found.</p>
-                    <?php endif; ?>
+                                    <!-- reply message modal -->
+                                    <div class="modal fade" id="replyMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="replyMessageModalLabel<?php echo $index ?>" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">New message</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form method="post" action="send.php" enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="recipientEmail<?php echo $index ?>" class="col-form-label">Recipient:</label>
+                                                            <input type="text" name="to_sent" readonly class="form-control-plaintext" id="recipientEmail<?php echo $index ?>" value="<?php echo $msgRow['sent_by'] ?>">
+                                                        </div>
+
+                                                        <?php
+                                                        $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
+                                                        while ($row = mysqli_fetch_assoc($res)) {
+                                                        ?>
+                                                        <div class="mb-3">
+                                                            <label for="senderEmail<?php echo $index ?>" class="col-form-label">Your email:</label>
+                                                            <input type="text" name="my_email" readonly class="form-control-plaintext" id="senderEmail<?php echo $index ?>" value="<?php echo $row['email'] ?>">
+                                                            <input type="hidden" name="my_number" value="<?php echo $row['contact_number'] ?>">
+                                                        </div>
+                                                        <?php } ?>
+                                                        <div class="row">
+                                                            <small class="text-red mb-2" style=" color:red"></small>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="replyMessageText<?php echo $index ?>" class="col-form-label">Message:</label>
+                                                            <textarea name="message" class="form-control" id="replyMessageText<?php echo $index ?>"></textarea>
+                                                        </div>
+                                                        <div class="row">
+                                                            <small class="text-red mb-2 " style=" color:red"></small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <p>No messages found.</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
 
                 <!------------------------------------- AccountDetails Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('subDetails', $activePage); ?>" id="v-pills-accDeets" role="tabpanel" aria-labelledby="v-pills-accDeets-tab">
-                    <div class="container mt-5">
-                        <?php
-                            include('./account-info.php');
-                        ?>    
-                    </div>
+                    <?php
+                        include('./account-info.php');
+                    ?>    
                 </div>
 
                 <!------------------------------------- Review and Rating Module  ---------------------------------->
                 <div class="tab-pane fade <?php echo isShowActive('ratings', $activePage); ?>" id="v-pills-ratings" role="tabpanel" aria-labelledby="v-pills-ratings-tab">
-                    <div class="container mt-5">
-                        <h2>Pending Reviews</h2>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>User Name</th>
-                                    <th>Review</th>
-                                    <th>Star Ratings</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1; foreach($pending_reviews as $review): ?>
+                    <div class="container-fluid mt-5 d-flex align-items-center mt-3 border border-0 rounded-5 p-3 bg-white box-area">
+                        <div class="row w-100 mx-auto">
+                            <h1 class="fw-bold">Pending Reviews</h1>
+                            <hr>
+                            <table class="table table-striped table-hover">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $i++; ?></td>
-                                        <td><?php echo $review['user_name']; ?></td>
-                                        <td><?php echo $review['user_review']; ?></td>
-                                        <td><?php echo $review['user_rating']; ?></td>
-                                        <td>
-                                            <form method="post">
-                                                <input type="hidden" name="review_id" value="<?php echo $review['review_id']; ?>">
-                                                <button type="submit" name="action" value="approve" class="btn btn-success mb-2">Approve</button>
-                                                <button type="submit" name="action" value="deny" class="btn btn-danger mb-2">Deny</button>
-                                            </form>
-                                        </td>
+                                        <th>#</th>
+                                        <th>User Name</th>
+                                        <th>Review</th>
+                                        <th>Star Ratings</th>
+                                        <th>Action</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>    
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1; foreach($pending_reviews as $review): ?>
+                                        <tr>
+                                            <td><?php echo $i++; ?></td>
+                                            <td><?php echo $review['user_name']; ?></td>
+                                            <td><?php echo $review['user_review']; ?></td>
+                                            <td><?php echo $review['user_rating']; ?></td>
+                                            <td>
+                                                <form method="post">
+                                                    <input type="hidden" name="review_id" value="<?php echo $review['review_id']; ?>">
+                                                    <button type="submit" name="action" value="approve" class="btn btn-success mb-2">Approve</button>
+                                                    <button type="submit" name="action" value="deny" class="btn btn-danger mb-2">Deny</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>    
                     </div>
                 </div>
                 
             </div>
         </div>
     </div>
-</div>
-                    </body>
+</body>
 <?php
     include('../navbars/footer.php')
 ?>

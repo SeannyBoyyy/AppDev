@@ -116,6 +116,16 @@ if(isset($_POST['submit'])){
 <head>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <style>
+    .custom-login-btn {
+    background-color: transparent; /* Default background */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+    }
+
+    .custom-login-btn:hover {
+    background-color: #21d192; /* Hover background color */
+    filter: brightness(120%);
+    }
+
     .ui {
       background: transparent;
       border-radius: 15px;
@@ -154,7 +164,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center min-vh-80" style="margin-top: 100px; max-width: 500px; width: 100%;">
-  <div class="row border rounded-5 p-3 shadow box-area w-100 mb-5" style="width: 600px; margin-left: auto; margin-right: auto;background-color: rgba(255, 255, 255, 0.6);">
+  <div class="row border rounded-5 border-0 p-3 shadow box-area w-100 mb-5" style="width: 600px; margin-left: auto; margin-right: auto;background-color: rgba(255, 255, 255, 0.6);">
     <div class="ui">
       <div class="col-md-6 right-box w-100 " style="margin-top:30px;">
         <form class="row align-items-center" method="post" action="login-page.php" autocomplete="off">
@@ -176,8 +186,9 @@ if(isset($_POST['submit'])){
             <small class="mb-2" style="color:red;"><?php echo $errors['password'] ?></small>
           </div>
           <div class="input-group mb-3">
-            <button class="btn btn-lg  w-100 fs-6" name="submit" style="background-color: transparent; border:2px solid black; border-radius: 15px;margin-top:10px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
-          <div class="row text-center">
+            <button class="btn btn-lg  w-100 fs-6 custom-login-btn" name="submit" style="border-radius: 15px;" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</button>
+          </div>
+            <div class="row text-center">
             <small style="color: blue;">Don't have account? <a href="./register-page.php">Sign Up</a></small>
           </div>
         </form>

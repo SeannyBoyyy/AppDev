@@ -5,9 +5,9 @@
     $result = $stmt->get_result();
     $subscr_data = $result->fetch_assoc();
 ?>
-        <div class="justify-content-center align-items-center text-center">
-            <div class="col-12">
-                <h4>Payment Information</h4>
+        <div class="col-12 d-flex align-items-center mt-5 border border-0 rounded-5 bg-white box-area p-5 mx-auto">
+            <div class="row d-block align-items-center justify-content-center w-100 mx-auto">
+                <h2>Payment Information</h2>
                     <ul class="list-group text-center">
                         <li class="list-group-item"><b>Reference Number:</b> #<?php echo $subscr_data['id']; ?></li>
                         <li class="list-group-item"><b>Subscription ID:</b> <?php echo $subscr_data['paypal_subscr_id']; ?></li>
@@ -16,7 +16,7 @@
                         <li class="list-group-item"><b>Status:</b> <?php echo $subscr_data['status']; ?></li>
                     </ul>
 
-                <h4>Subscription Information</h4>
+                <h4 class="text-center">Subscription Information</h4>
                     <ul class="list-group text-center">
                         <li class="list-group-item"><b>Plan Name:</b> <?php echo $subscr_data['plan_name']; ?></li>
                         <li class="list-group-item"><b>Amount:</b> <?php echo $subscr_data['plan_price'] . ' ' . $subscr_data['currency_code']; ?></li>
@@ -25,16 +25,16 @@
                         <li class="list-group-item"><b>Period End:</b> <?php echo $subscr_data['valid_to']; ?></li>
                     </ul>
 
-                <h4>Payer Information</h4>
+                <h4 class="text-center">Subscriber Information</h4>
                     <ul class="list-group text-center">
                         <li class="list-group-item"><b>Name:</b> <?php echo $subscr_data['subscriber_name']; ?></li>
                         <li class="list-group-item"><b>Email:</b> <?php echo $subscr_data['subscriber_email']; ?></li>
                     </ul>
+                    <button type="button" class="btn btn-lg mt-3 btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Cancel Subscription
+                    </button>
             </div>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-lg mt-3 btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Cancel Subscription
-            </button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -37,41 +37,85 @@ if ($msgCount > 0) {
     }
 }
 ?>
-
-<?php if (!empty($msgRows)): ?>
-<div class="middle">
-    <div class="container p-3">
-        <div class="row d-flex align-items-start justify-content-start ">
-            <h1>Messages</h1>
-            <br><br><br><br>
+<style>
+    /* Set width for the first span */
+    .card-body span:first-child {
+        width: 250px; 
+        display: inline-flex;
+        margin-right: 100px;
+    }
+    
+    
+    .card-body span:nth-child(2) {
+        display: inline-flex; 
+        text-align: center;
+        width: 250px;
+    }
+    .card-body{
+        transition: box-shadow 0.3s ease;
+    }
+    .card-body:hover{
+    color: black;
+    transform: translateY(-5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+</style>
+<div class="col-12 d-flex align-items-center border mt-5 border-0 rounded-5 p-3 bg-white box-area">
+    <?php if (!empty($msgRows)): ?>
+        <div class="row d-block align-items-start justify-content-start w-100 mx-auto">
+            <h1 class="fw-bold">Messages</h1>
             <?php foreach ($msgRows as $index => $msgRow): ?>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-3">
-                    <div class="card text-center">
-                        <div class="card-header">
-                            <?php echo $msgRow['email']; ?>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-text"><?php echo $msgRow['subject']; ?>.</h4>
-                            <p class="card-text"><?php echo $msgRow['message']; ?>.</p>
-                            <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $index; ?>">
-                                <small>Message Back!</small>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                                    <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="card-footer text-body-secondary">
-                            <?php echo $msgRow['created_at']; ?>
+                <div class="container-fluid" data-bs-toggle="modal" data-bs-target="#viewMessageModal<?php echo $index ?>">
+                    <div class="row g-0">
+                        <div class="card w-100 p-0 mx-1 my-1 border-0">
+                            <div class="card-body w-100 p-2 border-bottom my-0">
+                                <span class="p-0 overflow-hidden"><?php echo $msgRow['email'] ?></span> 
+                                <span class="card-text overflow-hidden"><?php echo $msgRow['subject'] ?>.</span> 
+                                <span class="card-text overflow-hidden"><?php echo $msgRow['message'] ?>.</span> 
+                                <span class="float-end"><?php echo $msgRow['created_at'] ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- modal -->
-                <div class="modal " id="exampleModal<?php echo $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- view message modal -->
+                <div class="modal fade" id="viewMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="viewMessageModalLabel<?php echo $index ?>" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                <h1 class="modal-title fs-5" id="viewMessageModalLabel<?php echo $index ?>">Message Details</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="staticEmail" class="col-form-label">Sent By:</label>
+                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['email'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="msgSubject" class="col-form-label">Sent By:</label>
+                                    <input type="text" readonly class="form-control-plaintext" id="msgSubject" value="<?php echo $msgRow['subject'] ?>">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea readonly class="form-control" id="message-text"><?php echo $msgRow['message'] ?></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message-time" class="col-form-label">Sent At:</label>
+                                    <input type="text" readonly class="form-control-plaintext" id="message-time" value="<?php echo $msgRow['created_at'] ?>">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMessageModal<?php echo $index ?>">Reply</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- reply message modal -->
+                <div class="modal fade" id="replyMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="replyMessageModalLabel<?php echo $index ?>" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">New message</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form method="post" action="send.php" enctype="multipart/form-data">
@@ -107,11 +151,9 @@ if ($msgCount > 0) {
                         </div>
                     </div>
                 </div>
-            
             <?php endforeach; ?>
         </div>
-    </div>
+    <?php else: ?>
+        <p>No messages found.</p>
+    <?php endif; ?>
 </div>
-<?php else: ?>
-    <p>No messages found.</p>
-<?php endif; ?>

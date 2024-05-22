@@ -69,9 +69,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
-<div class="container-fluid mt-5">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4 col-12 text-center" style="padding: 20px;">
+        <div class="col-lg-3 col-12 text-center bg-white" style="padding: 20px; ">
             <div>
                 <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="../ProfileModule/img/AdminIcon.png">
             </div>
@@ -97,7 +97,7 @@
             </div>
         </div>
         <!-- Content column -->
-        <div class="col-lg-8 col-12 border solid black p-4" style="border-radius:50px;">
+        <div class="col-lg-9 col-12" style="background-color:#f0f2f5;">
             <div class="tab-content container-fluid" id="v-pills-tabContent">
                 <!-- Dashboard content -->
                 <div class="tab-pane fade <?php echo isShowActive('dashboard', $activePage); ?>" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">

@@ -150,7 +150,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <style>
+</head>
+<!-- Your HTML code to display business profile and posting modules -->
+<style>
         .card-body h5 {
         font-weight: bold;
         font-size: 20px;
@@ -158,142 +160,151 @@
         .card-body h5 i {
         margin-right: 10px;
         }
+        .cardUnderLine{
+            transition: box-shadow 0.3s ease;
+        }
+       .cardUnderLine:hover{
+            text-decoration: underline;
+            transform: translateY(-5px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+       }
+       .msgBtn{
+        background-color: #e4e6eb;
+        font-size: 15px;
+       }
+       .msgBtn:hover{
+        filter: brightness(90%);
+       }
     </style>
-</head>
-<!-- Your HTML code to display business profile and posting modules -->
-<div class="container-fluid">
-    <div class="row justify-contents-center text-cnter">
-        <div class="col-lg-4 col-12 text-center mb-3 mt-3">
-            <div>
-                <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
-            </div>
-            <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name; ?></h3>
-            <div class="card text-center mb-3 border-0">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
-                    <p class="card-text"><?php 
-                        echo $business_bio; 
-                    ?></p>
-                    <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>Address</h5>
-                    <p class="card-text"><?php
-                        echo $business_address
-                    ?></p>
-                    <h5 class="card-title"><i class="fas fa-envelope"></i>Email</h5>
-                    <p class="card-text"><?php
-                        echo $business_email
-                    ?></p>
-                    <h5 class="card-title"><i class="fas fa-phone"></i>Contact Number</h5>
-                    <p class="card-text"><?php
-                        echo $business_contact_number
-                    ?></p>
+<body style="background-color: #f0f2f5;">
+    <div class="container-fluid">
+        <div class="row justify-contents-center text-center">
+            <div class="col-lg-3 col-12 text-center overflow-auto bg-white p-0 m-0">
+                <div>
+                    <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
                 </div>
-            </div>
-            <div class="col-12">
-                <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                 width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>    
-
-        <div class="col-lg-8 col-12 mt-3">
-            <?php if (!empty($photos)): ?>
-            <div class="container-fluid text-center">
-            <div style="height: 50px;"></div>
-                <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-image p-4"></i>Farm Photos</h1><div style="height: 30px;"></div>
-                <div class="row">
-                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
+                <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building"></i><?php echo $business_name; ?></h3>
+                <button type="button"  class="msgBtn btn-lg border-0 px-5" data-bs-toggle="modal" data-bs-target="#exampleModal">  <small>Message</small> 
+                </button>
+                <div class="card text-center mb-3 shadow-none bg-transparent">
+                    <div class="card-body text-dark">
+                        <h5 class="card-title"><i class="fas fa-user"></i>Bio</h5>
+                        <p class="card-text"><?php 
+                            echo $business_bio; 
+                        ?></p>
+                        <h5 class="card-title"><i class="fas fa-map-marker-alt"></i>Address</h5>
+                        <p class="card-text"><?php
+                            echo $business_address
+                        ?></p>
+                        <h5 class="card-title"><i class="fas fa-envelope"></i>Email</h5>
+                        <p class="card-text"><?php
+                            echo $business_email
+                        ?></p>
+                        <h5 class="card-title"><i class="fas fa-phone"></i>Contact Number</h5>
+                        <p class="card-text"><?php
+                            echo $business_contact_number
+                        ?></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>    
+                        
+            <div class="col-lg-9 col-12 p-0 border-bottom">
+                <?php if (!empty($photos)): ?>
+                    <div class="container-fluid text-center p-0">
+                    <div class="row">
+                        <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+                        <div class="carousel-indicators">
                             <?php foreach($photos as $key => $photo) { ?>
-                                <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                    <div class="">
-                                        <div class="">
-                                            <img style="height: 400px; max-width: 850px" src="ProfileModule/img/<?php echo $photo['image']; ?>" class="img-fluid object-fit-contain">
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                            <?php } ?>
+                        </div>
+                            <div class="carousel-inner">
+                                <?php foreach($photos as $key => $photo) { ?>
+                                    <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
+                                        <img style="height: 500px;"  src="ProfileModule/img/<?php echo $photo['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                                    </div>
+                                <?php } ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>    
+                    </div>
+                <?php else: ?>
+                    <p>No Farm Photos found.</p>
+                <?php endif; ?> 
+                <?php if (!empty($profiles)): ?>
+                    <div class="container-fluid text-center">
+                        <div class="row">
+                            <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
+                            <?php foreach($profiles as $profile) { ?>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 cardContainer p-0 mx-auto" style="height: 399.17px;width:288.2px;">
+                                    <div class="card border-0 text-left m-0 cardUnderLine" style="height: 399.17px;width:288.2px;padding:4px;">
+                                        <img style="height: 280px;width:280px;" class="object-fit-cover card-img-top m-0" src="ProfileModule/img/<?php echo $profile['image']; ?>" alt="<?php echo $profile['name']; ?>">
+                                        <div class="card-body mt-3" style="height: 100px;width:280px; padding:4px;">
+                                            <h5 class="card-title"><?php echo $profile['name']; ?></h5>
+                                            <p class="card-text"><?php echo $profile['text']; ?></p>
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev" style="width:70px;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next" style="width:70px;margin-right:80px;">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>    
-                    </div>
-                    
-                </div>    
-            </div>
-            <?php else: ?>
-                <p>No Farm Photos found.</p>
-            <?php endif; ?>                    
-
-            <?php if (!empty($profiles)): ?>
-                <div class="container-fluid text-center">
-                    <div class="row">
-                        <div style="height: 50px;"></div>
-                        <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
-                        <div style="height: 30px;"></div>
-                        <?php foreach($profiles as $profile) { ?>
-                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
-                                <div class="card border-0 rounded shadow">
-                                    <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image']; ?>" class="card-img-top" alt="<?php echo $profile['name']; ?>">
-                                    <div class="card-body" style="height: 150px;">
-                                        <h5 class="card-title"><?php echo $profile['name']; ?></h5>
-                                        <p class="card-text"><?php echo $profile['text']; ?></p>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                </div> 
-            <?php else: ?>
-                <p>No Products found.</p>
-            <?php endif; ?>        
-
-            <?php if (!empty($advertisements)): ?>
-            <div class="container-fluid text-center">
-            <div style="height: 50px;"></div>
+                    </div> 
+                <?php else: ?>
+                    <p>No Products found.</p>
+                <?php endif; ?>
+            </div>                    
+        </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-3 p-0">
+        <?php if (!empty($advertisements)): ?>
+            <div class="container-fluid text-center p-0">
                 <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
-                    <div id="carouselExampleAutoplaying2" class="carousel carousel-info slide" data-bs-ride="carousel"style="width:1300px;" >
+                    <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+                        <div class="carousel-indicators">
+                            <?php foreach($advertisements as $key => $advertisement) { ?>
+                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                            <?php } ?>
+                        </div>
                         <div class="carousel-inner">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <img style="height: 300px; width: 300px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="img-fluid object-fit-contain">
-                                        </div>
-                                        <div class="col-md-6 col-12 d-flex justify-content-center align-items-center">
-                                            <div class="col-12 col-md-6 text-center">
-                                                <h1 style="color: black;"><?php echo $advertisement['name']; ?></h1>
-                                                <p class="text-center" style="color: black;"><?php echo $advertisement['text']; ?></p>
-                                            </div>
-                                        </div>
+                                    <img style="height: 500px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                                    <div class="carousel-caption align-items-start justify-content-start">
+                                        <h1 style="color:black;"><?php echo $advertisement['name']; ?></h1>
+                                        <p class="" style="color: black;"><?php echo $advertisement['text']; ?></p>
                                     </div>
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev" style="width:70px;">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="next" style="width:70px;margin-right:80px;">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
-                        </button>    
-                    </div>        
-                </div>    
-            </div><div style="height: 100px;"></div>
+                        </button>
+                    </div>    
+                </div>
+            </div>
             <?php else: ?>
                 <p>No Advertisement found.</p>
-            <?php endif; ?> 
-
-        </div>
+            <?php endif; ?>    
     </div>
-
-    <div class="row justify-contents-center align-items-center text-cnter">
+    <div class="row justify-contents-center align-items-center text-cnter mt-5">
         <div class="container" style="max-width: 70%;">
             <div class="card">
                 <div class="card-header"><h1 class="mt-3 mb-3">Review & Rating</h1></div>
@@ -446,223 +457,220 @@
     </div>
 
     <div class="sticky-bottom">
-        <button type="button"  class="btn btn-lg bg-white position-absolute bottom-0 end-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <small>Message us!</small>
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#90EE90" class="bi bi-chat-fill" viewBox="0 0 16 16">
-                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
-            </svg>
-        </button>
+        
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form method="post" action="admin-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
-                <!-- Include business_id field -->
-                <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="staticEmail" class="col-form-label">Recipient:</label>
-                        <input type="text" type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $business_name ?>">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form method="post" action="farm-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                    <!-- Include business_id field -->
+                    <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="staticEmail" class="col-form-label">Recipient:</label>
+                            <input type="text" type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $business_name ?>">
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Your email:</label>
-                        <input type="text" name="contactDeets" class="form-control" value="<?php echo $contactDeets ?>">
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Your email:</label>
+                            <input type="text" name="contactDeets" class="form-control" value="<?php echo $contactDeets ?>">
+                        </div>
+                        <div class="row">
+                            <small class="text-red mb-2 " style=" color:red"><?php echo $errors['deets'] ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea name="MSG" class="form-control" id="message-text"></textarea>
+                        </div>
+                        <div class="row">
+                            <small class="text-red mb-2 " style=" color:red"><?php echo $errors['msg'] ?></small>
+                        </div>
                     </div>
-                    <div class="row">
-                        <small class="text-red mb-2 " style=" color:red"><?php echo $errors['deets'] ?></small>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Message:</label>
-                        <textarea name="MSG" class="form-control" id="message-text"></textarea>
+                    </form>
                     </div>
-                    <div class="row">
-                        <small class="text-red mb-2 " style=" color:red"><?php echo $errors['msg'] ?></small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
-                </div>
-                </form>
                 </div>
             </div>
-        </div>
-</div>
+    </div>
+</body>
+
 
 
 <style>
-.progress-label-left
-{
-    float: left;
-    margin-right: 0.5em;
-    line-height: 1em;
-}
-.progress-label-right
-{
-    float: right;
-    margin-left: 0.3em;
-    line-height: 1em;
-}
-.star-light
-{
-	color:#e9ecef;
-}
+    .progress-label-left
+    {
+        float: left;
+        margin-right: 0.5em;
+        line-height: 1em;
+    }
+    .progress-label-right
+    {
+        float: right;
+        margin-left: 0.3em;
+        line-height: 1em;
+    }
+    .star-light
+    {
+        color:#e9ecef;
+    }
 </style>
 
 <script>
 
-$(document).ready(function(){
+    $(document).ready(function(){
 
-	var rating_data = 0;
+        var rating_data = 0;
 
-    $('#add_review').click(function(){
+        $('#add_review').click(function(){
 
-        $('#review_modal').modal('show');
+            $('#review_modal').modal('show');
 
-    });
+        });
 
-    $(document).on('mouseenter', '.submit_star', function(){
+        $(document).on('mouseenter', '.submit_star', function(){
 
-        var rating = $(this).data('rating');
+            var rating = $(this).data('rating');
 
-        reset_background();
+            reset_background();
 
-        for(var count = 1; count <= rating; count++)
+            for(var count = 1; count <= rating; count++)
+            {
+
+                $('#submit_star_'+count).addClass('text-warning');
+
+            }
+
+        });
+
+        function reset_background()
         {
+            for(var count = 1; count <= 5; count++)
+            {
 
-            $('#submit_star_'+count).addClass('text-warning');
+                $('#submit_star_'+count).addClass('star-light');
 
+                $('#submit_star_'+count).removeClass('text-warning');
+
+            }
         }
 
-    });
+        $(document).on('mouseleave', '.submit_star', function(){
 
-    function reset_background()
-    {
-        for(var count = 1; count <= 5; count++)
-        {
+            reset_background();
 
-            $('#submit_star_'+count).addClass('star-light');
+            for(var count = 1; count <= rating_data; count++)
+            {
 
-            $('#submit_star_'+count).removeClass('text-warning');
+                $('#submit_star_'+count).removeClass('star-light');
 
-        }
-    }
+                $('#submit_star_'+count).addClass('text-warning');
+            }
 
-    $(document).on('mouseleave', '.submit_star', function(){
+        });
 
-        reset_background();
+        $(document).on('click', '.submit_star', function(){
 
-        for(var count = 1; count <= rating_data; count++)
-        {
+            rating_data = $(this).data('rating');
 
-            $('#submit_star_'+count).removeClass('star-light');
+        });
 
-            $('#submit_star_'+count).addClass('text-warning');
-        }
+        $('#save_review').click(function(){
 
-    });
+            var user_name = $('#user_name').val();
+            var business_id = "<?php echo $business_id; ?>";
+            var user_review = $('#user_review').val();
 
-    $(document).on('click', '.submit_star', function(){
+            if(user_name == '' || user_review == '')
+            {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Please fill in all the fields.',
+                    icon: 'error'
+                });
+                return false;
+            }
+            else
+            {
+                $.ajax({
+                    url:"submit_rating.php?business_id=<?php echo $business_id;?>",
+                    method:"POST",
+                    data:{rating_data:rating_data, user_name:user_name, business_id:business_id, user_review:user_review, status:'PENDING'}, // Add status field
+                    success:function(data)
+                    {
+                        $('#review_modal').modal('hide');
 
-        rating_data = $(this).data('rating');
+                        load_rating_data();
 
-    });
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Your Review & Rating Successfully Submitted!',
+                            icon: 'success'
+                        }).then(function() {
+                            window.location = 'farm-viewFarm.php?business_id=<?php echo $business_id;?>';
+                        });
+                    }
+                })
+            }
 
-    $('#save_review').click(function(){
+        });
 
-        var user_name = $('#user_name').val();
-        var business_id = "<?php echo $business_id; ?>";
-        var user_review = $('#user_review').val();
+        load_rating_data();
 
-        if(user_name == '' || user_review == '')
-        {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Please fill in all the fields.',
-                icon: 'error'
-            });
-            return false;
-        }
-        else
+        function load_rating_data()
         {
             $.ajax({
                 url:"submit_rating.php?business_id=<?php echo $business_id;?>",
                 method:"POST",
-                data:{rating_data:rating_data, user_name:user_name, business_id:business_id, user_review:user_review, status:'PENDING'}, // Add status field
-                success:function(data)
+                data:{action:'load_data', business_id: '<?php echo $business_id; ?>'},
+                dataType:"JSON",
+                success:function(data)  
                 {
-                    $('#review_modal').modal('hide');
+                    $('#average_rating').text(data.average_rating);
+                    $('#total_review').text(data.total_review);
 
-                    load_rating_data();
+                    var count_star = 0;
 
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Your Review & Rating Successfully Submitted!',
-                        icon: 'success'
-                    }).then(function() {
-                        window.location = 'admin-viewFarm.php?business_id=<?php echo $business_id;?>';
+                    $('.main_star').each(function(){
+                        count_star++;
+                        if(Math.ceil(data.average_rating) >= count_star)
+                        {
+                            $(this).addClass('text-warning');
+                            $(this).addClass('star-light');
+                        }
                     });
+
+                    $('#total_five_star_review').text(data.five_star_review);
+
+                    $('#total_four_star_review').text(data.four_star_review);
+
+                    $('#total_three_star_review').text(data.three_star_review);
+
+                    $('#total_two_star_review').text(data.two_star_review);
+
+                    $('#total_one_star_review').text(data.one_star_review);
+
+                    $('#five_star_progress').css('width', (data.five_star_review/data.total_review) * 100 + '%');
+
+                    $('#four_star_progress').css('width', (data.four_star_review/data.total_review) * 100 + '%');
+
+                    $('#three_star_progress').css('width', (data.three_star_review/data.total_review) * 100 + '%');
+
+                    $('#two_star_progress').css('width', (data.two_star_review/data.total_review) * 100 + '%');
+
+                    $('#one_star_progress').css('width', (data.one_star_review/data.total_review) * 100 + '%');
+
                 }
             })
         }
 
     });
-
-    load_rating_data();
-
-    function load_rating_data()
-    {
-        $.ajax({
-            url:"submit_rating.php?business_id=<?php echo $business_id;?>",
-            method:"POST",
-            data:{action:'load_data', business_id: '<?php echo $business_id; ?>'},
-            dataType:"JSON",
-            success:function(data)  
-            {
-                $('#average_rating').text(data.average_rating);
-                $('#total_review').text(data.total_review);
-
-                var count_star = 0;
-
-                $('.main_star').each(function(){
-                    count_star++;
-                    if(Math.ceil(data.average_rating) >= count_star)
-                    {
-                        $(this).addClass('text-warning');
-                        $(this).addClass('star-light');
-                    }
-                });
-
-                $('#total_five_star_review').text(data.five_star_review);
-
-                $('#total_four_star_review').text(data.four_star_review);
-
-                $('#total_three_star_review').text(data.three_star_review);
-
-                $('#total_two_star_review').text(data.two_star_review);
-
-                $('#total_one_star_review').text(data.one_star_review);
-
-                $('#five_star_progress').css('width', (data.five_star_review/data.total_review) * 100 + '%');
-
-                $('#four_star_progress').css('width', (data.four_star_review/data.total_review) * 100 + '%');
-
-                $('#three_star_progress').css('width', (data.three_star_review/data.total_review) * 100 + '%');
-
-                $('#two_star_progress').css('width', (data.two_star_review/data.total_review) * 100 + '%');
-
-                $('#one_star_progress').css('width', (data.one_star_review/data.total_review) * 100 + '%');
-
-            }
-        })
-    }
-
-});
 
 </script>
 

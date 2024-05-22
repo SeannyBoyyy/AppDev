@@ -61,7 +61,7 @@ $total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscribe
         }
     </style>
 
-<div class="body">
+
 
 <div class="container mt-5">
     <div class="border 2px solid black p-5" style="border-radius:20px;background-color:rgba(192,192,192, 0.6)">
