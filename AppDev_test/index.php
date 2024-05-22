@@ -40,7 +40,11 @@
     }
     .cardHover:hover{
         transform: translateY(-5px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .nav-link{
+        color: white;
+        background-color: #21D192;
     }
 </style>
 </head>
@@ -106,7 +110,7 @@
                     $firstCategory = true;
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link <?php if($firstCategory) echo 'active'; ?>" id="<?php echo $categoryRow['category']; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $categoryRow['category']; ?>" type="button" role="tab" aria-controls="<?php echo $categoryRow['category']; ?>" aria-selected="<?php echo $firstCategory ? 'true' : 'false'; ?>"><?php echo $categoryRow['category']; ?></button>
+                            <button class="categoryButton nav-link <?php if($firstCategory) echo 'active'; ?>" id="<?php echo $categoryRow['category']; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $categoryRow['category']; ?>" type="button" role="tab" aria-controls="<?php echo $categoryRow['category']; ?>" aria-selected="<?php echo $firstCategory ? 'true' : 'false'; ?>"><?php echo $categoryRow['category']; ?></button>
                         </li>
                         <?php $firstCategory = false; ?>
                     <?php } ?>
@@ -127,7 +131,7 @@
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
                                     <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
                                         <div class="card cardHover h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
-                                            <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
+                                            <img style="height: 300px;" class="object-fit-cover rounded-top-3" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
                                                 <p class="card-text"><?php echo $profile['text']?></p>
