@@ -205,7 +205,7 @@ if (isset($_POST['advertisement_edit'])) {
     // Edit operation (similar to update)
     $advertisement_id = $_POST['advertisement_id'];
     // Redirect to edit page or implement edit logic here
-    header("Location: edit.php?advertisement_id=$advertisement_id");
+    header("Location: advertisement_edit.php?advertisement_id=$advertisement_id");
     exit();
 }
 

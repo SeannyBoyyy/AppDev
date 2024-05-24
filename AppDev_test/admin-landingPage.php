@@ -93,7 +93,7 @@
                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
                         <h5 class="card-title"><?php echo $farm['name']?></h5>
                         <p class="card-text" style="height: 60px;"><?php echo $farm['text']?></p>
-                        <a href="farm-viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
+                        <a href="admin-viewFarm.php?business_id=<?php echo $farm['id']; ?>" class="btn btn-primary">View Farm</a>
                     </div>
                 </div>
             </div>  
@@ -140,8 +140,8 @@
                                                 <p class="card-text"><?php echo $profile['text']?></p>
                                                 <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
-                                            <div class="card-footer bg-transparent border-top-0">
-                                                <a href="farm-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                                            <div class="card-footer bg-transparent border-top-0 mb-3">
+                                                <a href="admin-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                                             </div>
                                         </div>
                                     </div>

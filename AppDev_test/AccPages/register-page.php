@@ -135,7 +135,7 @@ if(isset($_POST['submit'])){
 
   </style>
 </head>
-<body style="background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');background-size: cover; background-repeat: no-repeat;">
+<body style="background: whitesmoke ;background-size: cover; background-repeat: no-repeat;">
         <div class="container d-flex justify-content-center align-items-center min-vh-80 w75" style="margin-top:50px;">
           <div class="row border rounded-5 p-3  shadow box-area" style="background-color: rgba(255, 255, 255, 0.6);"> 
             <div class="ui col-md-6 right-box w-100">

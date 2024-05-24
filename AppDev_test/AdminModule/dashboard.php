@@ -143,6 +143,6 @@ $total_subscriber_count = mysqli_fetch_assoc($total_subscriber)['total_subscribe
     fetchData('../api/getTotalAds.php', 'totalAds');
     fetchData('../api/getTotalProds.php', 'totalProds');
     fetchData('../api/getTotalFarmPhotos.php', 'totalFarmPhotos');
+    fetchData('../api/gettotalSubscriber.php', 'totalSubscriber');
 </script>
 
-</div>

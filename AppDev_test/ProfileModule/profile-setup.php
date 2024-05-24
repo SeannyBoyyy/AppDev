@@ -70,7 +70,7 @@
     <style>
          /* Custom styles */
         body {
-            background-image: url('http://localhost/AppDev/AppDev_test/ProfileModule/img/R16731_product.jpg');
+            background-color: whitesmoke;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
