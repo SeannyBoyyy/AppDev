@@ -83,7 +83,7 @@ if (isset($_POST['user_id'])) {
 
         <!-- Display Table -->
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
                         <th>User ID</th>

@@ -175,17 +175,18 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
        }
        .msgBtn{
-        background-color: #e4e6eb;
+        background-color: #21d192;
         font-size: 15px;
+        color: white;
        }
        .msgBtn:hover{
         filter: brightness(90%);
        }
     </style>
-<body style="background-color: #f0f2f5;">
+<body>
     <div class="container-fluid">
         <div class="row justify-contents-center text-center">
-            <div class="col-lg-3 col-12 text-center overflow-auto bg-white p-0 m-0">
+            <div class="col-lg-3 col-12 text-center overflow-auto p-0 m-0">
                 <div>
                     <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
                 </div>
@@ -219,7 +220,7 @@
                 </div>
             </div>    
                         
-            <div class="col-lg-9 col-12 p-0 border-bottom">
+            <div class="col-lg-9 col-12 p-0">
                 <?php if (!empty($photos)): ?>
                     <div class="container-fluid text-center p-0">
                     <div class="row">
@@ -289,8 +290,8 @@
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                     <img style="height: 500px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
                                     <div class="carousel-caption align-items-start justify-content-start">
-                                        <h1 style="color:black;"><?php echo $advertisement['name']; ?></h1>
-                                        <p class="" style="color: black;"><?php echo $advertisement['text']; ?></p>
+                                        <h1 class="text-white"><?php echo $advertisement['name']; ?></h1>
+                                        <p class="text-white"><?php echo $advertisement['text']; ?></p>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -310,7 +311,7 @@
                 <p>No Advertisement found.</p>
             <?php endif; ?>    
     </div>
-    <div class="row justify-contents-center align-items-center text-cnter mt-5">
+    <div class="row justify-contents-center align-items-center mt-5">
         <div class="container" style="max-width: 70%;">
             <div class="card">
                 <div class="card-header"><h1 class="mt-3 mb-3">Review & Rating</h1></div>

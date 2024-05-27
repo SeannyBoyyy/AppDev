@@ -93,6 +93,9 @@ if(isset($_SESSION['ownerID'])){
         outline: none !important;
         box-shadow: none !important;
     }
+    .badge{
+      background-color: #21d192;
+    }
   </style>
   </head>
   <body>
@@ -153,7 +156,7 @@ if(isset($_SESSION['ownerID'])){
                   <li class="list-group-item">
                     <a style="color: black;" href="./ProfileModule/profile-page.php?active=messages">
                     <i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
-                      <span class="badge rounded-pill bg-primary"> <?php echo $msgCount ?></span>
+                      <span class="badge rounded-pill"> <?php echo $msgCount ?></span>
                     </a>
                     
                   </li>

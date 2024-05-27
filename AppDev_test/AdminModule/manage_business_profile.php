@@ -79,7 +79,7 @@ if (isset($_POST['owner_id'])) {
 
         <!-- Display Table -->
         <div class="table-responsive"> <!-- Added to make table responsive -->
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
                         <th>Owner ID</th>

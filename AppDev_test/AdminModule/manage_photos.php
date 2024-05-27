@@ -8,7 +8,7 @@ include('../config/connectDb.php');
         <br>
         <!-- Display Table -->
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
                         <th>#</th>

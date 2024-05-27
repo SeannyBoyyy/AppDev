@@ -79,6 +79,7 @@ if(isset($_SESSION['admin_email'])){
       
       filter: brightness(95%);
     }
+    
 </style>
   </head>
   <body>

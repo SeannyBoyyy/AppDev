@@ -97,98 +97,98 @@ include('../navbars/profilepage-nav.php');
 
 
 // ---------------------------------- add post ----------------------------------------
-if (isset($_POST["upload_product"])) {
-    $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
-    $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
-    $category_product = mysqli_real_escape_string($conn, $_POST["category_product"]);
-    $price_range = mysqli_real_escape_string($conn, $_POST["price_range"]);
+    if (isset($_POST["upload_product"])) {
+        $name_product = mysqli_real_escape_string($conn, $_POST["name_product"]);
+        $text_product = mysqli_real_escape_string($conn, $_POST["text_product"]);
+        $category_product = mysqli_real_escape_string($conn, $_POST["category_product"]);
+        $price_range = mysqli_real_escape_string($conn, $_POST["price_range"]);
 
-    if ($_FILES["image_product"]["error"] === 4) {
-        echo "
-            <script>
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Image does not exist!',
-                    icon: 'error'
-                }).then(function() {
-                    window.location = 'profile-page.php?active=upload';
-                });
-            </script>";
-        
-        exit();
-    } else {
-        $fileName = $_FILES["image_product"]["name"];
-        $fileSize = $_FILES["image_product"]["size"];
-        $tmpName = $_FILES["image_product"]["tmp_name"];
-
-        $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
-
-        if (!in_array($imageExtension, $validImageExtension)) {
+        if ($_FILES["image_product"]["error"] === 4) {
             echo "
                 <script>
                     Swal.fire({
                         title: 'Error!',
-                        text: 'Invalid image extension!',
+                        text: 'Image does not exist!',
                         icon: 'error'
-                    }).then(function() {
-                        window.location = 'profile-page.php?active=upload';
-                    });
-                </script>";
-
-            exit();
-        } elseif ($fileSize > 10000000) {
-            echo "
-                <script>
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Image size is too large!',
-                        icon: 'error'
-                    }).then(function() {
-                        window.location = 'profile-page.php?active=upload';
-                    });
-                </script>";
-
-            exit();
-        } else {
-            $newImageName = uniqid() . '.' . $imageExtension;
-            $uploadPath = 'img/' . $newImageName;
-        
-            move_uploaded_file($tmpName, $uploadPath);
-
-            // Fetch the business profile ID associated with the current owner
-            $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
-            $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
-            mysqli_stmt_bind_param($stmt, "i", $business_owner);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-            $businessProfile = mysqli_fetch_assoc($result);
-            $businessProfileId = $businessProfile['id'];
-
-            // Insert into posting_module with the retrieved business profile ID
-            $query = "INSERT INTO posting_module (name, text, image, posted_by, category, price_range) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId, '$category_product', '$price_range')";
-            mysqli_query($conn, $query);
-
-            echo "
-                <script>
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Product uploaded successfully!',
-                        icon: 'success'
                     }).then(function() {
                         window.location = 'profile-page.php?active=upload';
                     });
                 </script>";
             
             exit();
+        } else {
+            $fileName = $_FILES["image_product"]["name"];
+            $fileSize = $_FILES["image_product"]["size"];
+            $tmpName = $_FILES["image_product"]["tmp_name"];
+
+            $validImageExtension = ['jpg', 'jpeg', 'png'];
+            $imageExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+
+            if (!in_array($imageExtension, $validImageExtension)) {
+                echo "
+                    <script>
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Invalid image extension!',
+                            icon: 'error'
+                        }).then(function() {
+                            window.location = 'profile-page.php?active=upload';
+                        });
+                    </script>";
+
+                exit();
+            } elseif ($fileSize > 10000000) {
+                echo "
+                    <script>
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Image size is too large!',
+                            icon: 'error'
+                        }).then(function() {
+                            window.location = 'profile-page.php?active=upload';
+                        });
+                    </script>";
+
+                exit();
+            } else {
+                $newImageName = uniqid() . '.' . $imageExtension;
+                $uploadPath = 'img/' . $newImageName;
+            
+                move_uploaded_file($tmpName, $uploadPath);
+
+                // Fetch the business profile ID associated with the current owner
+                $getBusinessProfileIdSql = "SELECT id FROM business_profile WHERE owner = ?";
+                $stmt = mysqli_prepare($conn, $getBusinessProfileIdSql);
+                mysqli_stmt_bind_param($stmt, "i", $business_owner);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                $businessProfile = mysqli_fetch_assoc($result);
+                $businessProfileId = $businessProfile['id'];
+
+                // Insert into posting_module with the retrieved business profile ID
+                $query = "INSERT INTO posting_module (name, text, image, posted_by, category, price_range) VALUES ('$name_product', '$text_product', '$newImageName', $businessProfileId, '$category_product', '$price_range')";
+                mysqli_query($conn, $query);
+
+                echo "
+                    <script>
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Product uploaded successfully!',
+                            icon: 'success'
+                        }).then(function() {
+                            window.location = 'profile-page.php?active=upload';
+                        });
+                    </script>";
+                
+                exit();
+            }
         }
     }
-}
 
 
 
 // ---------------------------------- advertisement module ----------------------------------------
-if (isset($_POST["upload_advertisement"])) {
+    if (isset($_POST["upload_advertisement"])) {
     $name_advertisement = mysqli_real_escape_string($conn, $_POST["name_advertisement"]);
     $text_advertisement = mysqli_real_escape_string($conn, $_POST["text_advertisement"]);
     
@@ -535,7 +535,7 @@ if (isset($_POST["upload_advertisement"])) {
 
         }
 
-?>
+    ?>
 <head>
 <style>
     .nav-link {
@@ -562,6 +562,9 @@ if (isset($_POST["upload_advertisement"])) {
     .nav-link:focus {
         outline: none !important;
         box-shadow: none !important;
+    }
+    .badge{
+        background-color: #21d192;
     }
 </style>
 </head>
@@ -593,7 +596,7 @@ if (isset($_POST["upload_advertisement"])) {
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('ratings', $activePage); ?>" id="v-pills-ratings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ratings" type="button" role="tab" aria-controls="v-pills-ratings" aria-selected="false"><i class="fa-solid fa-star" style="margin-right: 8px"></i>Review and Ratings</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('subDetails', $activePage); ?>" id="v-pills-accDeets-tab" data-bs-toggle="pill" data-bs-target="#v-pills-accDeets" type="button" role="tab" aria-controls="v-pills-accDeets" aria-selected="false"><i class="fa-solid fa-file-invoice-dollar" style="margin-right: 8px"></i>Subscription Details</button>
                     <button class="nav-link d-flex justify-content-start align-items-center <?php echo isActive('messages', $activePage); ?>" id="v-pills-message-tab" data-bs-toggle="pill" data-bs-target="#v-pills-message" type="button" role="tab" aria-controls="v-pills-message" aria-selected="false"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Messages
-                        <span class="badge rounded-pill bg-primary">
+                        <span class="badge rounded-pill mx-2">
                             <?php echo $msgCount ?>
                         </span>
                     </button>

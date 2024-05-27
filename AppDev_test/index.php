@@ -35,6 +35,9 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
+    .fas{
+        margin-right: 20px; 
+    }
     .cardHover{
         transition: box-shadow 0.3s ease;
     }
@@ -46,9 +49,22 @@
         color: white;
         background-color: #21D192;
     }
+    .nav-pills .nav-link {
+    background-color: white; 
+    color: #333;           
+    border: 1px solid #ddd;
+    }
+    .nav-pills .nav-link.active {
+        background-color: #21D192 !important;
+        color: #fff !important;           
+        border-color: #21D192 !important; 
+    }
+    .carousel-caption {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+    }
 </style>
 </head>
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-center"> 
         <div style="height: 50px; background-color:transparent;"></div>
         <h1 style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-star"></i>Featured</h1>
         <div style="height: 50px; background-color:transparent;"></div>
@@ -63,8 +79,8 @@
                     <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                         <img style="height: 500px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
                         <div class="carousel-caption align-items-start justify-content-start">
-                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
-                            <p class="" style="color: black;"><?php echo $ad['text']; ?></p>
+                            <h1 class="text-white"><?php echo $ad['name']; ?></h1>
+                            <p class="text-white" ><?php echo $ad['text']; ?></p>
                         </div>
                     </div>
                 <?php } ?>
@@ -80,8 +96,8 @@
         </div>
     </div>
 
-    <div class="container-fluid text-center mt-5">
-        <div class="row w-100">
+    <div class="container-fluid text-center">
+        <div class="row w-100 overflow-x-auto">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-tractor"></i>Businesses</h1>
             <?php foreach($farms as $farm){ ?>
             <div class="col-12 col-md-6 col-lg-4 col-xl-3 mx-auto mb-3" style="width: 300px;">
@@ -97,7 +113,7 @@
             <?php } ?>
         </div>
     </div>
-    <div class="container-fluid text-center mt-5">
+    <div class="container-fluid text-center">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</h1>
             <!-- Category Tabs -->
@@ -123,13 +139,13 @@
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <div class="tab-pane fade <?php if($firstCategory) echo 'show active'; ?>" id="<?php echo $categoryRow['category']; ?>" role="tabpanel" aria-labelledby="<?php echo $categoryRow['category']; ?>-tab">
                             <!-- Products of this category -->
-                            <div class="row mx-auto">
+                            <div class="row mx-auto overflow-x-auto">
                                 <?php 
                                 // Query to get products of this category
                                 $categoryProductsQuery = "SELECT * FROM posting_module WHERE category = '{$categoryRow['category']}'";
                                 $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
-                                    <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
+                                    <div class="grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
                                         <div class="card cardHover h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
                                             <img style="height: 300px;" class="object-fit-cover rounded-top-3" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
@@ -155,7 +171,7 @@
 
     
 
-    <div class="container mt-5">
+    <div class="container-fluid">
 		<div class="row">
 			<div class="col">
 				<div class="card" style="background-color: #ECEFF1;">

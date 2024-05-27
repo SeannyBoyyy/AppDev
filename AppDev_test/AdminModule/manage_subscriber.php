@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Display Table for Active/Suspended Subscriptions -->
         <div class="table-responsive">
             <h2>Active/Suspended Subscriptions</h2>
-            <table class="table table-striped">
+            <table class="table table-hover">
                 <thead>
                     <tr class="text-center">
                         <th>#</th>

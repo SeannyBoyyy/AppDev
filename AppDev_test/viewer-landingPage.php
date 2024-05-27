@@ -41,14 +41,28 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
     .fas{
-        margin-right: 20px; /* Right margin for spacing */
+        margin-right: 20px; 
     }
     .cardHover{
         transition: box-shadow 0.3s ease;
     }
     .cardHover:hover{
         transform: translateY(-5px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .nav-link{
+        color: white;
+        background-color: #21D192;
+    }
+    .nav-pills .nav-link {
+    background-color: white; 
+    color: #333;           
+    border: 1px solid #ddd;
+    }
+    .nav-pills .nav-link.active {
+        background-color: #21D192 !important;
+        color: #fff !important;           
+        border-color: #21D192 !important; 
     }
 </style>
 </head>
@@ -104,7 +118,7 @@
             <?php } ?>
         </div>
     </div>
-    <div class="container-fluid text-center mt-5">
+    <div class="container-fluid text-center">
         <div class="row">
             <h1 class="mt-5 mb-5" style="font-family: Verdana, Geneva, Tahoma, sans-serif;font-size: 60px;color:black;font-weight: bold;"><i class="fas fa-shopping-basket"></i>Products</h1>
             <!-- Category Tabs -->
@@ -117,7 +131,7 @@
                     $firstCategory = true;
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link <?php if($firstCategory) echo 'active'; ?>" id="<?php echo $categoryRow['category']; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $categoryRow['category']; ?>" type="button" role="tab" aria-controls="<?php echo $categoryRow['category']; ?>" aria-selected="<?php echo $firstCategory ? 'true' : 'false'; ?>"><?php echo $categoryRow['category']; ?></button>
+                            <button class="categoryButton nav-link <?php if($firstCategory) echo 'active'; ?>" id="<?php echo $categoryRow['category']; ?>-tab" data-bs-toggle="pill" data-bs-target="#<?php echo $categoryRow['category']; ?>" type="button" role="tab" aria-controls="<?php echo $categoryRow['category']; ?>" aria-selected="<?php echo $firstCategory ? 'true' : 'false'; ?>"><?php echo $categoryRow['category']; ?></button>
                         </li>
                         <?php $firstCategory = false; ?>
                     <?php } ?>
@@ -130,22 +144,22 @@
                     while ($categoryRow = mysqli_fetch_assoc($categoryResult)) { ?>
                         <div class="tab-pane fade <?php if($firstCategory) echo 'show active'; ?>" id="<?php echo $categoryRow['category']; ?>" role="tabpanel" aria-labelledby="<?php echo $categoryRow['category']; ?>-tab">
                             <!-- Products of this category -->
-                            <div class="row mx-auto">
+                            <div class="row mx-auto overflow-x-auto">
                                 <?php 
                                 // Query to get products of this category
                                 $categoryProductsQuery = "SELECT * FROM posting_module WHERE category = '{$categoryRow['category']}'";
                                 $categoryProductsResult = mysqli_query($conn, $categoryProductsQuery);
                                 while ($profile = mysqli_fetch_assoc($categoryProductsResult)) { ?>
-                                    <div class=" grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
+                                    <div class="grid-gap-0 col-12 col-md-6 col-lg-4 mx-auto mb-3" style="width: 300px;">
                                         <div class="card cardHover h-100 border-0 shadow-sm" style="width: 300px; margin: auto; height: 450px;">
-                                            <img style="height: 300px;" class="object-fit-cover" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
+                                            <img style="height: 300px;" class="object-fit-cover rounded-top-3" src="ProfileModule/img/<?php echo $profile['image'] ?>" class="card-img-top" alt="<?php echo $profile['name'] ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $profile['name']?></h5>
                                                 <p class="card-text"><?php echo $profile['text']?></p>
                                                 <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
                                             <div class="card-footer bg-transparent border-top-0 mb-3">
-                                                <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                                                <a href="farm-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                                             </div>
                                         </div>
                                     </div>
