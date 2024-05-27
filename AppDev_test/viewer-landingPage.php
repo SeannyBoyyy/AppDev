@@ -159,7 +159,7 @@
                                                 <p class="card-text">₱<?php echo $profile['price_range']?></p>
                                             </div>
                                             <div class="card-footer bg-transparent border-top-0 mb-3">
-                                                <a href="farm-viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
+                                                <a href="viewFarm.php?business_id=<?php echo $profile['posted_by']; ?>" class="btn btn-primary">View Farm</a>
                                             </div>
                                         </div>
                                     </div>

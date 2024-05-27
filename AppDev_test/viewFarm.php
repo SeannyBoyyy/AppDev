@@ -270,10 +270,10 @@
             <div class="container-fluid text-center p-0">
                 <h1 style="font-size: 50px;color:black;font-weight: bold;"><i class="fas fa-ad p-4"></i>Advertisement</h1><div style="height: 30px;"></div>
                 <div class="row">
-                    <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
+                    <div id="carouselExampleCaptions1" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
                         <div class="carousel-indicators">
                             <?php foreach($advertisements as $key => $advertisement) { ?>
-                                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                                <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
                             <?php } ?>
                         </div>
                         <div class="carousel-inner">
@@ -287,11 +287,11 @@
                                 </div>
                             <?php } ?>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -464,7 +464,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="post" action="farm-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                    <form method="post" action="viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
                     <!-- Include business_id field -->
                     <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
                     <div class="modal-body">

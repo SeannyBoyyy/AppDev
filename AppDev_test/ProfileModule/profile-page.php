@@ -633,7 +633,7 @@ include('../navbars/profilepage-nav.php');
                                         <option value="Meat">Meat</option>
                                         <option value="Fish">Fish</option>
                                         <option value="Seafood">Seafood</option>
-                                        <option value="Farm Accessories">Farm Accessories</option>
+                                        <option value="Farm_Accessories">Farm Accessories</option>
                                         <!-- Add more options as needed -->
                                     </select>
                                 </div>
