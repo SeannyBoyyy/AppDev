@@ -64,6 +64,10 @@
         color: #fff !important;           
         border-color: #21D192 !important; 
     }
+    .carousel-caption {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+        color: white;
+    }
 </style>
 </head>
 
@@ -84,8 +88,8 @@
                     <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                         <img style="height: 500px;" src="ProfileModule/img/<?php echo $ad['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
                         <div class="carousel-caption align-items-start justify-content-start">
-                            <h1 style="color:black;"><?php echo $ad['name']; ?></h1>
-                            <p class="" style="color: black;"><?php echo $ad['text']; ?></p>
+                            <h1 class="text-white"><?php echo $ad['name']; ?></h1>
+                            <p class="text-white"><?php echo $ad['text']; ?></p>
                         </div>
                     </div>
                 <?php } ?>

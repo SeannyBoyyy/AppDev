@@ -182,6 +182,10 @@
        .msgBtn:hover{
         filter: brightness(90%);
        }
+       .carousel-caption {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+        color:white;
+        }
     </style>
 <body>
     <div class="container-fluid">
@@ -380,17 +384,17 @@
                 </div>
             </div>
             <div class="mt-5" id="review_content">
-            <?php
-            // Query to fetch reviews based on business_id
-            $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
-            $result = mysqli_query($conn, $query);
+                <?php
+                // Query to fetch reviews based on business_id
+                $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
+                $result = mysqli_query($conn, $query);
 
-            // Check if there are any reviews
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Convert timestamp to human-readable date
-                    $review_date = date("l jS, F Y h:i:s A", $row['datetime']);
-            ?>
+                // Check if there are any reviews
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // Convert timestamp to human-readable date
+                        $review_date = date("l jS, F Y h:i:s A", $row['datetime']);
+                ?>
                     <div class="row mb-3">
                         <div class="col-sm-1">
                             <div class="rounded-circle bg-danger text-white pt-2 pb-2 d-flex justify-content-center align-items-center" style="height: 60px; width: 60px;">
@@ -415,15 +419,13 @@
                             </div>
                         </div>
                     </div>
-            <?php
+                <?php
+                    }
+                } else {
+                    // No reviews found
+                    echo "<p>No reviews found.</p>";
                 }
-            } else {
-                // No reviews found
-                echo "<p>No reviews found.</p>";
-            }
-            ?>
-
-
+                ?>
             </div>
         </div>
 

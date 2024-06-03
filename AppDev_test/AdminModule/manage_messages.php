@@ -102,52 +102,39 @@ if ($msgCount > 0) {
                                     <label for="message-time" class="col-form-label">Sent At:</label>
                                     <input type="text" readonly class="form-control-plaintext" id="message-time" value="<?php echo $msgRow['created_at'] ?>">
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyMessageModal<?php echo $index ?>">Reply</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- reply message modal -->
-                <div class="modal fade" id="replyMessageModal<?php echo $index ?>" tabindex="-1" aria-labelledby="replyMessageModalLabel<?php echo $index ?>" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">New message</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form method="post" action="send.php" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="staticEmail" class="col-form-label">Recipient:</label>
-                                    <input type="text" name="to_sent" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['email'] ?>">
-                                </div>
+                                <hr>
+                                <h1 class="modal-title fs-5" id="replyMessageModalLabel<?php echo $index ?>">Reply</h1>
+                                <form method="post" action="send.php" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="staticEmail" class="col-form-label">Recipient:</label>
+                                            <input type="text" name="to_sent" readonly class="form-control-plaintext" id="staticEmail" value="<?php echo $msgRow['email'] ?>">
+                                        </div>
 
 
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Your email:</label>
-                                    <input type="text" name="my_email" readonly class="form-control-plaintext" id="staticEmail" value="admin@gmail.com">
-                                </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Your email:</label>
+                                            <input type="text" name="my_email" readonly class="form-control-plaintext" id="staticEmail" value="admin@gmail.com">
+                                        </div>
 
 
-                                <div class="row">
-                                    <small class="text-red mb-2" style=" color:red"></small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea name="message" class="form-control" id="message-text"></textarea>
-                                </div>
-                                <div class="row">
-                                    <small class="text-red mb-2 " style=" color:red"></small>
-                                </div>
+                                        <div class="row">
+                                            <small class="text-red mb-2" style=" color:red"></small>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea name="message" class="form-control" id="message-text"></textarea>
+                                        </div>
+                                        <div class="row">
+                                            <small class="text-red mb-2 " style=" color:red"></small>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="modal-footer">
-                                <button name="sendMSG" type="submit" class="btn btn-primary">Send message</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                            </form>
                         </div>
                     </div>
                 </div>
