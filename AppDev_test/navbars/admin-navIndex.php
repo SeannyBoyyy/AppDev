@@ -26,7 +26,9 @@ if(isset($_SESSION['admin_email'])){
 } else {
   // If admin is not logged in, set message count to 0
   $msgCount = 0;
-  header('Location: ./AccPages/login-page.php');
+  echo "<script>
+            window.location = './AccPages/login-page.php';
+          </script>";
   exit();
   
 }

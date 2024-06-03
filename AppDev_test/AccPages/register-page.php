@@ -71,7 +71,9 @@ if(isset($_POST['submit'])){
             if($stmt){
                 mysqli_stmt_bind_param($stmt, "ssss", $_POST['email'], password_hash($_POST['password'], PASSWORD_DEFAULT), $_POST['firstname'], $_POST['lastname']);
                 if(mysqli_stmt_execute($stmt)){
-                    header('Location: ./login-page.php');
+                    echo "<script>
+                            window.location = './login-page.php';
+                        </script>";
                     exit(); // Exit to prevent further execution
                 } else {
                     $errors['confirmPass'] = mysqli_stmt_error($stmt);

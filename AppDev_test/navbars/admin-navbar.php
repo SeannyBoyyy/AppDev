@@ -6,8 +6,9 @@ if(isset($_SESSION['admin_email'])){
   $admin_email = $_SESSION['admin_email']; 
 }else{
   echo 'no admin ';
-  
-  header('Location: ../AccPages/login-page.php');
+  echo "<script>
+            window.location = '../AccPages/login-page.php';
+          </script>";
   exit();
 }
 ?>

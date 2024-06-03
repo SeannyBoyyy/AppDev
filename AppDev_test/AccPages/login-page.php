@@ -39,7 +39,9 @@ if(isset($_POST['submit'])){
           session_start();
           $_SESSION['admin_email'] = $email;
 
-          header('Location: ../AdminModule/index.php?active=dashboard');
+          echo "<script>
+                  window.location = '../AdminModule/index.php?active=dashboard';
+                </script>";
           exit();
         }
 
@@ -63,7 +65,9 @@ if(isset($_POST['submit'])){
 
                 unset($_SESSION['ownerID']);
                 // Redirect suspended account to suspend.php
-                header('Location: ../AccPages/suspend.php');
+                echo "<script>
+                  window.location = '../AccPages/suspend.php';
+                </script>";
                 exit();
               }
 
@@ -73,7 +77,9 @@ if(isset($_POST['submit'])){
 
                 unset($_SESSION['ownerID']);
                 // Redirect suspended account to suspend.php
-                header('Location: ../payment/approval.php');
+                echo "<script>
+                  window.location = '../payment/approval.php';
+                </script>";
                 exit();
               }
 
@@ -81,7 +87,9 @@ if(isset($_POST['submit'])){
               $_SESSION['ownerID'] = $row['account_id']; // Change to 'ownerID'
 
               if ($row['status'] !== 'ACTIVE') {
-                header('Location: ../payment/index.php');
+                echo "<script>
+                  window.location = '../payment/index.php';
+                </script>";
                 exit();
               }
 
@@ -96,11 +104,15 @@ if(isset($_POST['submit'])){
 
               if ($profile_row = mysqli_fetch_assoc($profile_result)) {
                 // Profile setup complete, redirect to profile page
-                header('Location: ../ProfileModule/profile-page.php?active=profile'); 
+                echo "<script>
+                  window.location = '../ProfileModule/profile-page.php?active=profile';
+                </script>";
                 exit();
               } else {
                 // Profile setup incomplete, redirect to profile setup
-                header('Location: ../ProfileModule/profile-setup.php');
+                echo "<script>
+                  window.location = '../ProfileModule/profile-setup.php';
+                </script>";
                 exit();
               }
           } else {

@@ -7,7 +7,9 @@ if(isset($_SESSION['acc_info'])){
     $business_owner = $_SESSION['acc_info']; 
 } else {
     echo 'no owner ';
-    header('Location: ../AccPages/login-page.php');
+    echo "<script>
+            window.location = '../AccPages/login-page.php';
+        </script>";
     exit();
 }
 
