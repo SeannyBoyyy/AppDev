@@ -575,13 +575,15 @@ include('../navbars/profilepage-nav.php');
     <div class="row">
         <div class="col-lg-3 col-12 text-center overflow-auto" style="background-color:#ffffff; height: 850px;">
             <div>
-                <?php
-                  $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner");
-                  
-                  while($row = mysqli_fetch_assoc($res)){
-                ?>
-                <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="img/<?php echo $row['image']; ?>">
-                <?php } ?>
+            <?php
+                // Assuming $conn is your database connection and $business_owner is the owner id
+                $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner ORDER BY id DESC LIMIT 1");
+                
+                while($row = mysqli_fetch_assoc($res)){
+            ?>
+                    <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="img/<?php echo $row['image']; ?>">
+            <?php } ?>
+
             </div>
             <h3 class="mt-3" style="color:black; font-size:40px"><i class="fas fa-building" style="margin-right: 15px;"></i><?php echo $business_name?></h3>
             
