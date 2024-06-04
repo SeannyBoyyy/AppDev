@@ -170,6 +170,10 @@
        .msgBtn:hover{
         filter: brightness(90%);
        }
+       .carousel-caption {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+        color: white;
+    }
     </style>
     <!-- Your HTML code to display business profile and posting modules -->
     <body style="background-color: #f0f2f5;">
@@ -281,8 +285,8 @@
                                 <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
                                     <img style="height: 500px;" src="ProfileModule/img/<?php echo $advertisement['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
                                     <div class="carousel-caption align-items-start justify-content-start">
-                                        <h1 style="color:black;"><?php echo $advertisement['name']; ?></h1>
-                                        <p class="" style="color: black;"><?php echo $advertisement['text']; ?></p>
+                                        <h1 class="text-white"><?php echo $advertisement['name']; ?></h1>
+                                        <p class="text-white"><?php echo $advertisement['text']; ?></p>
                                     </div>
                                 </div>
                             <?php } ?>
