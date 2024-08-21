@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include('./navbars/viewer-homepage.php');
     include('config/connectDb.php');
 
@@ -141,8 +142,6 @@
 
 
 ?>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -173,7 +172,19 @@
        .carousel-caption {
         text-shadow: 0 2px 4px rgba(0, 0, 0, 2);
         color: white;
-    }
+        }
+        .avatar-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #007bff;
+        color: white;
+        font-size: 36px;
+        }
+        .initials {
+            font-size: 36px;
+            font-weight: bold;
+        }
     </style>
     <!-- Your HTML code to display business profile and posting modules -->
     <body style="background-color: #f0f2f5;">
@@ -206,7 +217,7 @@
                             ?></p>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 mb-5">
                         <iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=<?php echo $business_address ; ?>+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                         width="300px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
@@ -230,11 +241,11 @@
                                             </div>
                                         <?php } ?>
                                     </div>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                    <button class="carousel-control-prev custom-control-dark" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                    <button class="carousel-control-next custom-control-dark" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
@@ -266,7 +277,6 @@
                                 <?php endif; ?>
                     </div>                    
                 </div>
-                <hr>
             </div>
         </div>
     <div class="container-fluid mt-3 p-0">
@@ -374,52 +384,74 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-5" id="review_content">
-            <?php
-            // Query to fetch reviews based on business_id
-            $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
-            $result = mysqli_query($conn, $query);
+            <div class="row justify-content-center my-5">
+                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php
+                        // Fetch reviews from the database
+                        $query = "SELECT * FROM review_table WHERE business_id = '$business_id' AND status = 'APPROVE' ORDER BY review_id DESC";
+                        $result = mysqli_query($conn, $query);
+                        $counter = 0;
 
-            // Check if there are any reviews
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    // Convert timestamp to human-readable date
-                    $review_date = date("l jS, F Y h:i:s A", $row['datetime']);
-            ?>
-                    <div class="row mb-3">
-                        <div class="col-sm-1">
-                            <div class="rounded-circle bg-danger text-white pt-2 pb-2 d-flex justify-content-center align-items-center" style="height: 60px; width: 60px;">
-                                <h3 style="margin: 0;"><?php echo strtoupper(substr($row['user_name'], 0, 1)); ?></h3>
-                            </div>
-                        </div>
-                        <div class="col-sm-11">
-                            <div class="card">
-                                <div class="card-header"><b><?php echo $row['user_name']; ?></b></div>
-                                <div class="card-body">
-                                    <?php
-                                    // Display star ratings
-                                    for ($star = 1; $star <= 5; $star++) {
-                                        $class_name = ($row['user_rating'] >= $star) ? 'text-warning' : 'star-light';
-                                    ?>
-                                        <i class="fas fa-star <?php echo $class_name; ?> mr-1"></i>
-                                    <?php } ?>
-                                    <br />
-                                    <?php echo $row['user_review']; ?>
+                        // Check if there are any reviews
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $review_date = date("l jS, F Y h:i:s A", $row['datetime']);
+                                $counter++;
+                                $activeClass = ($counter == 1) ? 'active' : ''; // Set the first item as active
+
+                                // Start a new carousel item every 3 reviews
+                                if ($counter % 3 == 1) {
+                                    echo '<div class="carousel-item ' . $activeClass . '"><div class="row justify-content-center">';
+                                }
+
+                                // Get the first letter of the user's name
+                                $initial = strtoupper($row['user_name'][0]);
+                                ?>
+                                <div class="col-md-3">
+                                    <div class="card testimonial-card mb-4">
+                                        <div class="card-body text-center">
+                                            <div class="avatar-circle mx-auto mb-4 d-flex align-items-center justify-content-center">
+                                                <span class="initials"><?php echo $initial; ?></span>
+                                            </div>
+                                            <h4 class="font-weight-bold mb-3"><?php echo $row['user_name']; ?></h4>
+                                            <ul class="list-unstyled d-flex justify-content-center mb-4">
+                                                <?php
+                                                // Display star ratings
+                                                for ($star = 1; $star <= 5; $star++) {
+                                                    $class_name = ($row['user_rating'] >= $star) ? 'text-warning' : 'star-light';
+                                                    ?>
+                                                    <li><i class="fas fa-star <?php echo $class_name; ?>"></i></li>
+                                                <?php } ?>
+                                            </ul>
+                                            <p class="testimonial-text"><?php echo $row['user_review']; ?></p>
+                                            <small class="text-muted">Reviewed on <?php echo $review_date; ?></small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer text-right">On <?php echo $review_date; ?></div>
-                            </div>
-                        </div>
+                                <?php
+                                // Close the row and carousel item after 3 items
+                                if ($counter % 3 == 0 || $counter == mysqli_num_rows($result)) {
+                                    echo '</div></div>';
+                                }
+                            }
+                        } else {
+                            echo "<p class='text-center'>No reviews found.</p>";
+                        }
+                        ?>
                     </div>
-            <?php
-                }
-            } else {
-                // No reviews found
-                echo "<p>No reviews found.</p>";
-            }
-            ?>
 
-
+                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev" style="color: black;">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next" style="color: black;">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
             </div>
+
         </div>
 
         <div id="review_modal" class="modal" tabindex="-1" role="dialog">
@@ -442,7 +474,7 @@
                         <div class="form-group">
                             <input type="text" name="user_name" id="user_name" class="form-control" placeholder="Enter Your Name" />
                         </div>
-                        <div class="form-group">
+                        <div class="form-group mt-3">
                             <input type="text" name="busines_id" id="business_id" class="form-control" hidden />
                         </div>
                         <div class="form-group">
@@ -455,10 +487,6 @@
                 </div>
             </div>
         </div>
-                    
-    </div>
-
-    <div class="sticky-bottom">
         
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -679,5 +707,3 @@ $(document).ready(function(){
     include('./navbars/viewer-footer.php');
     include('./navbars/footer.php');
 ?>
-
-
