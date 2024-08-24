@@ -571,10 +571,10 @@ include('../navbars/profilepage-nav.php');
 <link rel="stylesheet" href="../CSS/profile-setup.css">
 <link rel="stylesheet" href="../CSS/profilepage.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<body style="background-color: #f6f8fc;">
+<div class="container-fluid" style="background-color: #f6f8fc;">
     <div class="row">
         <div class="col-lg-3 col-12 text-center overflow-auto" style="background-color:#ffffff; height: 850px;">
-            <div>
+            <div class="mt-3">
             <?php
                 // Assuming $conn is your database connection and $business_owner is the owner id
                 $res = mysqli_query($conn, "SELECT * FROM business_profile WHERE owner = $business_owner ORDER BY id DESC LIMIT 1");
@@ -1132,7 +1132,7 @@ include('../navbars/profilepage-nav.php');
             </div>
         </div>
     </div>
-</body>
+</div>
 <?php
     include('../navbars/footer.php')
 ?>
