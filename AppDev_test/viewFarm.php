@@ -191,7 +191,7 @@
         <div class="container-fluid">
             <div class="row justify-contents-center text-center">
                 <div class="col-lg-3 col-12 text-center overflow-auto bg-white p-0 m-0">
-                    <div>
+                    <div class="mt-3">
                         <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
                     </div>
                     <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building"></i><?php echo $business_name; ?></h3>
@@ -226,18 +226,18 @@
                             
                 <div class="col-lg-9 col-12 p-0">
                     <?php if (!empty($photos)): ?>
-                        <div class="container-fluid text-center p-0">
+                        <div class="container-fluid text-center">
                             <div class="row">
-                                <div id="carouselExampleCaptions" class="carousel slide w-100"  data-bs-ride="carousel" style=" height: 500px;">
-                                <div class="carousel-indicators">
-                                    <?php foreach($photos as $key => $photo) { ?>
-                                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
-                                    <?php } ?>
-                                </div>
+                                <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel" style="height: 500px;">
+                                    <div class="carousel-indicators">
+                                        <?php foreach($photos as $key => $photo) { ?>
+                                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<?php echo $key; ?>" class="<?php if($key === 0) echo 'active'; ?>" aria-current="true" aria-label="Slide <?php echo $key + 1; ?>"></button>
+                                        <?php } ?>
+                                    </div>
                                     <div class="carousel-inner">
                                         <?php foreach($photos as $key => $photo) { ?>
                                             <div class="carousel-item <?php if($key === 0) echo 'active'; ?>">
-                                                <img style="height: 500px;"  src="ProfileModule/img/<?php echo $photo['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
+                                                <img style="height: 500px;" src="ProfileModule/img/<?php echo $photo['image']; ?>" class="d-block w-100 object-fit-cover" alt="...">
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -250,34 +250,34 @@
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>    
-                                </div>
-                                <?php else: ?>
-                                    <p>No Farm Photos found.</p>
-                                <?php endif; ?> 
-                                <?php if (!empty($profiles)): ?>
-                                <div class="container-fluid text-center">
-                                    <div class="row">
-                                        <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
-                                        <div style="height: 30px;"></div>
-                                        <?php foreach($profiles as $profile) { ?>
-                                            <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 cardContainer p-0 mx-auto" style="height: 399.17px;width:288.2px;">
-                                                <div class="card border-0 text-left m-0 cardUnderLine" style="height: 399.17px;width:288.2px;padding:4px;">
-                                                    <img style="height: 280px;width:280px;" class="object-fit-cover card-img-top m-0" src="ProfileModule/img/<?php echo $profile['image']; ?>" alt="<?php echo $profile['name']; ?>">
-                                                    <div class="card-body mt-3" style="height: 100px;width:280px; padding:4px;">
-                                                        <h5 class="card-title"><?php echo $profile['name']; ?></h5>
-                                                        <p class="card-text"><?php echo $profile['text']; ?></p>
-                                                    </div>
-                                                </div>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <p>No Farm Photos found.</p>
+                    <?php endif; ?> 
+
+                    <?php if (!empty($profiles)): ?>
+                        <div class="container-fluid text-center">
+                            <h1 class="mb-3" style="font-size: 50px; color: black; font-weight: bold;"><i class="fas fa-shopping-basket p-4"></i>Products</h1>
+                            <div class="row">
+                                <?php foreach($profiles as $profile) { ?>
+                                    <div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4 p-0 mx-auto cardContainer" style="height: 399.17px; width: 288.2px;">
+                                        <div class="card border-0 text-left cardUnderLine" style="height: 399.17px; width: 288.2px; padding: 4px;">
+                                            <img style="height: 280px; width: 280px;" class="object-fit-cover card-img-top" src="ProfileModule/img/<?php echo $profile['image']; ?>" alt="<?php echo $profile['name']; ?>">
+                                            <div class="card-body mt-3" style="height: 100px; width: 280px; padding: 4px;">
+                                                <h5 class="card-title"><?php echo $profile['name']; ?></h5>
+                                                <p class="card-text"><?php echo $profile['text']; ?></p>
                                             </div>
-                                        <?php } ?>
+                                        </div>
                                     </div>
-                                </div> 
-                                <?php else: ?>
-                                    <p>No Products found.</p>
-                                <?php endif; ?>
-                    </div>                    
+                                <?php } ?>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <p>No Products found.</p>
+                    <?php endif; ?>
                 </div>
-            </div>
+
         </div>
     <div class="container-fluid mt-3 p-0">
         <?php if (!empty($advertisements)): ?>

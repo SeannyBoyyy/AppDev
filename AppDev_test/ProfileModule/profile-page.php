@@ -669,7 +669,7 @@ include('../navbars/profilepage-nav.php');
                                     </ul>
                                     <hr>
                                     <div class="tab-content" id="nav-tabContent">
-                                        <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
                                             <!------------------------------------- Farm Photos Management Module  ---------------------------------->
                                                 <div class="container-fluid" style="margin:auto;">
                                                     <div class="container-fluid">
@@ -726,7 +726,7 @@ include('../navbars/profilepage-nav.php');
                                                     </div>
                                                 </div>
                                         </div>
-                                        <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                                             <!------------------------------------- Product-Management Module  ---------------------------------->
                                                 <div class="container-fluid" style="margin:auto;">
                                                     <div class="container-fluid">

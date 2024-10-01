@@ -88,7 +88,7 @@
                     text: 'Business ID not provided!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'farm-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -114,7 +114,7 @@
                     text: 'Contact details and message are required!',
                     icon: 'error'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'farm-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -131,7 +131,7 @@
                     text: 'Message sent successfully!',
                     icon: 'success'
                 }).then(function() {
-                    window.location = 'viewFarm.php?business_id=$business_id';
+                    window.location = 'farm-viewFarm.php?business_id=$business_id';
                 });
             </script>";
         
@@ -190,7 +190,7 @@
         <div class="container-fluid">
             <div class="row justify-contents-center text-center">
                 <div class="col-lg-3 col-12 text-center overflow-auto bg-white p-0 m-0">
-                    <div>
+                    <div class="mt-3">
                         <img class="img-fluid img-thumbnail rounded-circle object-fit-cover" style="height: 300px; width:300px;" src="ProfileModule/img/<?php echo $business_pfp; ?>">
                     </div>
                     <h3 class="mt-3" style="color:black; font-size:40px;"><i class="fas fa-building"></i><?php echo $business_name; ?></h3>
@@ -496,7 +496,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form method="post" action="viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
+                    <form method="post" action="farm-viewFarm.php?business_id=<?php echo $business_id; ?>" enctype="multipart/form-data">
                     <!-- Include business_id field -->
                     <input type="hidden" name="business_id" value="<?php echo $business_id; ?>">
                     <div class="modal-body">
@@ -642,7 +642,7 @@ $(document).ready(function(){
                         text: 'Your Review & Rating Successfully Submitted!',
                         icon: 'success'
                     }).then(function() {
-                        window.location = 'viewFarm.php?business_id=<?php echo $business_id;?>';
+                        window.location = 'farm-viewFarm.php?business_id=<?php echo $business_id;?>';
                     });
                 }
             })

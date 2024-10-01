@@ -1,6 +1,6 @@
 <?php
     include('../config/connectDb.php');
-    include('../navbars/subs-navbar.php');
+    include('../navbars/setup-nav.php');
 
     session_start();
     if(isset($_SESSION['ownerID'])){
@@ -64,97 +64,139 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link rel="stylesheet" href="../CSS/farmer-van.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Set Up Your Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-         /* Custom styles */
         body {
-            background-color: whitesmoke;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            min-height: 100vh; /* Ensure the background covers the entire viewport height */
+            background-color: #f9f9f9;
         }
+
         .container-border {
-            border: 1px solid black;
-            border-radius: 25px;
-            padding: 40px; /* Increased padding for more space */
-            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            background-color: white;
         }
-        .image-container {
-            border: 2px solid black;
-            border-radius: 15px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto;
+
+        h1 {
+            color: #333;
+            font-weight: 600;
         }
-        #preview {
-            width: 100%;
-            height: auto;
+
+        h5 {
+            font-weight: 500;
+            color: #555;
         }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
         .btn.upload-btn {
             width: 100%;
-            border-radius: 15px;
-            background-color: #90EE90; /* Button color */
+            border-radius: 8px;
+            background-color: #28a745;
+            color: white;
+            font-weight: 500;
+            border: none;
         }
-        .upload-btn:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease;/
+
+        .btn.upload-btn:hover {
+            background-color: #218838;
+        }
+
+        .divider {
+            border-left: 1px solid #ccc;
+            height: 100%;
+        }
+
+        .image-container {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto; /* Center the entire container */
+        }
+
+        #preview {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .form-section {
+            padding: 20px 0;
+        }
+
+        small {
+            color: #e3342f;
         }
     </style>
 </head>
 <body>
 
-<div class="container-fluid mt-5">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h1 class="text-center mb-4">Set Up Your Profile</h1> <!-- Title outside the container -->
+        <div class="col-md-10">
+            <h1 class="text-center mb-4">Set Up Your Profile</h1>
             <div class="container-border">
-                <form class="row g-3" method="post" enctype="multipart/form-data">
-                    <!-- Profile Picture -->
-                    <div class="col-md-6">
-                        <div class="text-center">
-                            <h5>Profile Picture</h5> <!-- Text indicating profile picture upload -->
-                            <div class="image-container mb-3">
-                                <img id="preview" src="#" alt="Preview Image" style="display:none;">
-                            </div>
-                            <input class="form-control mt-3" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                <form class="row g-4" method="post" enctype="multipart/form-data">
+                    <!-- Profile Picture Section -->
+                    <div class="col-md-4 text-center">
+                        <h5>Profile Picture</h5>
+                        <div class="image-container mb-3">
+                            <img id="preview" src="#" alt="Your Image" style="display:none;">
+                        </div>
+                        <input class="form-control" type="file" id="formFile" name="image" accept=".jpg, .jpeg, .png" onchange="previewImage(event)">
+                    </div>
+
+                    <!-- Vertical Divider -->
+                    <div class="col-md-1 d-flex justify-content-center align-items-center">
+                        <div class="divider"></div>
+                    </div>
+
+                    <!-- Business Profile Section -->
+                    <div class="col-md-7 form-section">
+                        <div class="mb-3">
+                            <label for="businessName" class="form-label">Business Name</label>
+                            <input type="text" class="form-control" id="businessName" placeholder="Enter Business Name" name="business_name">
+                            <small><?php echo $errors['business_name'] ?? ''; ?></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="businessBio" class="form-label">Business Bio</label>
+                            <textarea class="form-control" id="businessBio" rows="3" placeholder="Enter Business Bio" name="business_bio"></textarea>
+                            <small><?php echo $errors['business_bio'] ?? ''; ?></small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contactNumber" class="form-label">Contact Number</label>
+                            <input type="text" class="form-control" id="contactNumber" placeholder="Enter Contact Number" name="contact_number">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" placeholder="Enter Address" name="address">
                         </div>
                     </div>
-                    <!-- Profile Details -->
-                    <div class="col-md-6">
-                        <!-- Business Name -->
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Business Name" name="business_name">
-                            <small class="text-danger"><?php echo $errors['business_name'] ?></small>
-                        </div>
-                        <!-- Bio -->
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Bio" name="business_bio">
-                            <small class="text-danger"><?php echo $errors['business_bio'] ?></small>
-                        </div>
-                        <!-- Email -->
-                        <div class="col-md-12 mb-3">
-                            <input type="email" class="form-control" placeholder="Email" name="email">
-                        </div>
-                        <!-- Contact Number -->
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Contact Number" name="contact_number">
-                        </div>
-                        <!-- Address -->
-                        <div class="col-md-12 mb-3">
-                            <input type="text" class="form-control" placeholder="Address" name="address">
-                        </div>
-                    </div>
-                    <!-- Upload Button -->
-                    <div class="col-md-12 text-center mt-5 mb-3">
-                        <button class="btn upload-btn w-50" type="submit" name="submit">Upload</button>
+
+                    <!-- Submit Button -->
+                    <div class="col-12 text-center mt-4">
+                        <button class="btn upload-btn w-50" type="submit" name="submit">Upload Profile</button>
                     </div>
                 </form>
             </div>
-        </div>  
+        </div>
     </div>
 </div>
 

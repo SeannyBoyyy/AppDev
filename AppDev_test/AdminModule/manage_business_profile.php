@@ -66,7 +66,7 @@ if (isset($_POST['owner_id'])) {
             <div class="col-6">
             <h5>Delete Business Profile</h5>
             <form method="post" action="">
-                <div class="input-group mb-2"> <!-- Removed fixed width -->
+                <div class="input-group mb-2" style="max-width: 200px;"> <!-- Removed fixed width -->
                     <span class="input-group-text" id="addon-wrapping">ID</span>
                     <!-- Corrected name attribute -->
                     <input type="text" class="form-control my-0" name="owner_id" placeholder="Owner ID" aria-label="Username" aria-describedby="addon-wrapping">

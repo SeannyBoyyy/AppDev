@@ -25,7 +25,7 @@ if(isset($_SESSION['ownerID'])){
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Z-MarketHub</title>
-    <link rel="icon" type="image/x-icon" href="ProfileModule/img/logo.png">
+    <link rel="icon" type="image/x-icon" href="img/logo.png">
     <link rel="stylesheet" href="../CSS/profilepage-nav.css">
     <link rel="stylesheet" href="../CSS/profile-setup.css">
     <link rel="stylesheet" href="../CSS/profilepage.css">

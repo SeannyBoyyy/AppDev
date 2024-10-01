@@ -55,10 +55,14 @@ if ($msgCount > 0) {
         transition: box-shadow 0.3s ease;
     }
     .card-body:hover{
-    color: black;
-    transform: translateY(-5px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      color: black;
+      transform: translateY(-5px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
+    .modal-backdrop {
+        display: none !important;
+    }
+
 </style>
 <div class="col-12 d-flex align-items-center border mt-5 border-0 rounded-5 p-3 bg-white box-area">
     <?php if (!empty($msgRows)): ?>
