@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <tr class="text-center">
                         <th>#</th>
                         <th>User ID</th>
+                        <th>Email</th> <!-- New Email Column -->
                         <th>Plan ID</th>
                         <th>Status</th>
                         <th>Valid From</th>
@@ -74,12 +75,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <tbody>
                     <?php
                     $i = 1;
-                    $rows = mysqli_query($conn, "SELECT * FROM user_subscriptions WHERE status != 'PENDING' ORDER BY id ASC");
+                    // Update query to join user_accounts table
+                    $rows = mysqli_query($conn, "SELECT us.*, ua.email FROM user_subscriptions us 
+                                                  JOIN user_accounts ua ON us.user_id = ua.id 
+                                                  WHERE us.status != 'PENDING' 
+                                                  ORDER BY us.id ASC");
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
                             <td><?php echo $row["user_id"]; ?></td>
+                            <td><?php echo htmlspecialchars($row["email"]); ?></td> <!-- Display User Email -->
                             <td><?php echo $row["plan_id"]; ?></td>
                             <td><?php echo $row["status"]; ?></td>
                             <td><?php echo $row["valid_from"]; ?></td>
@@ -116,7 +122,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </thead>
                 <tbody>
                     <?php
-                    $rows = mysqli_query($conn, "SELECT * FROM user_subscriptions WHERE status = 'PENDING' ORDER BY id ASC");
+                    $rows = mysqli_query($conn, "SELECT us.*, ua.email FROM user_subscriptions us 
+                                                  JOIN user_accounts ua ON us.user_id = ua.id 
+                                                  WHERE us.status = 'PENDING' 
+                                                  ORDER BY us.id ASC");
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
@@ -124,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td><?php echo htmlspecialchars($row["user_id"]); ?></td>
                             <td><?php echo htmlspecialchars($row["subscriber_id"]); ?></td>
                             <td><?php echo htmlspecialchars($row["subscriber_name"]); ?></td>
-                            <td><?php echo htmlspecialchars($row["subscriber_email"]); ?></td>
+                            <td><?php echo htmlspecialchars($row["email"]); ?></td> <!-- Display User Email -->
                             <td><?php echo htmlspecialchars($row["status"]); ?></td>
                             <td>
                                 <a href="../ProfileModule/img/<?php echo htmlspecialchars($row["image"]); ?>" target="_blank">

@@ -224,9 +224,9 @@
                     </div>
                 </div>    
                             
-                <div class="col-lg-9 col-12 p-0">
+                <div class="col-lg-9 col-12" style="padding-left: 0; padding-right: 0;">
                     <?php if (!empty($photos)): ?>
-                        <div class="container-fluid text-center">
+                        <div class="container-fluid text-center" style="padding-left: 0; margin: 0;">
                             <div class="row">
                                 <div id="carouselExampleCaptions" class="carousel slide w-100" data-bs-ride="carousel" style="height: 500px;">
                                     <div class="carousel-indicators">

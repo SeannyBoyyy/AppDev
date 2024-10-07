@@ -29,7 +29,7 @@ if(isset($_SESSION['admin_email'])){
   <nav class="navbar sticky-top border-bottom p-3 w-100" style="background-color: #21d192;">
     <div class="container-fluid">
       <div class="container-fluid text-center">
-        <a class="navbar-brand fs-4 justify-content-center" href="../admin-landingPage.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4 justify-content-center" href="../admin-landingPage.php">Z-MarketHub<img src="../ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
     </div>
   </nav>

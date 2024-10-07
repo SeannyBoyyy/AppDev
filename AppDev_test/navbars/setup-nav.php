@@ -20,7 +20,7 @@
   <nav class="navbar navbar sticky-top p-3" style="background-color: #21d192;">
     <div class="container-fluid">
       <div class="container-fluid text-center">
-        <a class="navbar-brand fs-4 justify-content-center" href="../AccPages/login-page.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4 justify-content-center" href="../AccPages/login-page.php">Z-MarketHub<img src="img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
     </div>
   </nav>

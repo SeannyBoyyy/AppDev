@@ -35,7 +35,7 @@ if(isset($_SESSION['ownerID'])){
   <nav class="navbar sticky-top border-bottom p-3 w-100">
     <div class="container-fluid">
       <div class="container-fluid text-center">
-        <a class="navbar-brand fs-4 justify-content-center" href="../index.php">Z-MarketHub<img src="http://localhost/AppDev/AppDev_test/ProfileModule/img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
+        <a class="navbar-brand fs-4 justify-content-center" href="../index.php">Z-MarketHub<img src="img/logo.png" alt="FarmDeals Logo" width="60" height="60"></a>
       </div>
     </div>
   </nav>

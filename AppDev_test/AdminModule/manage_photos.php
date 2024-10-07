@@ -20,15 +20,22 @@ include('../config/connectDb.php');
                 </thead>
                 <tbody>
                     <?php
-                    $i = 1;
-                    $rows = mysqli_query($conn, "SELECT * FROM business_photos ORDER BY id DESC");
+                    // Join business_photos with business_profile to get owner's name
+                    $query = "
+                        SELECT bp.*, b.name AS owner_name 
+                        FROM business_photos bp 
+                        JOIN business_profile b ON bp.posted_by = b.id 
+                        ORDER BY bp.id DESC
+                    ";
+                    $rows = mysqli_query($conn, $query);
+
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
                             <td><?php echo $row["id"]; ?></td>
                             <td><img src="../ProfileModule/img/<?php echo $row['image']; ?>" width="200" title=""></td>
                             <td><?php echo $row["created_at"]; ?></td>
-                            <td><?php echo $row["posted_by"]; ?></td>
+                            <td><?php echo $row["owner_name"]; ?></td> <!-- Display owner's name -->
                             <td>
                                 <!-- CRUD Operations Form -->
                                 <form action="crud.php" method="post">

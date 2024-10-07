@@ -1,8 +1,6 @@
 <?php 
 include('../config/connectDb.php');
-
 ?>
-
 
 <div class="middle">
     <div class="container p-3">
@@ -14,29 +12,35 @@ include('../config/connectDb.php');
                 <thead>
                     <tr class="text-center">
                         <th>#</th>
-                        <th>Business ID</th>
+                        <th>Business Name</th> <!-- Change the header to Business Name -->
                         <th>User Name</th>
                         <th>Star Ratings</th>
                         <th>Reviews</th>
                         <th>Status</th>
-                        <th>Date time</th>
+                        <th>Date Time</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $i = 1;
-                    $rows = mysqli_query($conn, "SELECT * FROM review_table ORDER BY review_id DESC");
+                    $query = "
+                        SELECT r.*, b.name AS business_name 
+                        FROM review_table r 
+                        JOIN business_profile b ON r.business_id = b.id 
+                        ORDER BY r.review_id DESC
+                    ";
+                    $rows = mysqli_query($conn, $query);
+
                     foreach ($rows as $row) :
                     ?>
                         <tr class="text-center">
                             <td><?php echo $row["review_id"]; ?></td>
-                            <td><?php echo $row["business_id"]; ?></td>
+                            <td><?php echo $row["business_name"]; ?></td> <!-- Display business name -->
                             <td><?php echo $row['user_name']; ?></td>
                             <td><?php echo $row["user_rating"]; ?></td>   
                             <td><?php echo $row["user_review"]; ?></td> 
                             <td><?php echo $row["status"]; ?></td> 
-                            <td><?php echo date('l jS, F Y h:i:s A', ($row["datetime"])); ?></td>
+                            <td><?php echo date('l jS, F Y h:i:s A', $row["datetime"]); ?></td>
                             <td>
                                 <!-- CRUD Operations Form -->
                                 <form action="crud.php" method="post">
